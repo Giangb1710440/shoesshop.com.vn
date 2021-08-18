@@ -8205,12 +8205,20 @@
 			</div>
 		</div>
 	</section>
-
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-
+        <script>
+            var msg = '{{Session::get('no_success')}}';
+            var exist = '{{Session::has('no_success')}}';
+            if(exist){
+                swal({
+                    title: "Đăng ký thất bại",
+                    text: "",
+                    type: "error",
+                    timer: 1200,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                });
+            }
+        </script>
 	</body>
 </html>
 @endsection
