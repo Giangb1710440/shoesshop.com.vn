@@ -57,7 +57,12 @@ class AdminController extends Controller
 
     //hiển thị sản phẩm
      public function show_product(){
-        return view('admin.show_product');
+        $show_product=DB::table('products')->get();
+        $cate_product=DB::table('categorys')->get();
+        return view('admin.show_product')->with([
+            'showproduct'=>$show_product,
+            'cate_product'=>$cate_product
+        ]);
      }
 
      //thêm mới sản phẩm

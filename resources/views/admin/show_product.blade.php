@@ -32,27 +32,33 @@
                                 <th>Số lượng</th>
                                 <th>Hình ảnh</th>
                                 <th>Đơn giá</th>
-                                <th>Giảm giá</th>
+                                <th>Mô tả</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="odd gradeX">
-                                <td>Trident</td>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Win 95+</td>
-                                <td>Trident</td>
-                                <td> <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                    <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                    <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                    <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                    <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                </td>
-                                <td>150000 vndddddd</td>
-                                <td>Win 95+</td>
-
-
-                            </tr>
-
+                            @foreach($showproduct as $showp)
+                                <tr class="odd gradeX">
+                                    <td>{{$showp->id}}</td>
+                                    <td>{{$showp->product_name}}</td>
+                                    <td>
+                                        @foreach($cate_product as $catep)
+                                            @if($catep->id == $showp->category_id )
+                                                {{$catep->category_name}}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>{{$showp->product_quality}}</td>
+                                    <td>
+                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
+                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
+                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
+                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
+                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
+                                    </td>
+                                    <td>{{number_format($showp->product_price)}} VNĐ</td>
+                                    <td>{{$showp->product_discribe}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
