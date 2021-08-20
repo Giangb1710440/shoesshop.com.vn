@@ -24,12 +24,14 @@ Route::get('/page-about', [HomeController::class, 'page_about']);
 
 //Trang đăng nhập
 Route::get('/page-login', [HomeController::class, 'page_login'])->name('page_login');
+Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
 Route::post('/check-login',[HomeController::class,'check_login'])->name('check_login');
 
 // Route::post('/post-login',[HomeController::class,'post_login']);
 
 Route::post('/check_signup',[HomeController::class,'check_signup'])->name('check_signup');
+
 
 //Trang đăng ký
 Route::get('/page-signup', [HomeController::class, 'page_signup'])->name('page-signup');
@@ -60,3 +62,26 @@ Route::get('/page-admin', 'App\Http\Controllers\AdminController@admin')->name('p
 
 //Trang sản phẩm
 Route::get('/list-product', [AdminController::class, 'list_product']);
+//them loại sản phẩm
+Route::get('/add-category', [AdminController::class, 'add_category'])->name('add_category');
+Route::post('/post_category', [AdminController::class, 'post_category'])->name('post_category');
+
+// thêm nhà cung cấp sản phẩm
+Route::get('add-supplier',[AdminController::class, 'add_supplier'])->name('add_supplier');
+Route::post('post-supplier',[AdminController::class, 'post_supplier'])->name('post_supplier');
+
+//hiển thị sản phẩm
+Route::get('show-product',[AdminController::class,'show_product'])->name('show_product');
+
+//thêm sản phẩm
+Route::get('add-product',[AdminController::class,'add_product'])->name('add_product');
+Route::post('post-product',[AdminController::class,'post_product'])->name('post_product');
+
+//edit san pham
+Route::get('/edit-product/{id}',[AdminController::class,'edit_product'])->name('edit_product');
+Route::post('/post_edit_product/{id}',[AdminController::class,'post_edit_product'])->name('post_edit_product');
+
+//delete image
+Route::post('/delete-image/{id}',[AdminController::class,'delete_image'])->name('delete_image');
+//danh sach user
+Route::get('/show-user',[AdminController::class,'show_user'])->name('show_user');

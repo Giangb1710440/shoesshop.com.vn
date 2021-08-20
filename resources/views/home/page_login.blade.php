@@ -8186,6 +8186,7 @@
 		</div>
 	</section>
 
+<<<<<<< HEAD
 <script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -8193,17 +8194,27 @@
 {{-- <script>
     var msg = '{{Session::get('no_success')}}';
     var exist = '{{Session::has('no_success')}}';
+=======
+<script>
+    var msg = '{{Session::get('register_success')}}';
+    var exist = '{{Session::has('register_success')}}';
+>>>>>>> d33691243701bb1bf7b998b357dabcc6c2d3a710
     if(exist){
         swal({
-            title: "Đăng nhập thất bại",
+            title: "Đăng ký thành công",
             text: "",
-            type: "error",
+            type: "success",
             timer: 1200,
             showConfirmButton: false,
             position: 'top-end',
         });
     }
+<<<<<<< HEAD
 </script> --}}
+=======
+
+</script>
+>>>>>>> d33691243701bb1bf7b998b357dabcc6c2d3a710
 	</body>
 </html>
 @if(session()->has('message'))

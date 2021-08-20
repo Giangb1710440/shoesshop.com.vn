@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 17, 2021 lúc 07:28 AM
--- Phiên bản máy phục vụ: 10.4.19-MariaDB
--- Phiên bản PHP: 7.3.28
+-- Thời gian đã tạo: Th8 20, 2021 lúc 02:17 PM
+-- Phiên bản máy phục vụ: 10.4.20-MariaDB
+-- Phiên bản PHP: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,14 @@ CREATE TABLE `categorys` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `categorys`
+--
+
+INSERT INTO `categorys` (`id`, `category_name`, `created_at`, `updated_at`) VALUES
+(20, 'Snaker', '2021-08-18 04:36:31', '2021-08-18 04:36:31'),
+(21, 'giày lười', '2021-08-18 07:19:59', '2021-08-18 07:19:59');
 
 -- --------------------------------------------------------
 
@@ -138,11 +146,16 @@ CREATE TABLE `products` (
   `product_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_discribe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_discount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_unitprice` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_tax` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `product_name`, `product_quality`, `product_price`, `product_image`, `product_discribe`, `product_discount`, `created_at`, `updated_at`) VALUES
+(6, 20, 'cs0111', 34, 300000, '[\"shoes-img7.png\",\"shoes-img8.png\",\"shoes-img6.png\"]', 'no', '0', '2021-08-19 00:22:43', '2021-08-20 04:41:57');
 
 -- --------------------------------------------------------
 
@@ -210,6 +223,13 @@ CREATE TABLE `suppliers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `supplier_name`, `supplier_address`, `supplier_discribe`, `created_at`, `updated_at`) VALUES
+(1, 'Adidas', 'Quận 1, Tp Hồ Chí Minh', 'sneaker', '2021-08-18 05:37:27', '2021-08-18 05:37:27');
+
 -- --------------------------------------------------------
 
 --
@@ -239,7 +259,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `username`, `email`, `email_verified_at`, `password`, `address`, `phone`, `sex`, `birthday`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Nguyễn Hà Giang', 'giang1133', 'giang@gmail.com', NULL, '$2y$10$FOAbGI/ViMkWM4gLfuhj9eUCxoeaDXLZPiVDvaZUhDNfL2G7tqkXS', '3/2 ninh kieu can tho', '0939337416', 'Nam', '1999-09-13', NULL, '2021-08-16 22:26:52', '2021-08-16 22:26:52'),
-(2, 2, 'phan phu thuan', 'thuanbede', 'thuan@gmail.com', NULL, '$2y$10$UrGukaR76GrlFWrV5d5Yoew/krd9vMWC.7l6RKs5a7UrbkvASuG3S', '3/2 ninh kieu can tho', '0939337416', 'Nam', '2021-08-28', NULL, '2021-08-16 22:27:31', '2021-08-16 22:27:31');
+(2, 2, 'phan phu thuan', 'thuanbede', 'thuan@gmail.com', NULL, '$2y$10$UrGukaR76GrlFWrV5d5Yoew/krd9vMWC.7l6RKs5a7UrbkvASuG3S', '3/2 ninh kieu can tho', '0939337416', 'Nam', '2021-08-28', NULL, '2021-08-16 22:27:31', '2021-08-16 22:27:31'),
+(3, 2, 'Nguyễn Hà Giang', 'giang1133', 'giang123@gmail.com', NULL, '$2y$10$a34JaeCCXs/ce06wVhgO/eQbvsGVN5lw4A.62O1BX32NS/RmO4xtu', '3/2 ninh kieu can tho', '0939337416', 'Nam', '2021-08-26', NULL, '2021-08-18 05:13:03', '2021-08-18 05:13:03');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -336,7 +357,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `categorys`
 --
 ALTER TABLE `categorys`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -366,7 +387,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `product_suppliers`
@@ -390,13 +411,13 @@ ALTER TABLE `role_accesss`
 -- AUTO_INCREMENT cho bảng `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
