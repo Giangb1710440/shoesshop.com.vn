@@ -54,10 +54,31 @@
 							   <a class="nav-item nav-link last" href="#"><img src="{{asset('public/home/img/search_icon.png')}}"></a>
 								<a class="nav-item nav-link last" href="{{ url('page-cart') }}"><img src="{{asset('public/home/img/shop_icon.png')}}"></a>
 							</div>
-							<ul style="margin-left: 15px;font-size: 17px;">
+							<ul>
+								@if (Auth::check())
+									<li>
+										<div class="dropdown">
+											<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+											   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fa fa-user"></i> <b>{{ Auth::users()->username }}</b>
+											</a>
+	
+											<div class="dropdown-content">
+												<a href="{{ url('#') }}" onclick="return confirm('Bạn có muốn đăng xuất không ?')">Đăng xuất</a>
+												<a href="{{url('#')}}">Đổi mật khẩu</a>
+												<a href="{{ url('#') }}">Thông tin cá nhân</a>
+											</div>
+										</div>
+									</li>
+								@else
+									<li><i class="fa fa-sign-in" style="color: white;"></i><a style="color:white;" href="{{ url('page-login') }}"> Log in</a></li>
+									<li><i class="fa fa-check-square-o"  style="color: white;"></i><a style="color:white;" href="{{ url('page-signup') }}"> Sign up</a></li>
+								@endif
+							</ul>
+							{{-- <ul style="margin-left: 15px;font-size: 17px;">
 								<li><i class="fa fa-sign-in" style="color: white;"></i><a style="color:white;" href="{{ url('page-login') }}"> Log in</a></li>
 								<li><i class="fa fa-check-square-o"  style="color: white;"></i><a style="color:white;" href="{{ url('page-signup') }}"> Sign up</a></li>
-							</ul>
+							</ul> --}}
 						</div>
                     </nav>
 				</div>

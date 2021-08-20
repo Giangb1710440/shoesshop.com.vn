@@ -8146,12 +8146,18 @@
 									</p>
 								</div>
 			      	</div>
+                
+                @if(session()->has('message_sign_up'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif  
 
-                <form action="{{route('checkLogin')}}" method="post" class="signin-form">
+                <form action="{{ url('check-login') }}" method="POST" class="signin-form">
                     @csrf
 			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">Username</label>
-			      			<input name="username" type="text" class="form-control" placeholder="Username" required>
+			      			<label class="label" for="name">Email</label>
+			      			<input name="email" type="text" class="form-control" placeholder="Email" required>
 			      		</div>
                         <div class="form-group mb-3">
                             <label class="label" for="password">Password</label>
@@ -8160,17 +8166,17 @@
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                         </div>
-		            <div class="form-group d-md-flex">
-		            	<div class="w-50 text-left">
-			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                                  <input type="checkbox" checked>
-                                  <span class="checkmark"></span>
-                            </label>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50 text-left">
+                                <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#">Forgot Password</a>
+                            </div>
                         </div>
-                        <div class="w-50 text-md-right">
-                            <a href="#">Forgot Password</a>
-                        </div>
-		            </div>
 		          </form>
 
 		        </div>
@@ -8180,11 +8186,11 @@
 		</div>
 	</section>
 
-	<script src="js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-<script>
+{{-- <script>
     var msg = '{{Session::get('no_success')}}';
     var exist = '{{Session::has('no_success')}}';
     if(exist){
@@ -8197,7 +8203,18 @@
             position: 'top-end',
         });
     }
-</script>
+</script> --}}
 	</body>
 </html>
+@if(session()->has('message'))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Tài khoản hoặc mật khẩu sai!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
 @endsection

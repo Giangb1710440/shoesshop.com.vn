@@ -43,8 +43,8 @@ class HomeController extends Controller
     }
 
     //kiem tra dang nhap
-    public function checkLogin(Request $request){
-        $email = $request->input('username');
+    public function check_login(Request $request){
+        $email = $request->input('email');
         $password = $request->input('password');
         if (Auth::attempt(['email' => $email, 'password' => $password,'role_id'=>1])){
             $register_success = Session::get('register_success');
@@ -53,13 +53,32 @@ class HomeController extends Controller
         }elseif (Auth::attempt(['email' => $email, 'password' => $password,'role_id'=>2])){
             $register_success = Session::get('register_success');
             Session()->put('register_success');
-            return redirect()->route('home')->with('register_success','thanh cong');
+            // return redirect()->route('home')->with('register_success','thanh cong');
+            return redirect('/');
         }else{
             $register_success = Session::get('no_success');
             Session()->put('no_success');
             return redirect()->back()->with('no_success', 'Email hoặc mật khẩu của bạn không đúng!');
         }
     }
+
+
+    //Kiểm tra đăng nhập
+    // public function post_login(Request $request)
+    // {
+    //     $email = $request->input('email');
+    //     $password = $request->input('password');
+
+    //     //Đặt kiểu kiện để chuyển hướng đến page-admin hoặc trang chủ
+    //     if (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 1])) {
+    //         return redirect('page-admin');
+    //     }elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 2])){
+    //         return redirect('/');
+    //     }else{
+    //         $message = $request->session()->get('message');
+    //         return redirect()->back()->with('message','');
+    //     }
+    // }
 
     //Trang đăng ký
     public function page_signup()
@@ -136,6 +155,42 @@ class HomeController extends Controller
     public function page_cart()
     {
         return view('home.page_cart');
+    }
+
+    //Trang thanh toán
+    public function page_checkout()
+    {
+        return view('home.page_checkout');
+    }
+
+    //Trang thanh toán
+    public function product_detail()
+    {
+        return view('home.product_detail');
+    }
+
+    //Trang profile
+    public function page_infor_user()
+    {
+        return view('home.profile_user.infor_user');
+    }
+
+    //Trang chờ thanh toán
+    public function wait_payment()
+    {
+        return view('home.profile_user.wait_payment');
+    }
+
+    //Trang chờ giao hàng
+    public function page_delivery()
+    {
+        return view('home.profile_user.page_delivery');
+    }
+
+    //Trang đã hủy
+    public function page_cancel()
+    {
+        return view('home.profile_user.page_cancel');
     }
 
 }

@@ -65,20 +65,29 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th>Nike</th>
-        <td>
-            <a href="#">
-                <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
-            </a>
-        </td>
-        <td>3.000.000 VND</td>
-        <td> <input type="number" size="4" class="input-text qty text" name="inputQty"
-            value="1" min="0" step="1">
-        </td>
-        <td> <input type="submit" class="btn btn-success" value="Cập nhật" name="update_cart" class="button"></td>
-        <td> <input type="submit" class="btn btn-danger" value="Xóa" name="delete_cart" class="button"></td>
-      </tr>  
+        <tr>
+            <th>Nike</th>
+            <td>
+                <a href="#">
+                    <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
+                </a>
+            </td>
+            <td>3.000.000 VND</td>
+            <td> <input type="number" size="4" class="input-text qty text" name="inputQty"
+                value="1" min="0" step="1">
+            </td>
+            <td>3.000.000 VND</td>
+            <td> <input type="submit" class="btn btn-success" value="Update" name="update_cart" class="button"></td>
+            <td> <input type="submit" class="btn btn-danger" value="Delete" name="delete_cart" class="button"></td>
+        </tr>  
+        <tr>
+            <td colspan="6"></td>
+            <td class="actions" colspan="2" style="padding:10px;">
+                <a href="{{ url('page-checkout') }}"  style="border:unset;width: 200px;">
+                    <input type="submit" value="Checkout" name="update_cart" class="btn btn-primary" >
+                </a>
+            </td>
+        </tr>
     </tbody>
   </table>
 @endsection

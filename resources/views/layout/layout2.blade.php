@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <!-- site metas -->
-      <title> @yield('title')</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="{{asset('public/home/css/bootstrap.min.css')}}">
-      <link rel="stylesheet" href="{{asset('public/home/css/bootstrap.min.css')}}">
-      <!-- style css -->
-      <link rel="stylesheet" href="{{asset('public/home/css/style.css')}}">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="{{asset('public/home/css/responsive.css')}}">
-      <!-- fevicon -->
-      <link rel="icon" href="{{asset('public/home/img/fevicon.png')}}" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="{{asset('public/home/css/jquery.mCustomScrollbar.min.css')}}">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- owl stylesheets -->
-      <link rel="stylesheet" href="{{asset('public/home/css/owl.carousel.min.css')}}">
-      <link rel="stylesheet" href="{{asset('public/home/css/owl.theme.default.min.css')}}">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
-       <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   </head>
+	<head>
+		<!-- basic -->
+		<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- site metas -->
+		<title> @yield('title')</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- bootstrap css -->
+		<link rel="stylesheet" href="{{asset('public/home/css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{asset('public/home/css/bootstrap.min.css')}}">
+		<!-- style css -->
+		<link rel="stylesheet" href="{{asset('public/home/css/style.css')}}">
+		<!-- Responsive-->
+		<link rel="stylesheet" href="{{asset('public/home/css/responsive.css')}}">
+		<!-- fevicon -->
+		<link rel="icon" href="{{asset('public/home/img/fevicon.png')}}" type="image/gif" />
+		<!-- Scrollbar Custom CSS -->
+		<link rel="stylesheet" href="{{asset('public/home/css/jquery.mCustomScrollbar.min.css')}}">
+		<!-- Tweaks for older IEs-->
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+		<!-- owl stylesheets -->
+		<link rel="stylesheet" href="{{asset('public/home/css/owl.carousel.min.css')}}">
+		<link rel="stylesheet" href="{{asset('public/home/css/owl.theme.default.min.css')}}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		@yield('link_css')
+	 </head>
    <!-- body -->
    <body class="main-layout">
 	<!-- header section start -->
@@ -42,14 +38,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<div class="logo"><a href="{{ url('/') }}"><img src="{{asset('public/home/img/logo.png')}}"></a></div>
+					<div class="logo"><a href="#"><img src="{{asset('public/home/img/logo.png')}}"></a></div>
 				</div>
-				<div class="col-sm-9">
+				<div class="col-sm-9" >
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
-						<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
 							<div class="navbar-nav">
 							   <a class="nav-item nav-link" href="{{ url('/') }}">Home</a>
 							   <a class="nav-item nav-link" href="{{ url('page-product') }}">Shop</a>
@@ -57,7 +53,7 @@
 							   <a class="nav-item nav-link" href="{{ url('page-contact') }}">Contact</a>
 							   <a class="nav-item nav-link" href="{{ url('page-about') }}">About Us</a>
 							   <a class="nav-item nav-link last" href="#"><img src="{{asset('public/home/img/search_icon.png')}}"></a>
-							   <a class="nav-item nav-link last" href="{{ url('page-cart') }}"><img src="{{asset('public/home/img/shop_icon.png')}}"></a>
+								<a class="nav-item nav-link last" href="{{ url('page-cart') }}"><img src="{{asset('public/home/img/shop_icon.png')}}"></a>
 							</div>
 							<ul style="margin-left: 15px;font-size: 17px;">
 								<li><i class="fa fa-sign-in" style="color: white;"></i><a style="color:white;" href="{{ url('page-login') }}"> Log in</a></li>
