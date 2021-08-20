@@ -15,9 +15,17 @@ class AdminController extends Controller
 {
 
     public function admin(){
-        return view('admin.index_admin');
+        if (Auth::check()){
+            return view('admin.index_admin');
+        }else{
+            return view('home.page_login');
+        }
     }
-
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->forget('cart');
+        return redirect()->route('page_login');
+    }
     public function list_product(){
         return view('admin.list_product');
     }
@@ -77,22 +85,136 @@ class AdminController extends Controller
         $name_product=$res->input('name_product');
         $quality=$res->input('quality');
         $price=$res->input('price');
-        $image=$res->input('image');
+
         $discription=$res->input('discription');
         $discost=$res->input('discost');
-
 
         $product = new Product();
         $product->category_id=$category;
         $product->product_name=$name_product;
         $product->product_quality=$quality;
         $product->product_price=$price;
-        $product->product_image=$image;
+
+        //image
+        $res->validate([
+            'image' => 'required',
+            'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+        ]);
+
+        if($res->hasfile('image')) {
+            foreach ($res->file('image') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path() . '/uploads/', $name);
+                $imgData[] = $name;
+            }
+        }
+        $product->product_image=json_encode($imgData);
+
         $product->product_discribe=$discription;
         $product->product_discount=0;
         $product->save();
         $register_success = Session::get('success_add_product');
         Session::put('success_add_product');
         return redirect()->route('show_product')->with('success_add_product','Thành công');
+    }
+
+    //edit product
+    public function edit_product($id){
+        $category=DB::table('categorys')->get();
+        $product=DB::table('products')->where('id',$id)->get();
+        return view('admin.edit_product')->with([
+            'category'=>$category,
+            'product'=>$product,
+            'id'=>$id
+        ]);
+
+    }
+
+    //post_edit_product
+    public function post_edit_product($id,Request $res){
+
+        $edit_product = Product::find($id);
+
+        $category=$res->input('category');
+        $name_product=$res->input('name_product');
+        $quality=$res->input('quality');
+        $price=$res->input('price');
+        $discription=$res->input('discription');
+        $discost=$res->input('discost');
+
+        if($category != null){
+            $edit_product->category_id = $category;
+        }
+        if($name_product != null){
+            $edit_product -> product_name = $name_product;
+        }
+        if($quality != null) {
+            $edit_product->product_quality = $quality;
+        }
+        if($price == null){
+            $edit_product->product_price = $price;
+        }
+        if($discription != null){
+            $edit_product -> product_discribe=$discription;
+        }
+        if($discost != null){
+            $edit_product -> product_discount=$discost;
+        }
+        //image
+        $res->validate([
+            'image' => 'required',
+            'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+        ]);
+        if($res->hasfile('image')) {
+
+            $img = $edit_product->product_image;
+            $arr_img=json_decode($img,true);
+            foreach ($res->file('image') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path() . '/uploads/', $name);
+                $image[]=$name;
+                array_push($arr_img,$name);
+            }
+            $edit_product->product_image=json_encode($arr_img);
+        }
+        $edit_product -> save();
+        $register_success = Session::get('success_edit_product');
+        Session::put('success_edit_product');
+        return redirect()->route('show_product')->with('success_edit_product','Thành công');
+    }
+
+    //delete image
+    public function delete_image($id,Request $res){
+        $delete_img = Product::find($id);
+        $res->validate([
+            'image' => 'required',
+            'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+        ]);
+        if($res->hasfile('image')) {
+
+            $img = $delete_img->product_image;
+            $arr_img=json_decode($img,true);
+
+            foreach ($res->file('image') as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move(public_path() . '/uploads/', $name);
+
+
+                $image[]=$name;
+                array_push($arr_img,$name);
+            }
+            $edit_product->product_image=json_encode($arr_img);
+        }
+    }
+
+    //show user
+
+    public function show_user(){
+        $users=DB::table('users')->get();
+        $role=DB::table('role_accesss')->get();
+        return view('admin.show_user')->with([
+            'users'=>$users,
+            'role'=>$role
+        ]);
     }
 }

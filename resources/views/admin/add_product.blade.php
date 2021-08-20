@@ -1,9 +1,9 @@
 @extends('admin_layout.master')
-@section('title','Add-category')
+@section('title','Add-product')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Thêm mới loại sản phẩm</h1>
+            <h1 class="page-header">Thêm mới sản phẩm</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-lg-3"></div>
                         <div class="col-lg-6">
-                            <form role="form" method="post" action="{{route('post_product')}}">
+                            <form enctype="multipart/form-data" role="form" method="post" action="{{route('post_product')}}">
                                 @csrf
                                 <div class="form-group">
                                     <label>Loại sản phẩm</label>
@@ -43,7 +43,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Hình ảnh</label>
-                                    <input name="image" type="file" multiple="multiple">
+{{--                                    <input name="image" type="file" multiple="multiple">--}}
+                                    <input required type="file" class="form-control" name="image[]" placeholder="images" multiple>
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả</label>

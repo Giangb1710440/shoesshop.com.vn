@@ -33,13 +33,14 @@
                                 <th>Hình ảnh</th>
                                 <th>Đơn giá</th>
                                 <th>Mô tả</th>
+                                <th>Tùy chọn</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($showproduct as $showp)
                                 <tr class="odd gradeX">
                                     <td>{{$showp->id}}</td>
-                                    <td>{{$showp->product_name}}</td>
+                                    <td><a href="#">{{$showp->product_name}}</a></td>
                                     <td>
                                         @foreach($cate_product as $catep)
                                             @if($catep->id == $showp->category_id )
@@ -49,14 +50,18 @@
                                     </td>
                                     <td>{{$showp->product_quality}}</td>
                                     <td>
-                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
-                                        <img style="height: 15%;width: 12%" src="{{asset('public/home/img/shoes-img8.png')}}" alt="">
+                                        @foreach((array)json_decode($showp->product_image, true) as $image)
+                                            <img style="height: 15%;width: 12%" src="{{asset('public/home/img/'.$image)}}" alt="">
+{{--                                            <img  class="card-img-top" src="{{ \TCG\Voyager\Facades\Voyager::image($image) }}" alt="">--}}
+                                        @endforeach
                                     </td>
                                     <td>{{number_format($showp->product_price)}} VNĐ</td>
                                     <td>{{$showp->product_discribe}}</td>
+                                    <td>
+                                        <a title="Edit sản phẩm" href="{{route('edit_product',$showp->id)}}" type="button"><i style="font-size: 25px" class="fas fa-edit"></i> </a>
+                                        <a title="Delete" href="" type="button"><i style="font-size: 25px" class="fas fa-trash-alt"></i>  </a>
+                                    </td>
+
                                 </tr>
                             @endforeach
                             </tbody>
@@ -93,5 +98,18 @@
             });
         }
     </script>
-
+    <script>
+        var msg1 = '{{Session::get('success_edit_product')}}';
+        var exist1 = '{{Session::has('success_edit_product')}}';
+        if (exist1) {
+            swal({
+                title: "Đã cập nhật.",
+                text: "",
+                type: "success",
+                timer: 2000,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+        }
+    </script>
 @endsection

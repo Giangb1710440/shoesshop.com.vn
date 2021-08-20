@@ -21,9 +21,11 @@ Route::get('/page-about', [HomeController::class, 'page_about']);
 
 //Trang đăng nhập
 Route::get('/page-login', [HomeController::class, 'page_login'])->name('page_login');
+Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
 Route::post('/check_login',[HomeController::class,'checkLogin'])->name('checkLogin');
 Route::post('/check_signup',[HomeController::class,'check_signup'])->name('check_signup');
+
 
 //Trang đăng ký
 Route::get('/page-signup', [HomeController::class, 'page_signup'])->name('page-signup');
@@ -54,3 +56,11 @@ Route::get('show-product',[AdminController::class,'show_product'])->name('show_p
 Route::get('add-product',[AdminController::class,'add_product'])->name('add_product');
 Route::post('post-product',[AdminController::class,'post_product'])->name('post_product');
 
+//edit san pham
+Route::get('/edit-product/{id}',[AdminController::class,'edit_product'])->name('edit_product');
+Route::post('/post_edit_product/{id}',[AdminController::class,'post_edit_product'])->name('post_edit_product');
+
+//delete image
+Route::post('/delete-image/{id}',[AdminController::class,'delete_image'])->name('delete_image');
+//danh sach user
+Route::get('/show-user',[AdminController::class,'show_user'])->name('show_user');

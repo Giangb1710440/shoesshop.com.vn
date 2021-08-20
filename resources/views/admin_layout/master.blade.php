@@ -9,8 +9,8 @@
     @include('sweetalert::alert')
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
-    @if(Session::has('show-product'))
-        @yield('admin_show_product')
+    @if(Session::has('edit_product'))
+        @yield('editp')
     @endif
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
