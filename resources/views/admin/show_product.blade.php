@@ -40,7 +40,7 @@
                             @foreach($showproduct as $showp)
                                 <tr class="odd gradeX">
                                     <td>{{$showp->id}}</td>
-                                    <td><a href="#">{{$showp->product_name}}</a></td>
+                                    <td><a href="{{route('product_detail',$showp->id)}}">{{$showp->product_name}}</a></td>
                                     <td>
                                         @foreach($cate_product as $catep)
                                             @if($catep->id == $showp->category_id )

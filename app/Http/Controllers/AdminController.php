@@ -22,9 +22,13 @@ class AdminController extends Controller
         }
     }
     public function logout(Request $request){
-        Auth::logout();
-        $request->session()->forget('cart');
-        return redirect()->route('page_login');
+        if (Auth::user()->role_id == 1){
+            Auth::logout();
+            return redirect()->route('page_login');
+        }else{
+            Auth::logout();
+            return redirect()->back();
+        }
     }
     public function list_product(){
         return view('admin.list_product');

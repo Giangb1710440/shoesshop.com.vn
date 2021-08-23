@@ -1,5 +1,5 @@
-@extends('layout.layout2')
-@section('title','Thanh Toán')
+@extends('layout.layout')
+@section('title','Detail-product')
 @section('content')
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -103,7 +103,7 @@
         color: #fff;
     }
 </style>
-<div class="collection_text">Produt Details</div>
+<div class="collection_text">Product Details</div>
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
@@ -119,82 +119,221 @@
                 </div>
 
                 {{--Hiển thị thông tin chi tiết sản phẩm--}}
-                <div class="col-md-8">
-                    <div class="product-content-right">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="product-images">
-                                    <div class="product-main-img"><br><br>
-                                        <img src="{{asset('public/home/img/shoes-img1.png')}}" >
+                @foreach($product as $products)
+                    <div class="col-md-8">
+                        <div class="product-content-right">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="product-images">
+                                        <div class="product-main-img"><br><br>
+                                            @foreach((array)json_decode($products->product_image, true) as $image)
+                                               <img src="{{asset('public/home/img/'.$image)}}" alt="">
+                                                @break
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6">
-                                <div class="product-inner"><br><br>
-                                    <h2 class="product-name">Product Name</h2>
-                                    <div class="product-inner-price">
-                                        <ins> Product Price VND / Unit </ins>
-                                    </div>
-
-                                    <form action="#" class="cart" method="post">
-                                        @csrf
-
-                                        <div class="quantity">
-                                            <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">
+                                <div class="col-sm-6">
+                                    <div class="product-inner"><br><br>
+                                        <h2 class="product-name">{{$products->product_name}}</h2>
+                                        <div class="product-inner-price">
+                                            <ins> {{number_format($products->product_price)}} VND</ins>
                                         </div>
 
-                                        <button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
-                                        
-                                    </form>
+                                        <form action="#" class="cart" method="post">
+                                            @csrf
 
-                                    <div class="product-inner-category"><br>
-                                        <p> Loại:
-                                                <a href="#">
-                                                    Category
-                                                </a>
-                                        </p>
-                                    </div>
-                                    <div role="tabpanel">
-                                        <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nhà cung cấp</a></li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                                <h2>Mô tả</h2>
-                                                <p>Nhập mô tả....</p>
+                                            <div class="quantity">
+                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">
                                             </div>
 
-                                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                                <p><b style="font-size: 20px">Nhập nhà cung cấp</b>  </p>
+                                            <button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
+
+                                        </form>
+
+                                        <div class="product-inner-category"><br>
+                                            <p> Loại:
+
+                                                    @php($cate = DB::table('categorys')->get())
+                                                    @foreach($cate as $cates)
+                                                        @if($cates->id == $products->category_id )
+                                                        <a href="{{route('page_product',$cates->id)}}">{{ucwords($cates -> category_name)}}</a>
+                                                            @break
+                                                        @endif
+                                                    @endforeach
+
+                                            </p>
+                                        </div>
+                                        <div role="tabpanel">
+                                            <ul class="product-tab" role="tablist">
+                                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
+                                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nhà cung cấp</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                    <h2>Mô tả</h2>
+                                                    <p>{{$products->product_discribe}}</p>
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                    <p><b style="font-size: 20px">Nhập nhà cung cấp</b>  </p>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
 
-        <div class="container">
-            <div class="post-comments">
-                <form action="#" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="comment">Bình luận</label>
-                        <textarea name="input_comment_content" class="form-control" rows="5" placeholder="Nhập bình luận..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-default">Gửi</button>
-                </form>
-                <br>
-            </div>
-            </div>
+        @foreach($product as $products)
+{{--            <div class="container">--}}
 
-    </div>
+{{--            </div>--}}
+           <div class="container" style="padding-bottom: 40px">
+               <div class="row mt-4">
+                   <div class="col-md-6">
+                       <div id="fb-root"></div>
+                       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0"></script>
+                       <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://http://localhost/shoesshop.com.vn/product-detail/{{ $products->id }}"
+                            data-width="500" data-numposts="5"></div>
+{{--                       <div class="post-comments" style="padding-top: 6px">--}}
+{{--                           <form action="#" method="POST">--}}
+{{--                               @csrf--}}
+{{--                               <div class="form-group">--}}
+{{--                                   <label for="comment">Bình luận</label>--}}
+{{--                                   <textarea name="input_comment_content" class="form-control" rows="5" placeholder="Nhập bình luận..."></textarea>--}}
+{{--                               </div>--}}
+{{--                               <button type="submit" class="btn btn-default">Gửi</button>--}}
+{{--                           </form>--}}
+{{--                           <br>--}}
+{{--                       </div>--}}
+                   </div>
+
+                   <div class="col-md-6">
+                       @if(Auth()->check())
+                           <style>
+                               .rating_circle{
+                                   width: 180px;
+                                   height: 180px;
+                                   border-radius: 50%;
+                                   border: 1px none;
+                                   font-size: 50px;
+                                   font-weight: bold;
+                               }
+                               .rating_text{
+                                   margin-top:1px;
+                                   font-size: 20px;
+                               }
+
+                               /* Stylingand links*/
+                               .starrating > input {display: none;}
+                               .starrating > label:before {
+                                   content: "\f005";
+                                   margin: 5px;
+                                   font-size:40px;
+                                   font-family: FontAwesome, serif;
+                                   display: inline-block;
+                               }
+                               .starrating > label{color: #4a5568;}
+                               .starrating > input:checked ~ label{ color: #ffca08 ; }
+                               .starrating > input:hover ~ label{ color: #ffca08 ;  }
+                           </style>
+                           <div class="card pb-0 mt-5">
+                               <div class="card-body pb-0">
+                                   <div class="row">
+                                       <div class="col-12 col-md-4">
+                                           <button class="rating_circle">
+                                               @php($avg_rating = DB::table('rating_stars')->where('product_id', $products->id)->avg('avg_number_star'))
+                                               {{ round($avg_rating, 1) }} / <span class="text-warning">5 <i class="fa fa-star" style="color:#ffca08;"></i></span>
+                                           </button>
+                                       </div>
+                                       <div class="col-10 col-md-6">
+                                           <div class="progress mt-2" style="height:15px;">
+                                               <div class="progress-bar bg-success" style="width:100%;height:15px;">5 Sao</div>
+                                           </div>
+                                           <div class="progress mt-3" style="height:15px;">
+                                               <div class="progress-bar bg-info" style="width:80%;height:15px;">4 Sao</div>
+                                           </div>
+                                           <div class="progress mt-3" style="height:15px;">
+                                               <div class="progress-bar bg-primary" style="width:60%;height:15px;">3 Sao</div>
+                                           </div>
+                                           <div class="progress mt-3" style="height:15px;">
+                                               <div class="progress-bar bg-warning" style="width:40%;height:15px;">2 Sao</div>
+                                           </div>
+                                           <div class="progress mt-3" style="height:15px;">
+                                               <div class="progress-bar bg-danger" style="width:20%;height:15px;">1 Sao</div>
+                                           </div>
+                                       </div>
+                                       <div class="col-2 col-md-2 mt-0">
+                                           <div class="row">
+                                               <b class="rating_text">
+                                                   @php($count_5 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star', '=',5]])->count())
+                                                   {{ $count_5 }}
+                                               </b>
+                                           </div>
+                                           <div class="row">
+                                               <b class="rating_text">
+                                                   @php($count_4 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star', '=',4]])->count())
+                                                   {{ $count_4 }}
+                                               </b>
+                                           </div>
+                                           <div class="row">
+                                               <b class="rating_text">
+                                                   @php($count_3 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star', '=',3]])->count())
+                                                   {{ $count_3 }}
+                                               </b>
+                                           </div>
+                                           <div class="row">
+                                               <b class="rating_text">
+                                                   @php($count_2 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star','=',2]])->count())
+                                                   {{ $count_2 }}
+                                               </b>
+                                           </div>
+                                           <div class="row">
+                                               <b class="rating_text">
+                                                   @php($count_1 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star','=',1]])->count())
+                                                   {{ $count_1 }}
+                                               </b>
+                                           </div>
+                                       </div>
+                                   </div>
+
+                                   @if (Auth::check())
+                                       <form action="{{ route('postRatingStar', [Auth::user()->id, $products->id]) }}" method="post" id="FormSubmit">
+                                           @csrf
+                                           <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                               <input type="radio" id="star5" name="rating" value="5" onclick="return SubmitFormFunction();"/><label for="star5" title="5 star"></label>
+                                               <input type="radio" id="star4" name="rating" value="4" onclick="return SubmitFormFunction();"/><label for="star4" title="4 star"></label>
+                                               <input type="radio" id="star3" name="rating" value="3" onclick="return SubmitFormFunction();"/><label for="star3" title="3 star"></label>
+                                               <input type="radio" id="star2" name="rating" value="2" onclick="return SubmitFormFunction();"/><label for="star2" title="2 star"></label>
+                                               <input type="radio" id="star1" name="rating" value="1" onclick="return SubmitFormFunction();"/><label for="star1" title="1 star"></label>
+                                           </div>
+                                       </form>
+                                   @else
+                                       <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                           <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star" onclick="MessageFunction()"></label>
+                                           <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star" onclick="MessageFunction()"></label>
+                                           <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star" onclick="MessageFunction()"></label>
+                                           <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star" onclick="MessageFunction()"></label>
+                                           <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star" onclick="MessageFunction()"></label>
+                                       </div>
+                                   @endif
+                               </div>
+                           </div>
+                       @endif
+                   </div>
+               </div>
+           </div>
+        @endforeach
+
+
 
         <a href="javascript:void(0);" class="likebtn" rel="2209835"><i class="icon-like"></i></a>
 
@@ -231,5 +370,29 @@
 
             });
         </script>
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();
+            });
+
+            function MessageFunction() {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Đăng nhập để đánh giá sao',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setTimeout(function() {
+                    location.href = "{{ url('/login') }}";
+                }, 2000);
+            }
+
+            function SubmitFormFunction() {
+                document.getElementById("FormSubmit").submit();
+            }
+        </script>
+
 
 @endsection

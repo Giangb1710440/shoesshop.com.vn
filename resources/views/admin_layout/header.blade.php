@@ -47,7 +47,7 @@
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             @if(Auth::check())
-                <i class="fa fa-user fa-fw"></i> {{Auth::user()->name}} <b class="caret"></b>
+                <i class="fa fa-user fa-fw"></i> {{ucwords(Auth::user()->name)}} <b class="caret"></b>
             @else
                 <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
             @endif

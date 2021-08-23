@@ -1,4 +1,4 @@
-@extends('layout.layout2')
+@extends('layout.layout')
 @section('title','Cừa Hàng')
 @section('content')
 
@@ -36,7 +36,7 @@
         font-family: SourceSansProLight, Verdana, Arial, sans-serif;
         font-size: 14px;
     }
-    
+
     #version{
         color: white;
         font-size: 10px;
@@ -103,8 +103,8 @@
     }
     #secwrapper{
         /*background: url('images/bg.gif') fixed;
-        background-color: #f47771;*/ 
-        padding-top: 20px; 
+        background-color: #f47771;*/
+        padding-top: 20px;
     }
     article{
         width: 280px;
@@ -151,7 +151,7 @@
         height: 125px;
         display: inline-block;
         margin: 5px 4px 6px 7px;
-        border: 1px solid #c3c3c3; 
+        border: 1px solid #c3c3c3;
     }
     #sponsors a p{
         margin: 50px auto;
@@ -212,7 +212,7 @@
 					<h1>Curabitur ut Eros a Justo Fermentum</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor, tortor at vulputate blandit, magna risus posuere turpis, nec cursus ipsum arcu nec felis.</p>
 					<a href="#" class="readmore">Read more</a>
-				</article>			
+				</article>
 				<article id="photobox">
 					<h1>Photos Box</h1>
 					<img src="{{asset('resources/images/pbs1.jpg')}}" alt="" /><img src="{{asset('resources/images/pbs2.jpg')}}" alt="" /><img src="{{asset('resources/images/pbs3.jpg')}}" alt="" />

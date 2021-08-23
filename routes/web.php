@@ -8,10 +8,10 @@ use App\Http\Controllers\AdminController;
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 //Trang sản phẩm
-Route::get('/page-product', [HomeController::class, 'page_product']);
+Route::get('/page-product/{id}', [HomeController::class, 'page_product'])->name('page_product');
 
 //Trang chi tiết sản phẩm
-Route::get('/product-detail', [HomeController::class, 'product_detail']);
+Route::get('/product-detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
 
 //Trang tin tức
 Route::get('/page-news', [HomeController::class, 'page_news']);
@@ -42,7 +42,8 @@ Route::get('/page-cart', [HomeController::class, 'page_cart']);
 //Trang thanh toán
 Route::get('/page-checkout', [HomeController::class, 'page_checkout']);
 
-
+//rating_product
+Route::post('post-rating-star/{userId}/{productId}',[HomeController::class,'postRatingStar'])->name('postRatingStar');
 //--------------------------------------------------------TRANG HỒ SƠ CÁ NHÂN-----------------------------------------------------------//
 //Trang hồ sơ
 Route::get('/page-infor-user', [HomeController::class, 'page_infor_user']);

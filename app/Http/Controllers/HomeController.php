@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\RatingStar;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,13 +13,21 @@ use Session;
 class HomeController extends Controller
 {
     public function index(){
+
+        // return redirect()->route('home')->with('register_success','thanh cong');
         return view('home.index');
     }
 
     //HÀM HIỂN THỊ TRANG SẢN PHẨM
-    public function page_product()
+    public function page_product($id)
     {
-        return view('home.page_product');
+        $cate = DB::table('categorys')->get();
+        $product = DB::table('products')->get();
+        return view('home.page_product')->with([
+            'id'=>$id,
+            'product'=>$product,
+            'cate'=>$cate
+        ]);
     }
     //HÀM HIỂN THỊ TRANG TIN TỨC
     public function page_news()
@@ -164,9 +173,13 @@ class HomeController extends Controller
     }
 
     //Trang thanh toán
-    public function product_detail()
+    public function product_detail($id)
     {
-        return view('home.product_detail');
+        $product = DB::table('products')->where('id',$id)->get();
+        return view('home.product_detail')->with([
+            'product'=>$product,
+            'id'=>$id
+        ]);
     }
 
     //Trang profile
@@ -191,6 +204,23 @@ class HomeController extends Controller
     public function page_cancel()
     {
         return view('home.profile_user.page_cancel');
+    }
+
+    //sao san pham
+    public function postRatingStar($userId, $productId, Request $request){
+        $get_count_rating = DB::table('rating_stars')->where([['user_id', '=', $userId], ['product_id', '=', $productId]])->count();
+        if ($get_count_rating >= 1){
+            Session::put('message_error');
+            return redirect()->back()->with('message_error', 'Bạn đã đánh giá rồi!');
+        }else{
+            $add_rating = new RatingStar();
+            $add_rating->avg_number_star = $request->input('rating');
+            $add_rating->user_id = $userId;
+            $add_rating->product_id = $productId;
+            $add_rating->save();
+            Session::put('message_success');
+            return redirect()->back()->with('message_success', 'Đã đánh giá SAO');
+        }
     }
 
 }

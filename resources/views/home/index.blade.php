@@ -1,6 +1,113 @@
 @extends('layout.layout')
 @section('title','Trang chủ')
 @section('content')
+    <div class="header_section">
+        <div class="">
+            <div class="container-fluid">
+                <section class="slide-wrapper">
+                    <div class="container-fluid">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-sm-2 padding_0">
+                                            <p class="mens_taital">Men Shoes</p>
+                                            <div class="page_no">0/2</div>
+                                            <p class="mens_taital_2">Men Shoes</p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="banner_taital">
+                                                <h1 class="banner_text">New Running Shoes </h1>
+                                                <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
+                                                <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <button class="buy_bt">Buy Now</button>
+                                                <button class="more_bt">See More</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="shoes_img"><img src="{{asset('public/home/img/running-shoes.png')}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-sm-2 padding_0">
+                                            <p class="mens_taital">Men Shoes</p>
+                                            <div class="page_no">0/2</div>
+                                            <p class="mens_taital_2">Men Shoes</p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="banner_taital">
+                                                <h1 class="banner_text">New Running Shoes </h1>
+                                                <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
+                                                <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <button class="buy_bt">Buy Now</button>
+                                                <button class="more_bt">See More</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="shoes_img"><img src="{{asset('public/home/img/running-shoes.png')}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-sm-2 padding_0">
+                                            <p class="mens_taital">Men Shoes</p>
+                                            <div class="page_no">0/2</div>
+                                            <p class="mens_taital_2">Men Shoes</p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="banner_taital">
+                                                <h1 class="banner_text">New Running Shoes </h1>
+                                                <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
+                                                <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <button class="buy_bt">Buy Now</button>
+                                                <button class="more_bt">See More</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="shoes_img"><img src="{{asset('public/home/img/running-shoes.png')}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col-sm-2 padding_0">
+                                            <p class="mens_taital">Men Shoes</p>
+                                            <div class="page_no">0/2</div>
+                                            <p class="mens_taital_2">Men Shoes</p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="banner_taital">
+                                                <h1 class="banner_text">New Running Shoes </h1>
+                                                <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
+                                                <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <button class="buy_bt">Buy Now</button>
+                                                <button class="more_bt">See More</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="shoes_img"><img src="{{asset('public/home/img/running-shoes.png')}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 <div class="layout_padding collection_section">
     <div class="container">
         <h1 class="new_text"><strong>New  Collection</strong></h1>
@@ -130,6 +237,48 @@
             </div>
         </div>
         <div class="buy_now_bt"><a class="btn btn-dark btn-lg" href="{{ url('page-product') }}" role="button" style="margin-top: 10px;"> See More</a>
+        </div>
+    </div>
+</div>
+<div class="layout_padding contact_section">
+    <div class="container">
+        <h1 class="new_text"><strong>Contact Now</strong></h1>
+    </div>
+    <div class="container-fluid ram">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="email_box">
+                    <div class="input_main">
+                        <div class="container">
+                            <form action="/action_page.php">
+                                <div class="form-group">
+                                    <input type="text" class="email-bt" placeholder="Name" name="Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="email-bt" placeholder="Phone Numbar" name="Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="email-bt" placeholder="Email" name="Email">
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="send_btn">
+                            <button class="main_bt">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="shop_banner">
+                    <div class="our_shop">
+                        <button class="out_shop_bt">Our Shop</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
