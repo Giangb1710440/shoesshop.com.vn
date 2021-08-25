@@ -1,4 +1,4 @@
-@extends('layout.layout2')
+@extends('layout.layout')
 @section('title','Đăng Nhập')
 @section('content')
 <style>
@@ -8146,12 +8146,12 @@
 									</p>
 								</div>
 			      	</div>
-                
+
                 @if(session()->has('message_sign_up'))
                     <div class="alert alert-success">
                         {{ session()->get('message') }}
                     </div>
-                @endif  
+                @endif
 
                 <form action="{{ url('check-login') }}" method="POST" class="signin-form">
                     @csrf

@@ -30,7 +30,11 @@
                                                 <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
                                                 <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                                 <button class="buy_bt">Buy Now</button>
-                                                <button class="more_bt">See More</button>
+                                                <button class="more_bt">
+                                                    <a type="button" href="{{route('page_product',0)}}" >
+                                                        See More
+                                                    </a>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
@@ -51,7 +55,12 @@
                                                 <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
                                                 <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                                 <button class="buy_bt">Buy Now</button>
-                                                <button class="more_bt">See More</button>
+
+                                                <button class="more_bt">
+                                                    <a type="button" href="{{route('page_product',0)}}" >
+                                                        See More
+                                                    </a>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
@@ -72,7 +81,11 @@
                                                 <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
                                                 <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                                 <button class="buy_bt">Buy Now</button>
-                                                <button class="more_bt">See More</button>
+                                                <button class="more_bt">
+                                                    <a type="button" href="{{route('page_product',0)}}" >
+                                                        See More
+                                                    </a>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
@@ -93,7 +106,11 @@
                                                 <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
                                                 <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                                 <button class="buy_bt">Buy Now</button>
-                                                <button class="more_bt">See More</button>
+                                                <button class="more_bt">
+                                                    <a type="button" href="{{route('page_product',0)}}" >
+                                                        See More
+                                                    </a>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
@@ -110,45 +127,41 @@
     </div>
 <div class="layout_padding collection_section">
     <div class="container">
-        <h1 class="new_text"><strong>New  Collection</strong></h1>
+        <h1 class="new_text"><strong>New Collection</strong></h1>
         <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
         <div class="collection_section_2">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="about-img">
-                        <button class="new_bt">New</button>
-                        <div class="shoes-img"><img src="{{asset('public/home/img/shoes-img1.png')}}"></div>
-                        <p class="sport_text">Men Sports</p>
-                        <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
-                        <div class="star_icon">
-                            <ul>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                            </ul>
+                @foreach($product as $products)
+                    <div class="col-md-6">
+                        <div class="about-img">
+                            <button class="new_bt">New</button>
+                            <div class="shoes-img">
+                                @foreach((array)json_decode($products->product_image, true) as $image)
+                                    <a href="{{route('product_detail',$products->id)}}">
+                                        <img src="{{asset('public/home/img/'.$image)}}" alt="">
+                                    </a>
+                                    @break
+                                @endforeach
+
+                            </div>
+                            <p class="sport_text">{{$products -> product_name}}</p>
+                            <div class="dolar_text">
+                                <strong style="color: #f12a47;">{{number_format($products->product_price)}} </strong>
+                            </div>
+                            <div class="star_icon">
+                                <ul>
+                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
+                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
+                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
+                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
+                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
+                                </ul>
+                            </div>
                         </div>
+                        {{--                    <a class="btn btn-danger btn-lg" href="{{ url('product-detail') }}" role="button" style="margin-top: 10px;"> See More</a>--}}
+                        {{-- <button class="seemore_bt">See More</button> --}}
                     </div>
-                    <a class="btn btn-danger btn-lg" href="{{ url('product-detail') }}" role="button" style="margin-top: 10px;"> See More</a>
-                    {{-- <button class="seemore_bt">See More</button> --}}
-                </div>
-                <div class="col-md-6">
-                    <div class="about-img2">
-                        <div class="shoes-img2"><img src={{asset('public/home/img/shoes-img2.png')}}></div>
-                        <p class="sport_text">Men Sports</p>
-                        <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
-                        <div class="star_icon">
-                            <ul>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -187,56 +200,33 @@
 <div class="layout_padding gallery_section">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="best_shoes">
-                    <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">Name Shoes</a> </p>
-                    <div class="shoes_icon"><img src="{{asset('public/home/img/shoes-img7.png')}}"></div>
-                    <div class="star_text">
-                        <div class="left_part">
-                            <ul>
-                                <li><a class="btn btn-outline-danger" href="#">Add to cart</a></li>
-                            </ul>
+            @foreach($product as $products)
+                <div class="col-sm-4">
+                    <div class="best_shoes">
+                        <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">{{$products->product_name}}</a> </p>
+                        <div class="shoes_icon">
+                            @foreach((array)json_decode($products->product_image, true) as $image)
+                                <a href="{{route('product_detail',$products->id)}}">
+                                    <img src="{{asset('public/home/img/'.$image)}}" alt="">
+                                </a>
+                                @break
+                            @endforeach
                         </div>
-                        <div class="right_part">
-                            <div class="shoes_price"><span style="color: black; font-size:20px;">600.000 VND</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="best_shoes">
-                    <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">Name Shoes</a> </p>
-                    <div class="shoes_icon"><img src="{{asset('public/home/img/shoes-img5.png')}}"></div>
-                    <div class="star_text">
-                        <div class="left_part">
-                            <ul>
-                                <li><a class="btn btn-outline-danger" href="#">Add to cart</a></li>
-                            </ul>
-                        </div>
-                        <div class="right_part">
-                            <div class="shoes_price"><span style="color: black; font-size:20px;">600.000 VND</span></div>
+                        <div class="star_text">
+                            <div class="left_part">
+                                <ul>
+                                    <li><a class="btn btn-outline-danger" href="{{route('addCard', $products->id) }}">Add to cart</a></li>
+                                </ul>
+                            </div>
+                            <div class="right_part">
+                                <div class="shoes_price"><span style="color: black; font-size:20px;">{{number_format($products->product_price)}} VND</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="best_shoes">
-                    <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">Name Shoes</a> </p>
-                    <div class="shoes_icon"><img src="{{asset('public/home/img/shoes-img7.png')}}"></div>
-                    <div class="star_text">
-                        <div class="left_part">
-                            <ul>
-                                <li><a class="btn btn-outline-danger" href="#">Add to cart</a></li>
-                            </ul>
-                        </div>
-                        <div class="right_part">
-                            <div class="shoes_price"><span style="color: black; font-size:20px;">600.000 VND</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-        <div class="buy_now_bt"><a class="btn btn-dark btn-lg" href="{{ url('page-product') }}" role="button" style="margin-top: 10px;"> See More</a>
+        <div class="buy_now_bt"><a class="btn btn-dark btn-lg" href="{{route('page_product',0)}}" role="button" style="margin-top: 10px;"> See More</a>
         </div>
     </div>
 </div>
@@ -284,4 +274,46 @@
 </div>
    <!-- New Arrivals section end -->
    <!-- contact section start -->
+    <script>
+        var msg = '{{Session::get('order_success')}}';
+        var exist = '{{Session::has('order_success')}}';
+        if (exist) {
+            swal({
+                title: "Đặt hàng thành công",
+                text: "",
+                type: "success",
+                timer: 1000,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+        }
+    </script>
+    <script>
+        var msg = '{{Session::get('add_cart_success')}}';
+        var exist = '{{Session::has('add_cart_success')}}';
+        if (exist) {
+            swal({
+                title: "Đã thêm vào giỏ hàng",
+                text: "",
+                type: "success",
+                timer: 1200,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+        }
+    </script>
+    <script>
+        var msg = '{{Session::get('error_login')}}';
+        var exist = '{{Session::has('error_login')}}';
+        if (exist) {
+            swal({
+                title: "Hãy đăng nhập !",
+                text: "",
+                type: "success",
+                timer: 1200,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+        }
+    </script>
 @endsection

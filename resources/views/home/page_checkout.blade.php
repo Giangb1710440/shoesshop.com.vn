@@ -1,4 +1,4 @@
-@extends('layout.layout2')
+@extends('layout.layout')
 @section('title','Thanh Toán')
 @section('content')
 
@@ -22,26 +22,30 @@
     }
 </style>
 
-<div class="collection_text">Checkout</div> 
+<div class="collection_text">Checkout</div>
 <div class="single-product-area">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div id="customer_details" class="col2-set">
-                    <div class="col-1">
+                    <div class="">
                         <div class="woocommerce-billing-fields"><br><br>
-                            <h3><b>INFORMATION</b> </h3>
-                            <label class="" for="billing_country">
-                                <b style="font-size: 20px">
-                                    <p>FullName: Nguyễn Văn A</p>
-                                    <p>Contact: 012345678</p>
-                                    <p>Email: nguyenvana@gmail.com</p>
-                                    <p>Address: Hòa An, Hậu Giang</p>
-                                    <a href="{{ url('page-infor-user') }}" class="btn btn-default" style="background-color: #DB5660;color: white;" >
-                                        Change Information
-                                    </a>
-                                </b>
-                            </label>
+                            @if(Auth::check())
+                                <h3><b>INFORMATION</b> </h3>
+                                <label class="" for="billing_country">
+                                    <b style="font-size: 12px">
+                                        <p style="font-size: 16px">FullName: {{ucwords(Auth::user()->username)}}</p>
+                                        <p>Contact: {{Auth::user()->phone}}</p>
+                                        <p>Email: {{Auth::user()->email}}</p>
+                                        <p>Address: {{ucwords(Auth::user()->address)}}</p>
+                                        <a href="{{ url('page-infor-user') }}" class="btn btn-default" style="background-color: #DB5660;color: white;" >
+                                            Change Information
+                                        </a>
+                                    </b>
+                                </label>
+                            @else
+
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -50,7 +54,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form action="#" class="checkout" method="post">
+                        <form action="{{route('check_out')}}" class="checkout" method="post">
                             @csrf
                             <h3 id="order_review_heading"><br><br><b>RECEIPT</b> </h3>
                             <div id="order_review" style="position: relative;">
@@ -66,42 +70,67 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <tr class="cart_item">
-                                                <td>1 </td>
-                                                <td class="product-image">
-                                                    <a href="#">
-                                                        <img class="shop_thumbnail" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145">
-                                                    </a>
-                                                </td>
+                                        @php($i=0)
+                                        @if(Session::has('cart'))
+                                            @if(Session('cart')->totalQty > 0)
+                                                @foreach($product_cart as $product)
+                                                    <tr class="cart_item">
+                                                        <td>{{++$i}}</td>
+                                                        <td class="product-image">
+                                                            <a href="#">
+                                                                <img class="shop_thumbnail" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145">
+                                                            </a>
+                                                        </td>
 
-                                                <td data-label="Tên sản phẩm">
-                                                    <a href="#" style="color:#1abc9c ">
-                                                        Sản phẩm
-                                                    </a>
-                                                </td>
-                                                <td data-label="Giá sản phẩm" >
-                                                    <span class="amount" >500.000 VND</span>
-                                                </td>
-                                                <td data-label="Số lượng">
-                                                    10
-                                                </td>
-                                                <td data-label="Tổng đơn hàng">
-                                                    
-                                                    <span class="amount">500.000 VND</span>
-                                                </td>
+                                                        <td data-label="Tên sản phẩm">
+                                                            <a href="#" style="color:#1abc9c ">
+                                                                {{ $product['item']['product_name']}}
+                                                            </a>
+                                                        </td>
+                                                        <td data-label="Giá sản phẩm" >
+                                                            <span class="amount" >{{ number_format($product['item']['product_price'])}} VND</span>
+                                                        </td>
+                                                        <td data-label="Số lượng">
+                                                            {{$product['qty']}}
+                                                        </td>
+                                                        <td data-label="Tổng đơn hàng">
+
+                                                            <span class="amount">{{number_format($product['item']['product_price']*$product['qty'])}} VND</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="qua-col "></td>
+                                                    <td class="text-right"></td>
+                                                </tr>
+                                            @endif
+                                        @else
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="qua-col "></td>
+                                                <td class="text-right"></td>
                                             </tr>
+                                        @endif
+
                                     </tbody>
                                 </table>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <h3><b>PAYMOND METHOD</b> </h3>
+                                        <h3><b>Phương thức thanh toán</b> </h3>
                                     </div>
                                     <div class="col-md-8">
                                         <div  class="dropdown show">
                                             <a style="background-color: #db5660;" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Choose Method
+                                              chose...
                                             </a>
-                                          
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                               <a class="dropdown-item" href="#">Cash</a>
                                               <a class="dropdown-item" href="#">Online Checkout</a>
@@ -117,7 +146,7 @@
                                             </td>
                                             <td>
                                                 <span>
-                                                    50.000 VND
+                                                    0 VND
                                                 </span>
                                             </td>
                                         </tr>
@@ -137,7 +166,17 @@
                                             </td>
 
                                             <td data-label="Tổng đơn hàng">
-                                                    <strong><span class="amount">500.000 VND</span></strong>
+                                                @if(Session::has('cart'))
+                                                    @if(Session('cart')->totalQty > 0)
+                                                        @foreach($product_cart as $product)
+                                                                    <strong><span class="amount">{{number_format($totalPrice)}} VND</span></strong>
+                                                        @endforeach
+                                                    @else
+                                                        <strong><span class="amount">0 VND</span></strong>
+                                                    @endif
+                                                @else
+                                                    <strong><span class="amount">0 VND</span></strong>
+                                                @endif
                                             </td>
                                         </tr>
 
@@ -150,8 +189,8 @@
                                     </tfoot>
                                 </table>
                             </div>
+                            </div>
                         </form>
-
                     </div>
                 </div>
             </div>

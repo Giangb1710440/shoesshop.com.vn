@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Order_detail;
+use App\Models\Product;
+use App\Models\Giohang;
 use App\Models\RatingStar;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,9 +17,11 @@ use Session;
 class HomeController extends Controller
 {
     public function index(){
-
+        $product = DB::table('products')->latest()->get();
         // return redirect()->route('home')->with('register_success','thanh cong');
-        return view('home.index');
+        return view('home.index')->with([
+            'product'=>$product
+        ]);
     }
 
     //HÀM HIỂN THỊ TRANG SẢN PHẨM
@@ -223,6 +229,83 @@ class HomeController extends Controller
         }
     }
 
+    public function addCard($id, Request $request){
+        if (Auth::check()){
+            $product = Product::find($id);
+            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, khoong thi null
+
+            $cart = new Giohang($oldCart);
+            $cart->add($product, $id);
+
+            $request->session()->put('cart', $cart);
+            //$add_cart_success = Session::get('add_cart_success');
+            //Session::put('add_cart_success');
+            return redirect()->back()->with(
+                'add_cart_success',
+                'Đã thêm vào giỏ hàng'
+            );
+        }else{
+            $register_success = Session::get('error_login');
+            Session::put('error_login');
+            return redirect()->back()->with('error_login', 'Hãy đăng nhập');
+        }
+    }
+    public function updateCart(Request $request){
+        if($request->id and $request->quantity){
+            $oldCart = Session::has('cart')?Session::get('cart'):null;
+            $cart = new Giohang($oldCart);
+            $cart->update_cart($request->id,$request->quantity);
+            session()->put('cart', $cart);
+        }
+
+    }
+
+    public function getDeleteCart($id){
+        $oldCart = Session::has('cart')?Session::get('cart'):null;
+        $cart = new Giohang($oldCart);
+        $cart->removeItem($id);
+        if(count($cart->items) > 0){
+            Session::put('cart', $cart);
+        }else{
+            Session::forget('cart');
+
+        }
+        $delete_cart = Session::get('delete_cart');
+        Session::put('delete_cart');
+
+        return redirect()->back()->with('delete_cart', 'Đã xóa sản phẩm ra khỏi giỏ hàng');
+    }
+
+
+    //thanh toan
+    public function check_out(Request $request){
+
+        $cart = Session::get('cart');
+        if(count($cart->items)==0){
+            Session::put('order_Nsuccess');
+            return redirect()->back()->with('order_Nsuccess','Giỏ hàng rỗng!');
+        }else {
+            $order = new Order();
+            $order->user_id = Auth::user()->id;
+            $order->order_status = "Mới đặt hàng";
+            $order->order_amount = $cart->totalQty;
+            $order->total_price = $cart->totalPrice;
+            $order->save();
+
+            foreach ($cart->items as $key => $value) {
+                $orderDetail = new Order_detail();
+                $orderDetail->order_id  = $order->id;
+                $orderDetail->product_id  = $key;
+                $orderDetail->quality = $value['qty'];
+                $orderDetail->unit_price = ($value['price'] / $value['qty']);
+                $orderDetail->save();
+            }
+            Session::forget('cart');
+            $order_success = Session::get('order_success');
+            Session::put('order_success');
+            return redirect()->home()->with('order_success', 'Đặt hàng thành công');
+        }
+    }
 }
 
 

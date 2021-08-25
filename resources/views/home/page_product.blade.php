@@ -91,7 +91,7 @@
                                     <div class="star_text">
                                         <div class="left_part">
                                             <ul>
-                                                <li><a class="btn btn-outline-danger" href="#">Add to cart</a></li>
+                                                <li><a class="btn btn-outline-danger" href="{{route('addCard', $products->id) }}">Add to cart</a></li>
                                             </ul>
                                         </div>
                                         <div class="right_part">
@@ -107,7 +107,34 @@
         @endforeach
     @endif
 
-
+<script>
+    var msg = '{{Session::get('add_cart_success')}}';
+    var exist = '{{Session::has('add_cart_success')}}';
+    if (exist) {
+        swal({
+            title: "Đã thêm vào giỏ hàng",
+            text: "",
+            type: "success",
+            timer: 1200,
+            showConfirmButton: false,
+            position: 'top-end',
+        });
+    }
+</script>
+<script>
+    var msg = '{{Session::get('error_login')}}';
+    var exist = '{{Session::has('error_login')}}';
+    if (exist) {
+        swal({
+            title: "Hãy đăng nhập !",
+            text: "",
+            type: "success",
+            timer: 1200,
+            showConfirmButton: false,
+            position: 'top-end',
+        });
+    }
+</script>
 
    <!-- New Arrivals section end -->
 @endsection

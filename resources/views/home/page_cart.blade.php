@@ -1,5 +1,5 @@
-@extends('layout.layout2')
-@section('title','Cừa Hàng')
+@extends('layout.layout')
+@section('title','Giỏ hàng')
 @section('content')
 
 <style>
@@ -60,34 +60,154 @@
         <th>Hình Ảnh</th>
         <th>Giá</th>
         <th>Số Lượng</th>
-        <th >Tổng Tiền</th>
-        <th scope="col" colspan="2">Tùy chọn</th>
+        <th >Thành tiền</th>
+            <th scope="col" colspan="2">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
-        <tr>
-            <th>Nike</th>
-            <td>
-                <a href="#">
-                    <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
-                </a>
-            </td>
-            <td>3.000.000 VND</td>
-            <td> <input type="number" size="4" class="input-text qty text" name="inputQty"
-                value="1" min="0" step="1">
-            </td>
-            <td>3.000.000 VND</td>
-            <td> <input type="submit" class="btn btn-success" value="Update" name="update_cart" class="button"></td>
-            <td> <input type="submit" class="btn btn-danger" value="Delete" name="delete_cart" class="button"></td>
-        </tr>  
-        <tr>
-            <td colspan="6"></td>
-            <td class="actions" colspan="2" style="padding:10px;">
-                <a href="{{ url('page-checkout') }}"  style="border:unset;width: 200px;">
-                    <input type="submit" value="Checkout" name="update_cart" class="btn btn-primary" >
-                </a>
-            </td>
-        </tr>
+
+
+        @if(Session::has('cart'))
+            @if(Session('cart')->totalQty > 0)
+                @foreach($product_cart as $product)
+
+                    <tr>
+                        <th>{{ $product['item']['product_name']}}</th>
+                        <td>
+                            <a href="#">
+                                <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
+                            </a>
+                        </td>
+                        <td>{{ number_format($product['item']['product_price'])}} VNĐ</td>
+                        <td>
+                            <div class="quantity">
+
+                                <input class="input-text qty text form-control quantity" type="number" id="txt_solg"
+                                       value="{{$product['qty']}}"
+                                       onchange="update_cart({{ $product['item']['id'] }} + ',' + this.value)">
+
+                            </div>
+{{--                            <input type="number" size="4" class="input-text qty text" name="inputQty"--}}
+{{--                                    value="{{$product['qty']}}" min="0" step="1">--}}
+                        </td>
+                        <td>{{number_format($product['item']['product_price']*$product['qty'])}} VND</td>
+
+                        <td colspan="2">
+                            <a onclick="return   xacnhanxoa('Bạn chắc chắn xóa')"
+                               href="{{ route('getDeleteCart',$product['item']['id']) }}"
+                               class="btn btn-danger"
+                               data-toggle="tooltip">
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                        <td class="actions" colspan="2" style="padding:10px;">
+                            <a href="{{ url('page-checkout') }}"  style="border:unset;width: 200px;">
+                                <input type="submit" value="Checkout" name="update_cart" class="btn btn-primary" >
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="qua-col "></td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
+                </tr>
+            @endif
+        @else
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="qua-col "></td>
+                <td class="text-right"></td>
+                <td class="text-right"></td>
+            </tr>
+        @endif
     </tbody>
   </table>
+<script>
+    var msg = '{{Session::get('add_cart_success')}}';
+    var exist = '{{Session::has('add_cart_success')}}';
+    if (exist) {
+        swal({
+            title: "Đã thêm vào giỏ hàng",
+            text: "",
+            type: "success",
+            timer: 1200,
+            showConfirmButton: false,
+            position: 'top-end',
+        });
+    }
+</script>
+<script>
+
+    function update_cart(e) {
+        var ele = e.split(",");
+        var ktra = document.getElementById('txt_solg').value;
+
+        if(ktra > 0 && ktra < 100){
+            $.ajax({
+                method: "get",
+                url: '{{ route('getUpdateCart') }}',
+                data: {_token: '{{ csrf_token() }}',
+                    id: ele[0],
+                    quantity: ele[1]},
+
+                success: function (result) {
+                    swal({
+                        title: "Đã cập nhật giỏ hàng",
+                        text: "",
+                        type: "success",
+                        timer: 600,
+                        showConfirmButton: false,
+                        position: 'top-end',
+                    });
+                    window.setTimeout(function(){
+                        window.location.reload();
+                    } ,600);
+                }
+            });
+        }else{
+            swal({
+                title: "Bớt bấm tào lao lại đi !",
+                text: "",
+                type: "warning",
+                timer: 600,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+            document.getElementById('txt_solg').value = 1;
+        }
+    }
+
+    var msg = '{{Session::get('delete_cart')}}';
+    var exist = '{{Session::has('delete_cart')}}';
+    if(exist){
+        swal({
+            title: "Đã xóa sản phẩm ra khỏi giỏ hàng.",
+            text: "",
+            type: "success",
+            timer: 600,
+            showConfirmButton: false,
+            position: 'top-end',
+        });
+    }
+    function xacnhanxoa(msg){
+        if(window.confirm(msg)){
+            return true;
+        }
+        return false;
+    }
+
+</script>
 @endsection

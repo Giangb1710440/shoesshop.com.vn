@@ -57,6 +57,14 @@ Route::get('/page-delivery', [HomeController::class, 'page_delivery']);
 //Trang đã hủy
 Route::get('/page-cancel', [HomeController::class, 'page_cancel']);
 
+//them gio hang
+Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
+Route::get('update-cart', [HomeController::class,'updateCart'])->name('getUpdateCart');
+Route::get('delete-cart/{id}', [HomeController::class,'getDeleteCart'])->name('getDeleteCart');
+
+//thanhtoan
+Route::post('check-out',[HomeController::class,'check_out'])->name('check_out');
+
 //--------------------------------------------------------TRANG ADMIN-----------------------------------------------------------//
 // //TRANG ADMIN
 Route::get('/page-admin', 'App\Http\Controllers\AdminController@admin')->name('page-admin');

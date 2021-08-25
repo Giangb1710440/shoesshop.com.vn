@@ -140,17 +140,10 @@
                                         <div class="product-inner-price">
                                             <ins> {{number_format($products->product_price)}} VND</ins>
                                         </div>
-
-                                        <form action="#" class="cart" method="post">
-                                            @csrf
-
-                                            <div class="quantity">
-                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">
-                                            </div>
-
-                                            <button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>
-
-                                        </form>
+{{--                                            <div class="quantity">--}}
+{{--                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">--}}
+{{--                                            </div>--}}
+                                        <a class="add_to_cart_button" type="button" href="{{route('addCard', $products->id) }}">Thêm vào giỏ hàng</a>
 
                                         <div class="product-inner-category"><br>
                                             <p> Loại:
@@ -338,6 +331,35 @@
         <a href="javascript:void(0);" class="likebtn" rel="2209835"><i class="icon-like"></i></a>
 
         <!-- Product Details Section End -->
+        <script>
+            var msg = '{{Session::get('add_cart_success')}}';
+            var exist = '{{Session::has('add_cart_success')}}';
+            if (exist) {
+                swal({
+                    title: "Đã thêm vào giỏ hàng",
+                    text: "",
+                    type: "success",
+                    timer: 1200,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                });
+            }
+        </script>
+
+        <script>
+            var msg = '{{Session::get('error_login')}}';
+            var exist = '{{Session::has('error_login')}}';
+            if (exist) {
+                swal({
+                    title: "Hãy đăng nhập !",
+                    text: "",
+                    type: "success",
+                    timer: 1200,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                });
+            }
+        </script>
 
         <script>
             $('.hero__categories__all').on('click', function(){
