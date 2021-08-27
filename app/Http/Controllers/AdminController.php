@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Supplier;
@@ -220,5 +221,25 @@ class AdminController extends Controller
             'users'=>$users,
             'role'=>$role
         ]);
+    }
+
+    //tinh trang don hang
+    public function status_order(){
+        $order=DB::table('orders')->get();
+        $user=DB::table('users')->get();
+        return view('admin.status_order')->with([
+            'order'=>$order,
+            'user'=>$user
+        ]);
+
+    }
+    //cap nhat tinh trang don hang
+    public function post_status_order($iddh , Request $request){
+        $newstt = $request->input('trangthai');
+        $dhs = Order::find($iddh);
+        $dhs->order_status = $newstt;
+        $dhs->save();
+        Session::put('stt_success');
+        return redirect()->route('status_order')->with('stt_success', 'Cập nhật thành công');
     }
 }

@@ -26,7 +26,7 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                             <tr>
-                                <th>Code</th>
+                                <th>MSP</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Loại sản phẩm</th>
                                 <th>Số lượng</th>

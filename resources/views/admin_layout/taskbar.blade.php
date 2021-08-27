@@ -51,7 +51,7 @@
                 <a href="#"><i class="fas fa-shopping-cart"></i> Quản lý đơn hàng<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{route('show_product')}}">Tình trạng đơn hàng</a>
+                        <a href="{{route('status_order')}}">Tình trạng đơn hàng</a>
                         <a href="{{route('show_product')}}">Đơn hàng</a>
                     </li>
                 </ul>

@@ -77,9 +77,12 @@
                                                     <tr class="cart_item">
                                                         <td>{{++$i}}</td>
                                                         <td class="product-image">
-                                                            <a href="#">
-                                                                <img class="shop_thumbnail" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145">
-                                                            </a>
+                                                            @foreach((array)json_decode($product['item']->product_image, true) as $image)
+                                                                <a href="{{route('product_detail',$product['item']['id'])}}">
+                                                                    <img class="shop_thumbnail" src="{{asset('public/home/img/'.$image)}}" width="145" height="145">
+                                                                </a>
+                                                                @break
+                                                            @endforeach
                                                         </td>
 
                                                         <td data-label="Tên sản phẩm">
@@ -170,6 +173,7 @@
                                                     @if(Session('cart')->totalQty > 0)
                                                         @foreach($product_cart as $product)
                                                                     <strong><span class="amount">{{number_format($totalPrice)}} VND</span></strong>
+                                                            @break
                                                         @endforeach
                                                     @else
                                                         <strong><span class="amount">0 VND</span></strong>

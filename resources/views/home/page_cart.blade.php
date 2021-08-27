@@ -102,15 +102,16 @@
 
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="6"></td>
-                        <td class="actions" colspan="2" style="padding:10px;">
-                            <a href="{{ url('page-checkout') }}"  style="border:unset;width: 200px;">
-                                <input type="submit" value="Checkout" name="update_cart" class="btn btn-primary" >
-                            </a>
-                        </td>
-                    </tr>
+
                 @endforeach
+                <tr>
+                    <td colspan="6"></td>
+                    <td class="actions" colspan="2" style="padding:10px;">
+                        <a href="{{ url('page-checkout') }}"  style="border:unset;width: 200px;">
+                            <input type="submit" value="Checkout" name="update_cart" class="btn btn-primary" >
+                        </a>
+                    </td>
+                </tr>
             @else
                 <tr>
                     <td></td>

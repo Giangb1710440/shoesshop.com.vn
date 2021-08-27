@@ -94,3 +94,8 @@ Route::post('/post_edit_product/{id}',[AdminController::class,'post_edit_product
 Route::post('/delete-image/{id}',[AdminController::class,'delete_image'])->name('delete_image');
 //danh sach user
 Route::get('/show-user',[AdminController::class,'show_user'])->name('show_user');
+
+//tinh trang don hang
+Route::get('/status-order',[AdminController::class,'status_order'])->name('status_order');
+//cap nhat tinh trang doin hang
+Route::post('/post-status-order/{iddh}',[AdminController::class,'post_status_order'])->name('post_status_order');
