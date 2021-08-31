@@ -45,7 +45,7 @@
     }
     .product-inner-category {
     margin-bottom: 30px;
-}
+    }
     .add_to_cart_button {
         background: none repeat scroll 0 0 #db5660;
         border: medium none;
@@ -103,6 +103,7 @@
         color: #fff;
     }
 </style>
+
 <div class="collection_text">Product Details</div>
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>

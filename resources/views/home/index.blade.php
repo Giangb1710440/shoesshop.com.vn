@@ -127,41 +127,44 @@
     </div>
 <div class="layout_padding collection_section">
     <div class="container">
-        <h1 class="new_text"><strong>New Collection</strong></h1>
+        <h1 class="new_text"><strong>New  Collection</strong></h1>
         <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
         <div class="collection_section_2">
             <div class="row">
-                @foreach($product as $products)
-                    <div class="col-md-6">
-                        <div class="about-img">
-                            <button class="new_bt">New</button>
-                            <div class="shoes-img">
-                                @foreach((array)json_decode($products->product_image, true) as $image)
-                                    <a href="{{route('product_detail',$products->id)}}">
-                                        <img src="{{asset('public/home/img/'.$image)}}" alt="">
-                                    </a>
-                                    @break
-                                @endforeach
-
-                            </div>
-                            <p class="sport_text">{{$products -> product_name}}</p>
-                            <div class="dolar_text">
-                                <strong style="color: #f12a47;">{{number_format($products->product_price)}} </strong>
-                            </div>
-                            <div class="star_icon">
-                                <ul>
-                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                    <li><a href="#"><img src="{{asset('public/home/img/star-icon.png')}}"></a></li>
-                                </ul>
-                            </div>
+                <div class="col-md-6">
+                    <div class="about-img">
+                        <button class="new_bt">New</button>
+                        <div class="shoes-img"><img src="{{ asset('public/home/img/shoes-img1.png') }}"></div>
+                        <p class="sport_text">Men Sports</p>
+                        <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
+                        <div class="star_icon">
+                            <ul>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                            </ul>
                         </div>
-                        {{--                    <a class="btn btn-danger btn-lg" href="{{ url('product-detail') }}" role="button" style="margin-top: 10px;"> See More</a>--}}
-                        {{-- <button class="seemore_bt">See More</button> --}}
                     </div>
-                @endforeach
+                    <button class="seemore_bt">See More</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-img2">
+                        <div class="shoes-img2"><img src="{{ asset('public/home/img/shoes-img2.png') }}"></div>
+                        <p class="sport_text">Men Sports</p>
+                        <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
+                        <div class="star_icon">
+                            <ul>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                                <li><a href="#"><img src="{{ asset('public/home/img/star-icon.png') }}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -227,48 +230,6 @@
             @endforeach
         </div>
         <div class="buy_now_bt"><a class="btn btn-dark btn-lg" href="{{route('page_product',0)}}" role="button" style="margin-top: 10px;"> See More</a>
-        </div>
-    </div>
-</div>
-<div class="layout_padding contact_section">
-    <div class="container">
-        <h1 class="new_text"><strong>Contact Now</strong></h1>
-    </div>
-    <div class="container-fluid ram">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="email_box">
-                    <div class="input_main">
-                        <div class="container">
-                            <form action="/action_page.php">
-                                <div class="form-group">
-                                    <input type="text" class="email-bt" placeholder="Name" name="Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="email-bt" placeholder="Phone Numbar" name="Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="email-bt" placeholder="Email" name="Email">
-                                </div>
-
-                                <div class="form-group">
-                                    <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="send_btn">
-                            <button class="main_bt">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="shop_banner">
-                    <div class="our_shop">
-                        <button class="out_shop_bt">Our Shop</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

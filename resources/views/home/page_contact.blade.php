@@ -1,13 +1,13 @@
-@extends('layout.layout2')
+@extends('layout.layout')
 @section('title','Cừa Hàng')
 @section('content')
 
-<div class="collection_text">Contact Us</div>
+<div class="collection_text">LIÊN HỆ</div>
 <div class="layout_padding contact_section">
     <div class="container">
-        <h1 class="new_text"><strong>Contact Now</strong></h1>
+        <h1 class="new_text"><strong>Vui lòng để lại thông tin, chúng tôi sẽ phản hồi trong thời gian sớm nhất!</strong></h1>
     </div>
-    <div class="container-fluid ram">
+    <div class="container-fluid ram"><br>
         <div class="row">
             <div class="col-md-6">
                 <div class="email_box">
@@ -15,17 +15,17 @@
                    <div class="container">
                       <form action="/action_page.php">
                         <div class="form-group">
-                          <input type="text" class="email-bt" placeholder="Name" name="Name">
+                          <input type="text" class="email-bt" placeholder="Họ Tên" name="Name">
                         </div>
                         <div class="form-group">
-                          <input type="text" class="email-bt" placeholder="Phone Numbar" name="Name">
+                          <input type="text" class="email-bt" placeholder="Số Điện Thoại" name="Name">
                         </div>
                         <div class="form-group">
                           <input type="text" class="email-bt" placeholder="Email" name="Email">
                         </div>
 
                         <div class="form-group">
-                            <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                            <textarea class="massage-bt" placeholder="Nội dung" rows="5" id="comment" name="Massage"></textarea>
                         </div>
                       </form>
                    </div>

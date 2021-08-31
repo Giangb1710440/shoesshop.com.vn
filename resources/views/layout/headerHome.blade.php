@@ -11,49 +11,23 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="{{ url('/') }}">Home</a>
-{{--                            <a class="nav-item nav-link" href="{{ url('page-product') }}">Shop</a>--}}
-                            <ul>
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle nav-item nav-link" data-toggle="dropdown" href="#">
-                                        Shop
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <a href="{{route('page_product',0)}}">
-                                            <i class="fa fa-check"></i>
-                                            Tất cả sản phẩm
-                                        </a>
-                                        @php($cate = DB::table('categorys')->get())
+                            <a class="nav-item nav-link" href="{{ url('/') }}">TRANG CHỦ</a>
+                            <a class="nav-item nav-link" href="{{route('page_product',0)}}">CỬA HÀNG</a>
+                            <a class="nav-item nav-link" href="{{ url('page-news') }}">TIN TỨC</a>
+                            <a class="nav-item nav-link" href="{{ url('page-contact') }}">LIÊN HỆ</a>
 
-                                        @foreach($cate as $cates)
-                                            <li>
-                                                <a href="{{route('page_product',$cates->id)}}">
-                                                    <i class="fa fa-check"></i>
-                                                    {{ucwords($cates->category_name)}}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            </ul>
-                            <a class="nav-item nav-link" href="{{ url('page-news') }}">News</a>
-                            <a class="nav-item nav-link" href="{{ url('page-contact') }}">Contact</a>
-
-                            <a class="nav-item nav-link last" href="#"><img src="{{asset('public/home/img/search_icon.png')}}"></a>
                             @if(Auth::check())
-                                <a class="nav-item nav-link last" href="{{ url('page-cart') }}">
-                                    <img src="{{asset('public/home/img/shop_icon.png')}}">
+                                <a class="nav-item nav-link " href="{{ url('page-cart') }}">
+                                    <i class="fa fa-shoppping-cart">Giỏ Hàng</i>
                                 </a>
                             @else
-                                <a onclick="return   nonlogin('Bạn cần đăng nhập trước !!')"
-                                   href="{{ route('page_login') }}"
-                                   class="nav-item nav-link last">
-                                    <img src="{{asset('public/home/img/shop_icon.png')}}">
+                                <a onclick="return nonlogin('Bạn cần đăng nhập trước !!')" href="{{ route('page_login') }}" class="nav-item nav-link ">
+                                    Giỏ Hàng &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 </a>
                             @endif
 
 
-                            <ul>
+                            <ul style="margin-left: 20px;">
                                 @if (Auth::check())
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -70,8 +44,14 @@
                                         </ul>
                                     </li>
                                 @else
-                                    <li><i class="fa fa-sign-in" style="color: white;"></i><a style="color:white;" href="{{ url('page-login') }}"> Log in</a></li>
-                                    <li><i class="fa fa-check-square-o"  style="color: white;"></i><a style="color:white;" href="{{ url('page-signup') }}"> Sign up</a></li>
+                                    <li style="font-size: 18px;">
+                                        <i class="fa fa-sign-in" style="color: white;"></i>
+                                        <a style="color:white;" href="{{ url('page-login') }}"> Log in</a>
+                                    </li>
+                                    <li style="font-size: 18px;">
+                                        <i class="fa fa-check-square-o"  style="color: white;"></i>
+                                        <a style="color:white;" href="{{ url('page-signup') }}"> Sign up</a>
+                                    </li>
                                 @endif
                             </ul>
                         </div>

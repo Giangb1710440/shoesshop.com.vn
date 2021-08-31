@@ -25,6 +25,8 @@
       <link rel="stylesheet" href="{{asset('public/home/css/jquery.mCustomScrollbar.min.css')}}">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      {{-- Font Chữ --}}
+      <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
       <!-- owl stylesheets -->
       <link rel="stylesheet" href="{{asset('public/home/css/owl.carousel.min.css')}}">
       <link rel="stylesheet" href="{{asset('public/home/css/owl.theme.default.min.css')}}">
@@ -34,7 +36,7 @@
    </head>
    <!-- body -->
 
-   <body class="main-layout">
+   <body class="main-layout" style="font-family: Mulish, sans-serif">
 
    <div class="header_section">
         @include('layout.headerHome')
@@ -57,18 +59,16 @@
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script>
         $(document).ready(function(){
-        $(".fancybox").fancybox({
-        openEffect: "none",
-        closeEffect: "none"
-        });
+                $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
 
-
-        $('#myCarousel').carousel({
-           interval: false
-       });
+            $('#myCarousel').carousel({
+                interval: false
+            });
 
        //scroll slides on swipe for touch enabled devices
-
        $("#myCarousel").on("touchstart", function(event){
 
            var yClick = event.originalEvent.touches[0].pageY;

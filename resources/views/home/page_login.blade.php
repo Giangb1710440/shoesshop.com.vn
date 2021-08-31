@@ -8118,75 +8118,75 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
 
 	</head>
-	<body>
+	<body style="font-family: Mulish, sans-serif">
         <div class="collection_text">Login</div>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12 col-lg-10">
-					<div class="wrap d-md-flex">
-						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
-							<div class="text w-100">
-								<h2>Welcome to login</h2>
-								<p>Don't have an account?</p>
-								<a href="{{  url('page-signup') }}" class="btn btn-white btn-outline-white">Sign Up</a>
-							</div>
-			      </div>
-						<div class="login-wrap p-4 p-lg-5">
-			      	<div class="d-flex">
-			      		<div class="w-100">
-			      			<h3 class="mb-4">Sign In</h3>
-			      		</div>
-								<div class="w-100">
-									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-									</p>
-								</div>
-			      	</div>
-
-                @if(session()->has('message_sign_up'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-10">
+                        <div class="wrap d-md-flex">
+                            <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+                                <div class="text w-100">
+                                    <h3 style="color: #fff;">Chào mừng đến với Shoes Shop</h3>
+                                    <p>Nếu bạn chưa có tài khoản!</p>
+                                    <a href="{{  url('page-signup') }}" class="btn btn-white btn-outline-white">Đăng Ký Ngay</a>
+                                </div>
                     </div>
-                @endif
-
-                <form action="{{ url('check-login') }}" method="POST" class="signin-form">
-                    @csrf
-			      		<div class="form-group mb-3">
-			      			<label class="label" for="name">Email</label>
-			      			<input name="email" type="text" class="form-control" placeholder="Email" required>
-			      		</div>
-                        <div class="form-group mb-3">
-                            <label class="label" for="password">Password</label>
-                          <input name="password" type="password" class="form-control" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
-                        </div>
-                        <div class="form-group d-md-flex">
-                            <div class="w-50 text-left">
-                                <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                                    <input type="checkbox" checked>
-                                    <span class="checkmark"></span>
-                                </label>
+                            <div class="login-wrap p-4 p-lg-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Sign In</h3>
                             </div>
-                            <div class="w-50 text-md-right">
-                                <a href="#">Forgot Password</a>
-                            </div>
+                                    <div class="w-100">
+                                        <p class="social-media d-flex justify-content-end">
+                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                            <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                        </p>
+                                    </div>
                         </div>
-		          </form>
 
-		        </div>
-		      </div>
-				</div>
-			</div>
-		</div>
-	</section>
+                    @if(session()->has('message_sign_up'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
 
-<<<<<<< HEAD
+                    <form action="{{ url('check-login') }}" method="POST" class="signin-form">
+                        @csrf
+                            <div class="form-group mb-3">
+                                <label class="label" for="name">Email</label>
+                                <input name="email" type="text" class="form-control" placeholder="Nhập Email" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Mật Khẩu</label>
+                            <input name="password" type="password" class="form-control" placeholder="Nhập Mật Khẩu" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary submit px-3">ĐĂNG NHẬP</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-50 text-left">
+                                    <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="w-50 text-md-right">
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                            </div>
+                    </form>
+
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 <script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -8194,11 +8194,6 @@
 {{-- <script>
     var msg = '{{Session::get('no_success')}}';
     var exist = '{{Session::has('no_success')}}';
-=======
-<script>
-    var msg = '{{Session::get('register_success')}}';
-    var exist = '{{Session::has('register_success')}}';
->>>>>>> d33691243701bb1bf7b998b357dabcc6c2d3a710
     if(exist){
         swal({
             title: "Đăng ký thành công",
@@ -8209,12 +8204,7 @@
             position: 'top-end',
         });
     }
-<<<<<<< HEAD
 </script> --}}
-=======
-
-</script>
->>>>>>> d33691243701bb1bf7b998b357dabcc6c2d3a710
 	</body>
 </html>
 @if(session()->has('message'))
