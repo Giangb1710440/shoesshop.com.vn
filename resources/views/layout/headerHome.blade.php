@@ -40,8 +40,19 @@
                             <a class="nav-item nav-link" href="{{ url('page-contact') }}">Contact</a>
 
                             <a class="nav-item nav-link last" href="#"><img src="{{asset('public/home/img/search_icon.png')}}"></a>
-                            <a class="nav-item nav-link last" href="{{ url('page-cart') }}"><img src="{{asset('public/home/img/shop_icon.png')}}"></a>
-                            
+                            @if(Auth::check())
+                                <a class="nav-item nav-link last" href="{{ url('page-cart') }}">
+                                    <img src="{{asset('public/home/img/shop_icon.png')}}">
+                                </a>
+                            @else
+                                <a onclick="return   nonlogin('Bạn cần đăng nhập trước !!')"
+                                   href="{{ route('page_login') }}"
+                                   class="nav-item nav-link last">
+                                    <img src="{{asset('public/home/img/shop_icon.png')}}">
+                                </a>
+                            @endif
+
+
                             <ul>
                                 @if (Auth::check())
                                     <li class="dropdown">
@@ -70,5 +81,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function nonlogin(msg){
+            if(window.confirm(msg)){
+                return true;
+            }
+            return false;
+        }
+    </script>
 
 

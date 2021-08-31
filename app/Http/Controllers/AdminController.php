@@ -25,9 +25,11 @@ class AdminController extends Controller
     public function logout(Request $request){
         if (Auth::user()->role_id == 1){
             Auth::logout();
+            Session::forget('cart');
             return redirect()->route('page_login');
         }else{
             Auth::logout();
+            Session::forget('cart');
             return redirect()->back();
         }
     }

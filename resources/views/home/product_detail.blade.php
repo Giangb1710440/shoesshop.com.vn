@@ -147,7 +147,6 @@
 
                                         <div class="product-inner-category"><br>
                                             <p> Loại:
-
                                                     @php($cate = DB::table('categorys')->get())
                                                     @foreach($cate as $cates)
                                                         @if($cates->id == $products->category_id )
@@ -155,7 +154,6 @@
                                                             @break
                                                         @endif
                                                     @endforeach
-
                                             </p>
                                         </div>
                                         <div role="tabpanel">
