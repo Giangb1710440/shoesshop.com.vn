@@ -1,4 +1,4 @@
-@extends('layout.layout2')
+@extends('layout.layout')
 @section('title','Đăng Ký')
 @section('content')
 <style>

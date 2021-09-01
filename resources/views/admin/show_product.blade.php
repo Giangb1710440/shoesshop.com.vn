@@ -59,7 +59,7 @@
                                     <td>{{$showp->product_discribe}}</td>
                                     <td>
                                         <a title="Edit sản phẩm" href="{{route('edit_product',$showp->id)}}" type="button"><i style="font-size: 25px" class="fas fa-edit"></i> </a>
-                                        <a title="Delete" href="" type="button"><i style="font-size: 25px" class="fas fa-trash-alt"></i>  </a>
+                                        <a title="Delete" href="{{route('delete_item',$showp->id)}}" type="button"><i style="font-size: 25px" class="fas fa-trash-alt"></i>  </a>
                                     </td>
 
                                 </tr>
@@ -106,6 +106,20 @@
                 title: "Đã cập nhật.",
                 text: "",
                 type: "success",
+                timer: 2000,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+        }
+    </script>
+    <script>
+        var msg1 = '{{Session::get('delete_product')}}';
+        var exist1 = '{{Session::has('delete_product')}}';
+        if (exist1) {
+            swal({
+                title: "Đã xóa sản phẩm",
+                text: "",
+                type: "delete",
                 timer: 2000,
                 showConfirmButton: false,
                 position: 'top-end',

@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                     </div>
                 </section>
             </div>
@@ -62,7 +62,11 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="seemore_bt">See More</button>
+                    <button class="seemore_bt">
+                            <a type="button" href="{{route('page_product',0)}}" >
+                                See More
+                            </a>
+                    </button>
                 </div>
                 <div class="col-md-6">
                     <div class="about-img2">
@@ -101,7 +105,8 @@
                 <div class="col-md-4">
                     <div class="sale_text"><strong>Sale <br><span style="color: #0a0506;">JOGING</span> <br>SHOES</strong></div>
                     <div class="number_text"><strong>$ <span style="color: #0a0506">100</span></strong></div>
-                    <a class="btn btn-danger btn-lg" href="{{ url('product-detail') }}" role="button" style="margin-top: 10px;"> See More</a>
+                    <a class="btn btn-danger btn-lg" href="{{route('page_product',0)}}" role="button" style="margin-top: 10px;"> See More</a>
+
                 </div>
             </div>
         </div>

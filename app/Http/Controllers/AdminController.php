@@ -190,6 +190,14 @@ class AdminController extends Controller
         return redirect()->route('show_product')->with('success_edit_product','Thành công');
     }
 
+    //delete product
+    public function delete_item($id){
+        $todo = Product::find($id);
+        $todo->delete();
+        Session::put('delete_product');
+        return redirect()->route('show_product')->with('delete_product','Thành công');
+    }
+
     //delete image
     public function delete_image($id,Request $res){
         $delete_img = Product::find($id);

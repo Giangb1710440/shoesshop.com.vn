@@ -8218,4 +8218,19 @@
             })
         </script>
     @endif
+
+<script>
+    var msg = '{{Session::get('no_success')}}';
+    var exist = '{{Session::has('no_success')}}';
+    if (exist) {
+        swal({
+            title: "Email hoặc mật khẩu không đúng",
+            text: "",
+            type: "error",
+            timer: 800,
+            showConfirmButton: false,
+            position: 'top-end',
+        });
+    }
+</script>
 @endsection

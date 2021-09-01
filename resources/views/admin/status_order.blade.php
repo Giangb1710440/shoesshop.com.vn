@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Sản phẩm đã thêm</h1>
+            <h1 class="page-header">Tổng hợp đơn hàng</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -17,7 +17,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Sản phẩm đã thêm vào cơ sở dữ liệu
+                    Bạn có thể thay đổi trạng thái đơn hàng
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

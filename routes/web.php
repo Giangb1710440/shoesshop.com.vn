@@ -90,6 +90,9 @@ Route::post('post-product',[AdminController::class,'post_product'])->name('post_
 Route::get('/edit-product/{id}',[AdminController::class,'edit_product'])->name('edit_product');
 Route::post('/post_edit_product/{id}',[AdminController::class,'post_edit_product'])->name('post_edit_product');
 
+
+//xoa san pham
+Route::get('delete-item/{id}',[AdminController::class,'delete_item'])->name('delete_item');
 //delete image
 Route::post('/delete-image/{id}',[AdminController::class,'delete_image'])->name('delete_image');
 //danh sach user
