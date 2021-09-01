@@ -44,23 +44,7 @@
         top: 12px;
         left: 122px;
     }
-    /* nav{
-        position: absolute;
-        top: 32.8%;
-        left: 12.5%;
-    }
-    nav li a{
-        color: white;
-        text-decoration: none;
-        font-family: Verdana, Arial, sans-serif;
-        font-size: 13px;
-        margin-right: 12px;
-        padding: 5px;
-    }
-    nav li a:hover{
-        background-color: #383838;
-        border-radius: 3px;
-    } */
+    
     .current{
         background-color: #383838;
         border-radius: 3px;
@@ -111,7 +95,7 @@
         margin-right: 40px;
         display: inline-block;
         vertical-align: top;
-        border: 1px solid #c8c8c8;
+        border: 3px solid #c8c8c8;
         margin-bottom: 20px;
         padding: 7px;
         border-radius: 3px;
@@ -124,7 +108,7 @@
         margin-right: 0px;
     }
     .readmore{
-        background-color: black;
+        background-color: #DB5660;
         padding: 5px 10px;
         color: white;
         text-decoration: none;
@@ -137,32 +121,23 @@
     article p{
         margin-bottom: 7px;
     }
+    #photobox{
+        width: 300px;
+    }
     #photobox img{
-        margin: 5px 4px 6px 6.5px;
+        margin: 0px 0px 6px 20px;
         border: 1px solid black;
+        width: 100px;
+        height: 100px;
     }
-    #sponsors a{
-        color: #6b6b6b;
-        text-decoration: none;
-        font-family: Verdana, Arial, sans-serif;
-        font-size: 14px;
-        background-color: #d1d1d1;
-        width: 125px;
-        height: 125px;
-        display: inline-block;
-        margin: 5px 4px 6px 7px;
-        border: 1px solid #c3c3c3;
+    #sponsors{
+        width: 300px;
     }
-    #sponsors a p{
-        margin: 50px auto;
-        width: 125px;
-        text-align: center;
-    }
-    #sponsors a:hover{
-        border: 1px solid #a7a7a7;
-        /*text-decoration: underline;*/
-        color: #3f3f3f;
-        background-color: #cacaca;
+    #sponsors img{
+        margin: 0px 0px 6px 20px;
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
     }
     #featured{
         position: relative;
@@ -187,54 +162,62 @@
         display: inline;
         zoom: 1;
     }
-
-
+    article img{
+        width: 280px;
+        height: 170px;
+    }
+    article h1{
+        font-size: 20px;
+        color: black;
+        font-weight: bold;
+    }
+    
 </style>
-<div class="collection_text">News</div>
-
+<div class="collection_text" >Tin Tức</div>
 <div id="secwrapper">
 			<section>
 				<article id="featured">
-					<a href="#"><img src="{{asset('resources/images/1.jpg')}}" alt=""/></a>
-					<img src="../../images/featured.png" alt="" id="featuredico"/>
-					<h1>Varius Gravida Mi Volutpat</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor, tortor at vulputate blandit, magna risus posuere turpis, nec cursus ipsum arcu nec felis.</p>
-					<a href="#" class="readmore">Read more</a>
+					<a href="#"><img src="{{asset('resources/images/ss4.gif')}}" /></a>
+					<h1>Chọn giày chạy phù hợp tránh chấn thương</h1>
+					<p>Runner nên lựa chọn giày chất lượng, độ đàn hồi cao, rộng hơn cỡ chân thông thường để giảm những chấn thương khi chạy ở cường độ cao. </p>
+                    <a href="#" class="readmore">Xem Thêm</a>
 				</article>
 				<article>
-					<a href="#"><img src="{{asset('resources/images/2.jpg')}}" alt=""/></a>
-					<h1>Tortor at Vulputate Blandit</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor, tortor at vulputate blandit, magna risus posuere turpis, nec cursus ipsum arcu nec felis.</p>
-					<a href="#" class="readmore">Read more</a>
+					<a href="#"><img src="{{asset('resources/images/ss2.gif')}}" alt=""/></a>
+					<h1>Test nhanh bọt xịt đánh giày và khăn giấy lau giày chỉ vài chục nghìn  </h1>
+					<p>Các cụ hay bảo "Cái răng cái tóc là góc con người" nhưng với các bạn trẻ có lẽ phải cả đôi giày nữa... </p>
+                    <a href="#" class="readmore">Xem Thêm</a>
 				</article>
 				<article class="rightcl">
-					<a href="#"><img src="{{asset('resources/images/3.jpg')}}" alt=""/></a>
-					<h1>Curabitur ut Eros a Justo Fermentum</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor, tortor at vulputate blandit, magna risus posuere turpis, nec cursus ipsum arcu nec felis.</p>
-					<a href="#" class="readmore">Read more</a>
+					<a href="#"><img src="{{asset('resources/images/ss9.gif')}}" alt=""/></a>
+					<h1>Nike tiếp tục cuộc đua công nghệ bằng bộ đệm tối ưu</h1>
+					<p>Mới đây, Nike đã công bố mẫu giày chạy mới nhất của mình - Epic React FlyKnit, tâm điểm là bộ đệm React mới nhất của "Swoosh",...</p>
+                    <a href="#" class="readmore">Xem Thêm</a>
 				</article>
 				<article id="photobox">
-					<h1>Photos Box</h1>
-					<img src="{{asset('resources/images/pbs1.jpg')}}" alt="" /><img src="{{asset('resources/images/pbs2.jpg')}}" alt="" /><img src="{{asset('resources/images/pbs3.jpg')}}" alt="" />
-					<img src="{{asset('resources/images/pbs4.jpg')}}" alt="" /><img src="{{asset('resources/images/pbs5.jpg')}}" alt="" /><img src="{{asset('resources/images/pbs6.jpg')}}" alt="" />
-					<img src="{{asset('resources/images/pbs7.jpg')}}" alt="" />
+					<a href="#"><h1 style="color: #db5660; text-align: center;">Giày Sneaker</h1></a>
+					<img src="{{asset('resources/images/ss4.jpg')}}" />
+					<img src="{{asset('resources/images/ss5.jpg')}}" />
+					<img src="{{asset('resources/images/ss6.jpg')}}" />
+					<img src="{{asset('resources/images/ss7.jpg')}}" />
+					<img src="{{asset('resources/images/ss8.jpg')}}" />
+					<img src="{{asset('resources/images/ss10.jpg')}}" />
 				</article>
 				<article>
-					<a href="#"><img src="{{asset('resources/images/4.jpg')}}" alt=""/></a>
-					<h1>Fermentum Vulputate Ac Sit Amet Metus</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor, tortor at vulputate blandit, magna risus posuere turpis, nec cursus ipsum arcu nec felis.</p>
-					<a href="#" class="readmore">Read more</a>
+					<a href="#"><img src="{{asset('resources/images/ss1.gif')}}" alt=""/></a>
+					<h1>Giày Air Jordan đẹp sắp ra mắt trong 2021</h1>
+					<p>Mặc dù những tháng đầu năm không có gì biến chuyển khi đại dịch Covid-19 vẫn tiếp tục khiến nhiều người phải ở nhà...</p>
+                    <a href="#" class="readmore">Xem Thêm</a>
 				</article>
 				<article id="sponsors">
-					<h1>Sponsors</h1>
-					<a href="#"><p>Advertise here</p></a><a href="#"><p>Advertise here</p></a><a href="#"><p>Advertise here</p></a><a href="#"><p>Advertise here</p></a>
-				</article>
-				<article>
-					<a href="#"><img src="{{asset('resources/images/5.jpg')}}" alt=""/></a>
-					<h1>Aenean Quis Dignissim Diam</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor, tortor at vulputate blandit, magna risus posuere turpis, nec cursus ipsum arcu nec felis.</p>
-					<a href="#" class="readmore">Read more</a>
-				</article>
+					<a href="#"><h1 style="color: #db5660; text-align: center;">Giày Chạy Bộ</h1></a>
+					<img src="{{asset('resources/images/run1.jpg')}}" />
+					<img src="{{asset('resources/images/run2.jpg')}}" />
+					<img src="{{asset('resources/images/run3.jpg')}}" />
+					<img src="{{asset('resources/images/run4.jpg')}}" />
+					<img src="{{asset('resources/images/run5.jpg')}}" />
+					<img src="{{asset('resources/images/run6.jpg')}}" />
+                </article>
 			</section>
 		</div>
 @endsection
