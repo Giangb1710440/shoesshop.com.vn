@@ -141,9 +141,9 @@
                                         <div class="product-inner-price">
                                             <ins> {{number_format($products->product_price)}} VND</ins>
                                         </div>
-{{--                                            <div class="quantity">--}}
-{{--                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">--}}
-{{--                                            </div>--}}
+                                           <div class="quantity">
+                                               <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">
+                                           </div>
                                         <a class="add_to_cart_button" type="button" href="{{route('addCard', $products->id) }}">Thêm vào giỏ hàng</a>
 
                                         <div class="product-inner-category"><br>

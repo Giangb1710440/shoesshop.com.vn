@@ -25,15 +25,11 @@ class HomeController extends Controller
     }
 
     //HÀM HIỂN THỊ TRANG SẢN PHẨM
-    public function page_product($id)
+    public function page_product()
     {
-        $cate = DB::table('categorys')->get();
+        // $cate = DB::table('categorys')->get();
         $product = DB::table('products')->get();
-        return view('home.page_product')->with([
-            'id'=>$id,
-            'product'=>$product,
-            'cate'=>$cate
-        ]);
+        return view('home.page_product',['product'=>$product]);
     }
     //HÀM HIỂN THỊ TRANG TIN TỨC
     public function page_news()

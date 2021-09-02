@@ -1,4 +1,13 @@
-
+<style>
+    #user{
+        margin-left: 20px;
+    }
+    #name{
+        color: #fff; 
+        font-size: 17px; 
+        font-weight: bold;
+    }
+</style>
     <div class="container">
         <div class="row">
             <div class="col-sm-2">
@@ -12,27 +21,27 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" href="{{ url('/') }}">TRANG CHỦ</a>
-                            <a class="nav-item nav-link" href="{{route('page_product',0)}}">CỬA HÀNG</a>
+                            <a class="nav-item nav-link" href="{{url('page-product')}}">CỬA HÀNG</a>
                             <a class="nav-item nav-link" href="{{ url('page-news') }}">TIN TỨC</a>
                             <a class="nav-item nav-link" href="{{ url('page-contact') }}">LIÊN HỆ</a>
 
                             @if(Auth::check())
                                 <a class="nav-item nav-link " href="{{ url('page-cart') }}">
-                                    <i class="fa fa-shoppping-cart">Giỏ Hàng</i>
+                                    Giỏ Hàng&nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 </a>
                             @else
                                 <a onclick="return nonlogin('Bạn cần đăng nhập trước !!')" href="{{ route('page_login') }}" class="nav-item nav-link ">
-                                    Giỏ Hàng &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    Giỏ Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 </a>
                             @endif
 
 
-                            <ul style="margin-left: 20px;">
+                            <ul id="user">
                                 @if (Auth::check())
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                            {{ucwords(Auth::user()->name)}}
-                                        </a>
+                                    <li class="dropdown" style="margin-top: 12px;">
+                                            <a id="name" class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                                                <i class="fa fa-user">&nbsp;</i>{{ucwords(Auth::user()->name)}}
+                                            </a>
                                         <ul class="dropdown-menu dropdown-user">
                                             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                                             </li>
