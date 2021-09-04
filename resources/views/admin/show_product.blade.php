@@ -50,7 +50,7 @@
 {{--                                    <td>{{$showp->product_quality}}</td>--}}
                                     <td>
                                         @foreach((array)json_decode($showp->product_image, true) as $image)
-                                            <img  src="{{asset('public/upload_images/'.$image)}}" height="50" width="50">
+                                            <img style="height: 15%;width: 12%" src="{{asset('public/home/img/'.$image)}}" alt="">
 {{--                                            <img  class="card-img-top" src="{{ \TCG\Voyager\Facades\Voyager::image($image) }}" alt="">--}}
                                         @endforeach
                                     </td>

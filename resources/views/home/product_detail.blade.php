@@ -137,7 +137,6 @@
 
                                 <div class="col-sm-6">
                                     <div class="product-inner"><br><br>
-<<<<<<< HEAD
                                         <form action="{{route('addCard', $products->id) }}" method="get">
                                             <h2 class="product-name">{{$products->product_name}}</h2>
                                             <div class="product-inner-price">
@@ -167,24 +166,6 @@
                                                     @foreach($product_detail as $product_details)
                                                         @if($product_details->product_id == $products->id)
                                                             <option value="{{$product_details->size}}">{{$product_details->size}}</option>
-=======
-                                        <h2 class="product-name">{{$products->product_name}}</h2>
-                                        <div class="product-inner-price">
-                                            <ins> {{number_format($products->product_price)}} VND</ins>
-                                        </div>
-                                           <div class="quantity">
-                                               <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">
-                                           </div>
-                                        <a class="add_to_cart_button" type="button" href="{{route('addCard', $products->id) }}">Thêm vào giỏ hàng</a>
-
-                                        <div class="product-inner-category"><br>
-                                            <p> Loại:
-                                                    @php($cate = DB::table('categorys')->get())
-                                                    @foreach($cate as $cates)
-                                                        @if($cates->id == $products->category_id )
-                                                        <a href="{{route('page_product',$cates->id)}}">{{ucwords($cates -> category_name)}}</a>
-                                                            @break
->>>>>>> 0373a41dcc156aae4a71ff4948b5bc95a331c280
                                                         @endif
                                                     @endforeach
                                                 </select>
