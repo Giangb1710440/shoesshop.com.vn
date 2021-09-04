@@ -64,6 +64,8 @@
                                             <th>STT</th>
                                             <th class="product-image">Hình ảnh</th>
                                             <th class="product-name">Tên sản phẩm</th>
+                                            <th class="product-name">Size</th>
+                                            <th class="product-name">Màu sắc</th>
                                             <th class="product-price">Giá</th>
                                             <th class="product-quality">Số lượng</th>
                                             <th class="product-total">Tổng</th>
@@ -89,6 +91,17 @@
                                                             <a href="#" style="color:#1abc9c ">
                                                                 {{ $product['item']['product_name']}}
                                                             </a>
+                                                        </td>
+                                                        <td>
+                                                            {{$product['size']}}
+                                                        </td>
+                                                        <td>
+                                                            @php($color = DB::table('colors')->get())
+                                                            @foreach($color as $colors)
+                                                                @if($colors->id == $product['color'])
+                                                                    {{$colors->name_color}}
+                                                                @endif
+                                                            @endforeach
                                                         </td>
                                                         <td data-label="Giá sản phẩm" >
                                                             <span class="amount" >{{ number_format($product['item']['product_price'])}} VND</span>

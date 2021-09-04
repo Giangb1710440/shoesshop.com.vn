@@ -46,8 +46,7 @@ class AppServiceProvider extends ServiceProvider
                     'totalPrice'=>$cart->totalPrice,
                     'totalQty'=>$cart->totalQty,
                     'customer_cart'=>$cart->customer_cart,
-                    'size_shose'=>$cart->size,
-                    'color_shose'=>$cart->color
+
                 ]);
             }
         });
@@ -62,8 +61,7 @@ class AppServiceProvider extends ServiceProvider
                     'totalPrice'=>$cart->totalPrice,
                     'totalQty'=>$cart->totalQty,
                     'customer_cart'=>$cart->customer_cart,
-                    'size_shose'=>$cart->size,
-                    'color_shose'=>$cart->color
+
                 ]);
             }
         });

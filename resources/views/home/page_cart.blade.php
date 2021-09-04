@@ -81,15 +81,15 @@
                             </a>
                         </td>
                         <td>
-                            {{$size_shose}}
+                            {{$product['size']}}
                         </td>
                         <td>
                             @foreach($color as $colors)
-                                @if($colors->id == $color_shose)
+                                @if($colors->id == $product['color'])
                                     {{$colors->name_color}}
                                 @endif
                             @endforeach
-                           
+
                         </td>
                         <td>{{ number_format($product['item']['product_price'])}} VNĐ</td>
                         <td>
