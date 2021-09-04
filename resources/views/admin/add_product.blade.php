@@ -22,7 +22,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>Loại sản phẩm</label>
-                                    <select name="category" class="form-control">
+                                    <select name="category" class="form-control" required>
                                         @foreach($category as $cate)
                                             <option value="{{$cate->id}}">{{$cate->category_name}}</option>
                                         @endforeach
@@ -30,16 +30,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tên sản phẩm</label>
-                                    <input name="name_product" class="form-control">
+                                    <input name="name_product" class="form-control" required>
 
                                 </div>
+<<<<<<< HEAD
 {{--                                <div class="form-group">--}}
 {{--                                    <label>Số lượng</label>--}}
 {{--                                    <input name="quality" class="form-control">--}}
 {{--                                </div>--}}
+=======
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input name="quality" class="form-control" required>
+                                </div>
+>>>>>>> 0373a41dcc156aae4a71ff4948b5bc95a331c280
                                 <div class="form-group">
                                     <label>Giá</label>
-                                    <input name="price" class="form-control" placeholder="VNĐ">
+                                    <input name="price" class="form-control" placeholder="VNĐ" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Hình ảnh</label>
@@ -48,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả</label>
-                                    <textarea name="discription" class="form-control" rows="3"></textarea>
+                                    <textarea name="discription" class="form-control" rows="3" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Giảm Giá</label>

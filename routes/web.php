@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 //Trang sản phẩm
-Route::get('/page-product/{id}', [HomeController::class, 'page_product'])->name('page_product');
+Route::get('/page-product', [HomeController::class, 'page_product'])->name('page_product');
 
 //Trang chi tiết sản phẩm
 Route::get('/product-detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
