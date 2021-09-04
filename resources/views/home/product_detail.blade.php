@@ -43,9 +43,9 @@
         margin-right: 10px;
         text-decoration: none;
     }
-    .product-inner-category {
-    margin-bottom: 30px;
-    }
+    /*.product-inner-category {*/
+    /*margin-bottom: 10px;*/
+    /*}*/
     .add_to_cart_button {
         background: none repeat scroll 0 0 #db5660;
         border: medium none;
@@ -137,26 +137,59 @@
 
                                 <div class="col-sm-6">
                                     <div class="product-inner"><br><br>
-                                        <h2 class="product-name">{{$products->product_name}}</h2>
-                                        <div class="product-inner-price">
-                                            <ins> {{number_format($products->product_price)}} VND</ins>
-                                        </div>
-{{--                                            <div class="quantity">--}}
-{{--                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">--}}
-{{--                                            </div>--}}
-                                        <a class="add_to_cart_button" type="button" href="{{route('addCard', $products->id) }}">Thêm vào giỏ hàng</a>
+                                        <form action="{{route('addCard', $products->id) }}" method="get">
+                                            <h2 class="product-name">{{$products->product_name}}</h2>
+                                            <div class="product-inner-price">
+                                                <ins> {{number_format($products->product_price)}} VND</ins>
+                                            </div>
+    {{--                                            <div class="quantity">--}}
+    {{--                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">--}}
+    {{--                                            </div>--}}
 
-                                        <div class="product-inner-category"><br>
-                                            <p> Loại:
-                                                    @php($cate = DB::table('categorys')->get())
-                                                    @foreach($cate as $cates)
-                                                        @if($cates->id == $products->category_id )
-                                                        <a href="{{route('page_product',$cates->id)}}">{{ucwords($cates -> category_name)}}</a>
-                                                            @break
+                                            <div class="product-inner-category">
+                                                <p> Loại:
+                                                        @php($cate = DB::table('categorys')->get())
+                                                        @foreach($cate as $cates)
+                                                            @if($cates->id == $products->category_id )
+                                                            <a href="{{route('page_product',$cates->id)}}">{{ucwords($cates -> category_name)}}</a>
+                                                                @break
+                                                            @endif
+                                                        @endforeach
+                                                </p>
+                                            </div>
+
+                                            <div class="product-inner-category">
+                                                <span>Size:</span><br>
+
+                                                <select name="size_shose" id="">
+                                                    <option value="0">Chọn</option>
+                                                    @foreach($product_detail as $product_details)
+                                                        @if($product_details->product_id == $products->id)
+                                                            <option value="{{$product_details->size}}">{{$product_details->size}}</option>
                                                         @endif
                                                     @endforeach
-                                            </p>
-                                        </div>
+                                                </select>
+                                            </div>
+                                                <br>
+
+                                            <div class="product-inner-category">
+                                                <span>Màu sắc:</span><br>
+                                                    @foreach($product_detail as $product_details)
+                                                        @if($product_details->product_id == $products->id)
+                                                            @foreach($color as $colors)
+                                                                @if($colors->id == $product_details->color_id)
+                                                                    <input style="margin-left: 20px" type="radio" name="color_shose" value="{{$colors->id}}" checked>{{$colors->name_color}}<br>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+
+                                                @endforeach
+                                            </div>
+                                                <br>
+{{--                                            <a class="add_to_cart_button" type="button" href="{{route('addCard', $products->id) }}">Thêm vào giỏ hàng</a>--}}
+                                            <button class="add_to_cart_button"> Thêm vào giỏ hàng</button>
+                                            <br><br>
+                                        </form>
                                         <div role="tabpanel">
                                             <ul class="product-tab" role="tablist">
                                                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>

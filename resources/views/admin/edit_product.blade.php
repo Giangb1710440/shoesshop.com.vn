@@ -45,10 +45,7 @@
                                         <input name="name_product" class="form-control" placeholder="{{$products->product_name}}">
 
                                     </div>
-                                    <div class="form-group">
-                                        <label>Số lượng</label>
-                                        <input name="quality" class="form-control" placeholder="{{$products->product_quality}}">
-                                    </div>
+
                                     <div class="form-group">
                                         <label>Giá</label>
                                         <input name="price" class="form-control" placeholder="{{number_format($products->product_price)}} VNĐ">

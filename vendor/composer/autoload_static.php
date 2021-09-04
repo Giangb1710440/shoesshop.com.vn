@@ -527,6 +527,7 @@ class ComposerStaticInitc51a4f5c2678f9b42ed8a34143ff9202
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Color' => __DIR__ . '/../..' . '/app/Models/Color.php',
         'App\\Models\\Giohang' => __DIR__ . '/../..' . '/app/Models/Giohang.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\Order_detail' => __DIR__ . '/../..' . '/app/Models/Order_detail.php',

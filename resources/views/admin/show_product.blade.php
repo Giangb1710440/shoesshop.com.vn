@@ -29,7 +29,6 @@
                                 <th>MSP</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Loại sản phẩm</th>
-                                <th>Số lượng</th>
                                 <th>Hình ảnh</th>
                                 <th>Đơn giá</th>
                                 <th>Mô tả</th>
@@ -48,7 +47,7 @@
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td>{{$showp->product_quality}}</td>
+{{--                                    <td>{{$showp->product_quality}}</td>--}}
                                     <td>
                                         @foreach((array)json_decode($showp->product_image, true) as $image)
                                             <img style="height: 15%;width: 12%" src="{{asset('public/home/img/'.$image)}}" alt="">

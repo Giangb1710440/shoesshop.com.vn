@@ -169,7 +169,10 @@ class HomeController extends Controller
     //Trang cửa hàng
     public function page_cart()
     {
-        return view('home.page_cart');
+        $color = DB::table('colors')->get();
+        return view('home.page_cart')->with([
+            'color'=>$color
+        ]);
     }
 
     //Trang thanh toán
@@ -182,9 +185,13 @@ class HomeController extends Controller
     public function product_detail($id)
     {
         $product = DB::table('products')->where('id',$id)->get();
+        $product_detail=DB::table('detail_products')->get();
+        $color=DB::table('colors')->get();
         return view('home.product_detail')->with([
             'product'=>$product,
-            'id'=>$id
+            'id'=>$id,
+            'product_detail'=>$product_detail,
+            'color'=>$color
         ]);
     }
 
@@ -233,9 +240,10 @@ class HomeController extends Controller
         if (Auth::check()){
             $product = Product::find($id);
             $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, khoong thi null
-
+            $color=$request->input('color_shose');
+            $size=$request->input('size_shose');
             $cart = new Giohang($oldCart);
-            $cart->add($product, $id);
+            $cart->add($product, $id,$color,$size);
 
             $request->session()->put('cart', $cart);
             //$add_cart_success = Session::get('add_cart_success');

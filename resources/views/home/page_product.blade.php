@@ -50,7 +50,7 @@
                                 <div class="star_text">
                                     <div class="left_part">
                                         <ul>
-                                            <li><a class="btn btn-outline-danger" href="#">Add to cart</a></li>
+                                            <li><a class="btn btn-outline-danger" href="{{route('product_detail',$products->id)}}">Xem chi tiết</a></li>
                                         </ul>
                                     </div>
                                     <div class="right_part">
@@ -91,7 +91,7 @@
                                     <div class="star_text">
                                         <div class="left_part">
                                             <ul>
-                                                <li><a class="btn btn-outline-danger" href="{{route('addCard', $products->id) }}">Add to cart</a></li>
+                                                <li><a class="btn btn-outline-danger" href="{{route('product_detail',$products->id)}}">Xem chi tiết</a></li>
                                             </ul>
                                         </div>
                                         <div class="right_part">

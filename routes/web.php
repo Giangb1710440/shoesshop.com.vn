@@ -86,6 +86,17 @@ Route::get('show-product',[AdminController::class,'show_product'])->name('show_p
 Route::get('add-product',[AdminController::class,'add_product'])->name('add_product');
 Route::post('post-product',[AdminController::class,'post_product'])->name('post_product');
 
+//add color
+Route::get('add-color',[AdminController::class,'add_color'])->name('add_color');
+Route::post('post-add-color',[AdminController::class,'post_add_color'])->name('post_add_color');
+
+//luu MSP de tien hanh them chi tiet sp
+Route::get('temp-details-product',[AdminController::class,'temp_detail_product'])->name('temp_detail_product');
+
+//them chi tiet san pham nhan id_product tu trang temp
+Route::get('add-details-product',[AdminController::class,'add_detail_product'])->name('add_detail_product');
+Route::post('post-add-detail-product',[AdminController::class,'post_add_detail_product'])->name('post_add_detail_product');
+
 //edit san pham
 Route::get('/edit-product/{id}',[AdminController::class,'edit_product'])->name('edit_product');
 Route::post('/post_edit_product/{id}',[AdminController::class,'post_edit_product'])->name('post_edit_product');

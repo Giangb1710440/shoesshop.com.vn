@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Giohang extends Model
 {
     public  $customer_cart = 0; //ma khach hang
+    public $color=0; //ma mau
+    public $size=0; //ma size
     public $items = null;
     public $totalQty = 0; // tong so luong san pham
     public $totalPrice = 0; // tong gia san pham
@@ -18,10 +20,12 @@ class Giohang extends Model
             $this->totalQty = $oldCart->totalQty;
             $this->totalPrice = $oldCart->totalPrice;
             $this->customer_cart = $oldCart->customer_cart;
+            $this->size = $oldCart->size;
+            $this->color = $oldCart->color;
         }
     }
 
-    public function add($item, $id){
+    public function add($item, $id, $color, $size){
         $giohang = ['qty'=>0, 'price' => $item->product_price, 'item' => $item];
 
         if($this->items){
@@ -35,6 +39,8 @@ class Giohang extends Model
         $this->items[$id] = $giohang;
         $this->totalQty++;
         $this->totalPrice += $item->product_price;
+        $this->size=$size;
+        $this->color=$color;
     }
 
     // update cart

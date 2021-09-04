@@ -33,10 +33,10 @@
                                     <input name="name_product" class="form-control">
 
                                 </div>
-                                <div class="form-group">
-                                    <label>Số lượng</label>
-                                    <input name="quality" class="form-control">
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <label>Số lượng</label>--}}
+{{--                                    <input name="quality" class="form-control">--}}
+{{--                                </div>--}}
                                 <div class="form-group">
                                     <label>Giá</label>
                                     <input name="price" class="form-control" placeholder="VNĐ">

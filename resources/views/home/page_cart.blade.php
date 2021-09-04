@@ -58,6 +58,8 @@
       <tr>
         <th>Tên Sản Phẩm</th>
         <th>Hình Ảnh</th>
+        <th>Size</th>
+        <th>Màu</th>
         <th>Giá</th>
         <th>Số Lượng</th>
         <th >Thành tiền</th>
@@ -77,6 +79,17 @@
                             <a href="#">
                                 <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
                             </a>
+                        </td>
+                        <td>
+                            {{$size_shose}}
+                        </td>
+                        <td>
+                            @foreach($color as $colors)
+                                @if($colors->id == $color_shose)
+                                    {{$colors->name_color}}
+                                @endif
+                            @endforeach
+                           
                         </td>
                         <td>{{ number_format($product['item']['product_price'])}} VNĐ</td>
                         <td>
