@@ -44,25 +44,43 @@ Route::get('/page-checkout', [HomeController::class, 'page_checkout']);
 
 //rating_product
 Route::post('post-rating-star/{userId}/{productId}',[HomeController::class,'postRatingStar'])->name('postRatingStar');
+
+
+
 //--------------------------------------------------------TRANG HỒ SƠ CÁ NHÂN-----------------------------------------------------------//
 //Trang hồ sơ
-Route::get('/page-infor-user', [HomeController::class, 'page_infor_user']);
-
-//Trang chờ thanh toán
-Route::get('/wait-payment', [HomeController::class, 'wait_payment']);
-
-//Trang chờ giao hàng
-Route::get('/page-delivery', [HomeController::class, 'page_delivery']);
-
-//Trang đã hủy
-Route::get('/page-cancel', [HomeController::class, 'page_cancel']);
+Route::get('/page-infor-user/{id_user}', [HomeController::class, 'page_infor_user']);
 
 //them gio hang
 Route::get('add-card/{id}',[HomeController::class,'addCard'])->name('addCard');
 Route::get('update-cart', [HomeController::class,'updateCart'])->name('getUpdateCart');
 Route::get('delete-cart/{id}', [HomeController::class,'getDeleteCart'])->name('getDeleteCart');
 
-//thanhtoan
+//Thay đổi mật khẩu
+Route::get('/change-pass',[HomeController::class,'change_pass'])->name('change_pass');
+
+//Thay đổi mật khẩu
+Route::post('/update-password/{id_userr}',[HomeController::class,'update_password'])->name('update_password');
+
+//Trang thay đổi thông tin khách hàng
+Route::get('page-edit-user/{id_user}', [HomeController::class,'page_edit_user'])->name('page_edit_user');
+
+//Thay đổi thông tin khách hàng
+Route::put('/update-profile/{id_user}',[HomeController::class,'update_profile'])->name('update_profile');
+
+//Trang chờ thanh toán
+Route::get('page-wait-payment/{id_user}', [HomeController::class,'page_wait_payment'])->name('page_wait_payment');
+
+//Trang đang giao hàng
+Route::get('page-shipping/{id_user}', [HomeController::class,'page_shipping'])->name('page_shipping');
+
+//Trang đã giao hàng
+Route::get('page-complete/{id_user}', [HomeController::class,'page_complete'])->name('page_complete');
+
+//Trang đã hủy
+Route::get('page-cancel/{id_user}', [HomeController::class,'page_cancel'])->name('page_cancel');
+
+//Hàm Thanh Toán
 Route::post('check-out',[HomeController::class,'check_out'])->name('check_out');
 
 //--------------------------------------------------------TRANG ADMIN-----------------------------------------------------------//
@@ -102,7 +120,7 @@ Route::get('/edit-product/{id}',[AdminController::class,'edit_product'])->name('
 Route::post('/post_edit_product/{id}',[AdminController::class,'post_edit_product'])->name('post_edit_product');
 
 
-//xoa san pham
+//xóa sản phẩm
 Route::get('delete-item/{id}',[AdminController::class,'delete_item'])->name('delete_item');
 //delete image
 Route::post('/delete-image/{id}',[AdminController::class,'delete_image'])->name('delete_image');
@@ -111,5 +129,10 @@ Route::get('/show-user',[AdminController::class,'show_user'])->name('show_user')
 
 //tinh trang don hang
 Route::get('/status-order',[AdminController::class,'status_order'])->name('status_order');
-//cap nhat tinh trang doin hang
-Route::post('/post-status-order/{iddh}',[AdminController::class,'post_status_order'])->name('post_status_order');
+
+//Cập nhật tình trạng đơn Hàng
+Route::get('/update-order-status/{id_order}',[AdminController::class,'update_order_status'])->name('update_order_status');
+
+//Hủy đơn hàng
+Route::get('/cancel-order/{id_order}',[AdminController::class,'cancel_order'])->name('cancel_order');
+

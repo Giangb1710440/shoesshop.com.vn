@@ -196,7 +196,7 @@ class HomeController extends Controller
     }
 
     //Trang profile
-    public function page_infor_user()
+    public function page_infor_user($id_user)
     {
         return view('home.profile_user.infor_user');
     }
@@ -213,11 +213,6 @@ class HomeController extends Controller
         return view('home.profile_user.page_delivery');
     }
 
-    //Trang đã hủy
-    public function page_cancel()
-    {
-        return view('home.profile_user.page_cancel');
-    }
 
     //sao san pham
     public function postRatingStar($userId, $productId, Request $request){
@@ -239,7 +234,7 @@ class HomeController extends Controller
     public function addCard($id, Request $request){
         if (Auth::check()){
             $product = Product::find($id);
-            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, khoong thi null
+            $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, không thi null
             $color=$request->input('color_shose');
             $size=$request->input('size_shose');
             $cart = new Giohang($oldCart);
@@ -295,7 +290,7 @@ class HomeController extends Controller
         }else {
             $order = new Order();
             $order->user_id = Auth::user()->id;
-            $order->order_status = "Mới đặt hàng";
+            $order->order_status = 0;
             $order->order_amount = $cart->totalQty;
             $order->total_price = $cart->totalPrice;
             $order->save();
@@ -313,6 +308,83 @@ class HomeController extends Controller
             Session::put('order_success');
             return redirect()->home()->with('order_success', 'Đặt hàng thành công');
         }
+    }
+
+    //Trang đổi mật khẩu
+    public function change_pass(){
+        return view('home.profile_user.change_password');
+    }
+
+    //Hàm đổi mật khẩu 
+    public function update_password(Request $request, $id_user){
+        $users = DB::table('users')->where('id', $id_user)->get();
+
+        $old_pass = $request->input('inputPassOld');
+        $new_pass = $request->input('inputPassNew');
+        $new_pass_confirm = $request->input('inputPassComfirm');
+
+        $change = User::find($id_user);
+
+        foreach($users as $val_users){
+            //Lấy mật khẩu trong DB lưu vào biến
+            $db_pass = $val_users->password;
+
+            if(password_verify($old_pass,$db_pass)){
+                if($new_pass == $new_pass_confirm){
+                    $change->password = bcrypt($request->input('inputPassComfirm'));
+                    $change->save();
+                    return redirect()->back()->with('message','');
+                }else{
+                    return redirect()->back()->with('message1','');
+                }
+            }else{
+                return redirect()->back()->with('message2','');
+            }
+        }
+    }
+
+    //Trang thay đổi thông tin khách hàng
+    public function page_edit_user($id_user){
+        $edit_user = User::find($id_user);
+        return view('home.profile_user.page_edit_user', ['edit_user'=>$edit_user]);
+    }
+
+    //Cập nhật thông tin cá nhân
+    public function update_profile(Request $request, $id_user)
+    {
+        $update_profile = User:: find($id_user);
+        $update_profile->name = $request->input('inputFullname');
+        $update_profile->email = $request->input('inputEmail');
+        $update_profile->phone = $request->input('inputPhone');
+        $update_profile->sex = $request->input('inputSex');
+        $update_profile->address = $request->input('inputAddress');
+        $update_profile->save();
+
+        return redirect()->back()->with('message','Đã cập nhật thông tin');
+    }
+
+    //Trang chờ xác nhận
+    public function page_wait_payment($id_user){
+        $show_orders = Order::where([['user_id', $id_user], ['order_status', 0]])->latest()->paginate(2);
+        return view('home.profile_user.wait_payment', ['show_orders'=>$show_orders]);
+    }
+
+    //Trang đang giao hàng
+    public function page_shipping($id_user){
+        $show_orders = Order::where([['user_id', $id_user], ['order_status', 1]])->latest()->paginate(2);
+        return view('home.profile_user.page_shipping', ['show_orders'=>$show_orders]);
+    }
+
+    //Trang đã giao hàng
+    public function page_complete($id_user){
+        $show_orders = Order::where([['user_id', $id_user], ['order_status', 2]])->latest()->paginate(2);
+        return view('home.profile_user.page_complete', ['show_orders'=>$show_orders]);
+    }
+
+    //Trang đã hủy
+    public function page_cancel($id_user){
+        $show_orders = Order::where([['user_id', $id_user], ['order_status', 3]])->latest()->paginate(2);
+        return view('home.profile_user.page_cancel', ['show_orders'=>$show_orders]);
     }
 }
 

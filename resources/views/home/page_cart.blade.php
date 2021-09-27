@@ -54,25 +54,23 @@
 
 <div class="collection_text">Shopping Cart</div>
 <table class="table table-bordered" style="max-width: 60%; margin: auto;">
-    <thead>
-      <tr>
-        <th>Tên Sản Phẩm</th>
-        <th>Hình Ảnh</th>
-        <th>Size</th>
-        <th>Màu</th>
-        <th>Giá</th>
-        <th>Số Lượng</th>
-        <th >Thành tiền</th>
-            <th scope="col" colspan="2">Tùy chọn</th>
-      </tr>
-    </thead>
-    <tbody>
-
-
         @if(Session::has('cart'))
             @if(Session('cart')->totalQty > 0)
-                @foreach($product_cart as $product)
+                <thead>
+                    <tr>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Hình Ảnh</th>
+                    <th>Size</th>
+                    <th>Màu</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th >Thành tiền</th>
+                        <th scope="col" colspan="2">Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                @foreach($product_cart as $product)
                     <tr>
                         <th>{{ $product['item']['product_name']}}</th>
                         <td>
@@ -100,8 +98,6 @@
                                        onchange="update_cart({{ $product['item']['id'] }} + ',' + this.value)">
 
                             </div>
-{{--                            <input type="number" size="4" class="input-text qty text" name="inputQty"--}}
-{{--                                    value="{{$product['qty']}}" min="0" step="1">--}}
                         </td>
                         <td>{{number_format($product['item']['product_price']*$product['qty'])}} VND</td>
 
@@ -126,24 +122,16 @@
                 </tr>
             @else
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="qua-col "></td>
-                    <td class="text-right"></td>
-                    <td class="text-right"></td>
+                    <td>
+                        <p style="font-size: 25px;">Giỏ hàng không có sản phẩm</p>
+                    </td>
                 </tr>
             @endif
         @else
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="qua-col "></td>
-                <td class="text-right"></td>
-                <td class="text-right"></td>
+                <td>
+                    <p style="font-size: 25px;">Giỏ hàng không có sản phẩm</p>
+                </td>
             </tr>
         @endif
     </tbody>
@@ -163,7 +151,6 @@
     }
 </script>
 <script>
-
     function update_cart(e) {
         var ele = e.split(",");
         var ktra = document.getElementById('txt_solg').value;

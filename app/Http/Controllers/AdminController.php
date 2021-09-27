@@ -28,17 +28,13 @@ class AdminController extends Controller
             return view('home.page_login');
         }
     }
+
     public function logout(Request $request){
-        if (Auth::user()->role_id == 1){
             Auth::logout();
             Session::forget('cart');
-            return redirect()->route('page_login');
-        }else{
-            Auth::logout();
-            Session::forget('cart');
-            return redirect()->back();
-        }
+            return redirect('page-login');
     }
+    
     public function list_product(){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
@@ -372,7 +368,7 @@ class AdminController extends Controller
 
     }
 
-    //tinh trang don hang
+    //Hiển thị đơn hàng
     public function status_order(){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
@@ -397,5 +393,21 @@ class AdminController extends Controller
         $dhs->save();
         Session::put('stt_success');
         return redirect()->route('status_order')->with('stt_success', 'Cập nhật thành công');
+    }
+
+    public function update_order_status($id_order){
+        $get_id = Order::find($id_order);   
+        if($get_id->order_status == 0){ 
+            DB::table('orders')->where('id',$id_order)->update(['order_status'=>1]);
+            return redirect()->back()->with('message','Đã duyệt đơn hàng');
+        }else{
+            DB::table('orders')->where('id',$id_order)->update(['order_status'=>2]);
+            return redirect()->back()->with('message','Đã xác nhận giao hàng');
+        }
+    }
+
+    public function cancel_order($id_order){
+        DB::table('orders')->where('id',$id_order)->update(['order_status'=>3]);
+        return redirect()->back()->with('message','Đã hủy đơn hàng');
     }
 }

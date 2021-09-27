@@ -2,7 +2,7 @@
 @section('content-profile-col-9')
 
 <div class="table-responsive-sm">
-    @forelse($show_orders as $data)
+    @forelse($show_orders as $key => $data)
         <div class="panel panel-default">
             <div class="panel-heading"><b>Đơn hàng {{ '000'.$data->id }}</b></div>
             <div class="panel-body" style="padding:1px 1px;">
@@ -14,7 +14,6 @@
                         <th scope="col">Giá</th>
                         <th scope="col">Số lượng</th>
                         <th scope="col">Tổng tiền</th>
-                        <th scope="col">Tùy chọn</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,18 +50,13 @@
                                 ?>
                                 {{ number_format($total) }} VND
                             </td>
-                            <td>
-                                <a class="btn btn-success" href="#" role="button" onclick="return confirm('Bạn có muốn hủy đơn hàng không ?');">
-                                    <i class="fa fa-repeat" aria-hidden="true"></i> Mua Lại
-                                </a>
-                            </td>
                         </tr>
                     @endforeach
                     <tr>
-                        <td colspan="5">
+                        <td colspan="4">
                             Tổng thanh toán:
                         </td>
-                        <td colspan="2">
+                        <td colspan="1">
                             {{ number_format($total_payment) }} VND
                         </td>
                     </tr>

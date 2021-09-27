@@ -4,8 +4,16 @@
 
 @endsection
 
-@section('content')
+<style>
+    table thead th{
+        text-align: center;
+    }
+    table tbody td{
+        text-align: center;
+    }
+</style>
 
+@section('content')
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Tổng hợp đơn hàng</h1>
@@ -26,22 +34,19 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                             <tr>
-                                <th>Code_order</th>
+                                <th>STT</th>
                                 <th>Khách hàng</th>
                                 <th>SĐT</th>
-                                <th>Địa chỉ giao</th>
+                                <th>Địa chỉ giao hàng</th>
+                                <th>Trạng thái đơn hàng</th>
                                 <th>Tổng tiền</th>
-                                <th>tình trạng đơn hàng</th>
-                                <th>Cập nhật trạng thái</th>
-                                <th style="width: 20%">Cập nhật</th>
+                                <th scope="row" colspan="2">Tùy Chọn</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order as $orders)
-                                <form action="{{route('post_status_order',$orders->id)}}"  method="post" >
-                                    @csrf
+                            @foreach($order as $key => $orders)
                                     <tr class="odd gradeX">
-                                        <td>Order_{{$orders->id}}</td>
+                                        <td>{{ ++$key }}</td>
                                         <td>
                                             @foreach($user as $users)
                                                 @if($users->id == $orders->user_id)
@@ -64,23 +69,50 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{number_format($orders->total_price)}}
+                                            @if ($orders->order_status == 0)
+                                                <b style="color: green;">Chờ Xác Nhận</b>
+                                            @elseif ($orders->order_status == 1)
+                                                <b style="color: orange;">Đang giao hàng</b>
+                                            @elseif ($orders->order_status == 2)
+                                                <b style="color: orange;">Đã giao hàng</b>
+                                            @else
+                                                <b style="color: red;">Đã Hủy</b>    
+                                            @endif
                                         </td>
                                         <td>
-                                            {{$orders->order_status}}
+                                            {{number_format($orders->total_price)}} VND
                                         </td>
-                                        <td>
-                                            <select id="trangthai" name="trangthai">
-                                                <option value="">--Cập nhật Trạng thái...</option>
-                                                <option value="Đã thanh toán">Đã Thanh Toán</option>
-                                                <option value="Hủy đơn">Hủy đơn</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-info btn-xs"> <i class="fas fa-cart-plus"></i> Cập nhật </button>
-                                        </td>
+                                        @if($orders->order_status == 0)
+                                            <td>
+                                                <a class="btn btn-success" href="{{url('update-order-status/'.$orders->id)}}"> 
+                                                    <i class="fas fa-check"></i> Duyệt
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger" onclick="nonlogin('Bạn có chắc muốn hủy đơn hàng!')" href="{{ url('cancel-order/'.$orders->id) }}" role="button"> 
+                                                    <i class="fas fa-trash"></i> Hủy
+                                                </a>
+                                            </td>
+                                        @elseif($orders->order_status == 1)
+                                            <td>
+                                                <a class="btn btn-success"  href="{{url('update-order-status/'.$orders->id)}}"> 
+                                                    <i class="fas fa-check"></i> Xác Nhận
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger" onclick="nonlogin('Bạn có chắc muốn hủy đơn hàng!')" href="{{ url('cancel-order/'.$orders->id) }}" role="button"> 
+                                                    <i class="fas fa-trash"></i> Hủy
+                                                </a>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <a class="btn btn-danger" href="#" disabled> <i class="fas fa-close"></i> Xác Nhận</a>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" disabled> <i class="fas fa-trash"></i> Hủy </button>
+                                            </td> 
+                                        @endif
                                     </tr>
-                                </form>
                             @endforeach
                             </tbody>
                         </table>
@@ -102,42 +134,23 @@
         });
     </script>
     <script>
-        var msg = '{{Session::get('stt_success')}}';
-        var exist = '{{Session::has('stt_success')}}';
+        function nonlogin(msg){
+            if(window.confirm(msg)){
+                return true;
+            }k
+            return false;
+        }
+    </script>
+    <script>
+        var msg = '{{Session::get('message')}}';
+        var exist = '{{Session::has('message')}}';
         if(exist){
             swal({
+                icon: 'success',
                 title: "Đã cập nhật",
                 text: "",
                 type: "success",
                 timer: 1000,
-                showConfirmButton: false,
-                position: 'top-end',
-            });
-        }
-    </script>
-    <script>
-        var msg1 = '{{Session::get('success_add_product')}}';
-        var exist1 = '{{Session::has('success_add_product')}}';
-        if (exist1) {
-            swal({
-                title: "Đã thêm thành công.",
-                text: "",
-                type: "success",
-                timer: 2000,
-                showConfirmButton: false,
-                position: 'top-end',
-            });
-        }
-    </script>
-    <script>
-        var msg1 = '{{Session::get('success_edit_product')}}';
-        var exist1 = '{{Session::has('success_edit_product')}}';
-        if (exist1) {
-            swal({
-                title: "Đã cập nhật.",
-                text: "",
-                type: "success",
-                timer: 2000,
                 showConfirmButton: false,
                 position: 'top-end',
             });

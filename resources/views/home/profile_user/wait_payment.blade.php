@@ -2,8 +2,9 @@
 @section('content-profile-col-9')
 
 <div class="table-responsive-sm">
+    @forelse($show_orders as $key => $data)
         <div class="panel panel-default">
-            <div class="panel-heading"><b>Đơn hàng 00032</b></div>
+            <div class="panel-heading"><b>Đơn hàng {{ '000'.$data->id }}</b></div>
             <div class="panel-body" style="padding:1px 1px;">
                 <table class="table table-striped">
                     <thead>
@@ -17,43 +18,77 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @php($get_details = DB::table('order_details')->where('order_id', $data->id)->get())
+
+                    <?php $total_payment = 0; ?>
+
+                    @foreach($get_details as $get_detail)
+                        @php($get_product = DB::table('products')->where('id', $get_detail->product_id)->first())
                         <tr>
-                            <td data-label="STT">1</td>
+                            <td data-label="STT">{{ ++$key }}</td>
                             <td data-label="Hình ảnh">
-                                <a href="#">
-                                    <img class="shop_thumbnail" src="{{asset('public/home/img/running-shoes1.png')}}" width="50" height="50" >
-                                </a>
+                                @foreach((array)json_decode($get_product->product_image, true) as $image)
+                                    <a href="#">
+                                        <img class="shop_thumbnail" src="{{url('public/home/img/'.$image)}}" width="50" height="50" >
+                                    </a>
+                                @endforeach    
                             </td>
                             <td data-label="Tên SP">
-                                Product Name
+                                {{ $get_product->product_name }}
                             </td>
                             <td data-label="Giá">
-                               500.000 VND
+                               {{ number_format($get_product->product_price )}} VND
                             </td>
                             <td data-label="Số lượng">
-                               3
+                               {{ $get_detail->quality }}
                             </td>
                             <td data-label="Tổng tiền">
-                                500.000 VND
+                                <?php
+                                    $price = $get_product->product_price;
+                                    $qty = $get_detail->quality;
+                                    $total = $price* $qty;
+
+                                    $total_payment = $total_payment + $total;
+                                ?>
+                                {{ number_format($total) }} VND
                             </td>
                         </tr>
+                    @endforeach
                     <tr>
                         <td colspan="5">
                             Tổng thanh toán:
                         </td>
                         <td colspan="2">
-                            500.000 VND
+                            {{ number_format($total_payment) }} VND
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="panel-footer text-right">
-                <a class="btn btn-danger" href="#" role="button" onclick="return confirm('Bạn có muốn hủy đơn hàng không ?');">
+                <a class="btn btn-danger" href="{{ url('cancel-order/'.$data->id) }}" role="button" onclick="return confirm('Bạn có muốn hủy đơn hàng không ?');">
                     <i class="fa fa-close"></i> Hủy đơn hàng
                 </a>
             </div>
         </div>
+    @empty
+        <div class="alert alert-danger text-center" role="alert">
+            <strong style="font-size: 25px;"> Không có đơn hàng</strong>
+        </div>
+    @endforelse
+    <ul class="pagination justify-content-xl-end" style="margin:20px 0;">
+        {{ $show_orders->links() }}
+    </ul>
 </div>
-
+    @if(session()->has('message'))
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Xóa đơn hàng thành công!',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            </script>
+        @endif
 @endsection

@@ -1,5 +1,18 @@
-
-    <div class="container">
+<style>
+    .product-count {
+    background: none repeat scroll 0 0 #DB5660;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    height: 20px;
+    padding-top: 1px;
+    position: absolute;
+    text-align: center;
+    width: 20px;
+}
+</style>
+<div class="container">
         <div class="row">
             <div class="col-sm-2">
                 <div class="logo"><a href="{{route('home')}}"><img src="{{asset('public/home/img/logo.png')}}"></a></div>
@@ -17,33 +30,45 @@
                             <a class="nav-item nav-link" href="{{ url('page-contact') }}">LIÊN HỆ</a>
 
                             @if(Auth::check())
-                                <a class="nav-item nav-link " href="{{ url('page-cart') }}">
-                                    <i class="fa fa-shoppping-cart">Giỏ Hàng</i>
-                                </a>
+                                @if(Session::has('cart'))   
+                                    <a class="nav-item nav-link " href="{{ url('page-cart') }}">
+                                        Giỏ Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <span class="product-count">{{ Session('cart')->totalQty }}</span>
+                                    </a>
+                                @else
+                                    <a class="nav-item nav-link " href="{{ url('page-cart') }}">
+                                        Giỏ Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <span class="product-count">0</span>
+                                    </a>  
+                                @endif    
                             @else
                                 <a onclick="return nonlogin('Bạn cần đăng nhập trước !!')" href="{{ route('page_login') }}" class="nav-item nav-link ">
                                     Giỏ Hàng &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span class="product-count">0</span>
                                 </a>
                             @endif
 
-
-                            <ul style="margin-left: 20px;">
-                                @if (Auth::check())
+                            @if (Auth::check())
+                                <ul style="margin: 12px 0 0 20px;">
                                     <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #fff; font-size: 18px;">
                                             {{ucwords(Auth::user()->name)}}
                                         </a>
                                         <ul class="dropdown-menu dropdown-user">
-                                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                            <li>
+                                                <a href="{{ url('page-infor-user/'.Auth::id()) }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
                                             </li>
-                                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                            <li>
+                                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                                             </li>
                                             <li class="divider"></li>
                                             <li><a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                                             </li>
                                         </ul>
                                     </li>
-                                @else
+                                </ul>        
+                            @else
+                                <ul style="margin-left: 20px;">       
                                     <li style="font-size: 18px;">
                                         <i class="fa fa-sign-in" style="color: white;"></i>
                                         <a style="color:white;" href="{{ url('page-login') }}"> Log in</a>
@@ -52,8 +77,8 @@
                                         <i class="fa fa-check-square-o"  style="color: white;"></i>
                                         <a style="color:white;" href="{{ url('page-signup') }}"> Sign up</a>
                                     </li>
+                                </ul>
                                 @endif
-                            </ul>
                         </div>
 
                     </div>

@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title','Detail-product')
+@section('title','Chi Tiết Sản Phẩm')
 @section('content')
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -104,6 +104,8 @@
     }
 </style>
 
+
+
 <div class="collection_text">Product Details</div>
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
@@ -159,35 +161,36 @@
                                             </div>
 
                                             <div class="product-inner-category">
-                                                <span>Size:</span><br>
-
-                                                <select name="size_shose" id="">
-                                                    <option value="0">Chọn</option>
-                                                    @foreach($product_detail as $product_details)
-                                                        @if($product_details->product_id == $products->id)
-                                                            <option value="{{$product_details->size}}">{{$product_details->size}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
+                                                <div class="dropdown">
+                                                    <span>Size: </span>
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Dropdown button
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#">Action</a>
+                                                        <a class="dropdown-item" href="#">Another action</a>
+                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                    </div>
+                                                  </div> <br>
+                                                
                                             </div>
-                                                <br>
-
                                             <div class="product-inner-category">
-                                                <span>Màu sắc:</span><br>
-                                                    @foreach($product_detail as $product_details)
-                                                        @if($product_details->product_id == $products->id)
-                                                            @foreach($color as $colors)
-                                                                @if($colors->id == $product_details->color_id)
-                                                                    <input style="margin-left: 20px" type="radio" name="color_shose" value="{{$colors->id}}" checked>{{$colors->name_color}}<br>
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
+                                                <div class="dropdown">
+                                                    <span>Màu sắc: </span>
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Dropdown button
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#">Action</a>
+                                                        <a class="dropdown-item" href="#">Another action</a>
+                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                    </div>
+                                                  </div>    
+                                            </div> <br>
 
-                                                @endforeach
-                                            </div>
-                                                <br>
-{{--                                            <a class="add_to_cart_button" type="button" href="{{route('addCard', $products->id) }}">Thêm vào giỏ hàng</a>--}}
-                                            <button class="add_to_cart_button"> Thêm vào giỏ hàng</button>
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-shopping-cart"> Thêm vào giỏ hàng</i>
+                                            </button>
                                             <br><br>
                                         </form>
                                         <div role="tabpanel">
@@ -206,7 +209,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -218,28 +220,14 @@
         </div>
 
         @foreach($product as $products)
-{{--            <div class="container">--}}
-
-{{--            </div>--}}
            <div class="container" style="padding-bottom: 40px">
                <div class="row mt-4">
-                   <div class="col-md-6">
+                    <div class="col-md-6">
                        <div id="fb-root"></div>
                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0"></script>
                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://http://localhost/shoesshop.com.vn/product-detail/{{ $products->id }}"
                             data-width="500" data-numposts="5"></div>
-{{--                       <div class="post-comments" style="padding-top: 6px">--}}
-{{--                           <form action="#" method="POST">--}}
-{{--                               @csrf--}}
-{{--                               <div class="form-group">--}}
-{{--                                   <label for="comment">Bình luận</label>--}}
-{{--                                   <textarea name="input_comment_content" class="form-control" rows="5" placeholder="Nhập bình luận..."></textarea>--}}
-{{--                               </div>--}}
-{{--                               <button type="submit" class="btn btn-default">Gửi</button>--}}
-{{--                           </form>--}}
-{{--                           <br>--}}
-{{--                       </div>--}}
-                   </div>
+                    </div>
 
                    <div class="col-md-6">
                        @if(Auth()->check())
@@ -361,7 +349,12 @@
 
 
         <a href="javascript:void(0);" class="likebtn" rel="2209835"><i class="icon-like"></i></a>
-
+           <script>
+               // Material Select Initialization
+                $(document).ready(function() {
+                $('.mdb-select').materialSelect();
+                });
+           </script>
         <!-- Product Details Section End -->
         <script>
             var msg = '{{Session::get('add_cart_success')}}';

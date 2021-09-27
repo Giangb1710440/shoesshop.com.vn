@@ -1,17 +1,11 @@
 @extends('layout.layout')
 @section('title','Cừa Hàng')
 @section('content')
+
+<link rel="stylesheet" href="{{ url('public/home/css/product.css') }}">
 <!-- New Arrivals section start -->
 <div class="collection_text">
-    @if($id == 0)
         Tất cả sản phẩm
-    @else
-        @foreach($cate as $cates)
-            @if($cates->id == $id)
-                {{$cates->category_name}}
-            @endif
-        @endforeach
-    @endif
 </div>
 
 <div class="collection_section layout_padding">
@@ -20,92 +14,111 @@
         <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
     </div>
 </div>
-
-
     @if($id == 0)
         @foreach($product as $products)
-            <div class="layout_padding gallery_section">
                 <div class="container">
                     <div class="buy_now_bt">
                         <button class="buy_text">
                             @foreach($cate as $cates)
                                 @if($cates->id == $products->category_id )
                                     {{ucwords($cates->category_name)}}
-
                                 @endif
                             @endforeach
                         </button>
                     </div>
+        @endforeach
+    @endif            
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="best_shoes">
-                                <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">{{ucwords($products->product_name)}}</a> </p>
-                                <div class="shoes_icon">
-                                    @foreach((array)json_decode($products->product_image, true) as $image)
-                                        <a href="{{route('product_detail',$products->id)}}"><img src="{{asset('public/home/img/'.$image)}}" alt=""></a>
-                                    @break
-                                        {{--                                            <img  class="card-img-top" src="{{ \TCG\Voyager\Facades\Voyager::image($image) }}" alt="">--}}
-                                    @endforeach
+                            <div class="card">
+                                <div class="imgBx">
+                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
+                                    <h2>Nike Shoes</h2>
                                 </div>
-                                <div class="star_text">
-                                    <div class="left_part">
-                                        <ul>
-                                            <li><a class="btn btn-outline-danger" href="{{route('product_detail',$products->id)}}">Xem chi tiết</a></li>
-                                        </ul>
+                                <div class="content">
+                                    <div class="size">
+                                        <h3>Size: </h3>
+                                            <span>7</span>
+                                            <span>8</span>
+                                            <span>9</span>
+                                            <span>10</span>
                                     </div>
-                                    <div class="right_part">
-                                        <div class="shoes_price"><span style="color: black; font-size:20px;">{{number_format($products->product_price)}} VND</span></div>
+                                    <div class="color">
+                                        <h3>Color: </h3>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
                                     </div>
+                                    <a href="#">Buy Now</a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <div class="card">
+                                <div class="imgBx">
+                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
+                                    <h2>Nike Shoes</h2>
+                                </div>
+                                <div class="content">
+                                    <div class="size">
+                                        <h3>Size: </h3>
+                                            <span>7</span>
+                                            <span>8</span>
+                                            <span>9</span>
+                                            <span>10</span>
+                                    </div>
+                                    <div class="color">
+                                        <h3>Color: </h3>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                    </div>
+                                    <a href="#">Buy Now</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="imgBx">
+                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
+                                    <h2>Nike Shoes</h2>
+                                </div>
+                                <div class="content">
+                                    <div class="size">
+                                        <h3>Size: </h3>
+                                            <span>7</span>
+                                            <span>8</span>
+                                            <span>9</span>
+                                            <span>10</span>
+                                    </div>
+                                    <div class="color">
+                                        <h3>Color: </h3>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                    </div>
+                                    <a href="#">Buy Now</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="imgBx">
+                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
+                                    <h2>Nike Shoes</h2>
+                                </div>
+                                <div class="content">
+                                    <div class="size">
+                                        <h3>Size: </h3>
+                                            <span>7</span>
+                                            <span>8</span>
+                                            <span>9</span>
+                                            <span>10</span>
+                                    </div>
+                                    <div class="color">
+                                        <h3>Color: </h3>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                    </div>
+                                    <a href="#">Buy Now</a>
+                                </div>
+                            </div>
                 </div>
             </div>
-        @endforeach
-    @else
-        @foreach($product as $products)
-            @if($products->category_id == $id)
-                <div class="layout_padding gallery_section">
-                    <div class="container">
-                        <div class="buy_now_bt">
-                            <button class="buy_text">
-                                @foreach($cate as $cates)
-                                    @if($cates->id == $products->category_id )
-                                        {{ucwords($cates->category_name)}}
-
-                                    @endif
-                                @endforeach
-                            </button>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="best_shoes">
-                                    <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">{{ucwords($products->product_name)}}</a> </p>
-                                    <div class="shoes_icon">
-                                        @foreach((array)json_decode($products->product_image, true) as $image)
-                                            <a href="{{route('product_detail',$products->id)}}"><img src="{{asset('public/home/img/'.$image)}}" alt=""></a>
-                                            @break
-                                        @endforeach
-                                    </div>
-                                    <div class="star_text">
-                                        <div class="left_part">
-                                            <ul>
-                                                <li><a class="btn btn-outline-danger" href="{{route('product_detail',$products->id)}}">Xem chi tiết</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="right_part">
-                                            <div class="shoes_price"><span style="color: black; font-size:20px;">{{number_format($products->product_price)}} VND</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        @endforeach
-    @endif
 
 <script>
     var msg = '{{Session::get('add_cart_success')}}';

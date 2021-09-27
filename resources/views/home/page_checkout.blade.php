@@ -151,8 +151,8 @@
                                               <a class="dropdown-item" href="#">Cash</a>
                                               <a class="dropdown-item" href="#">Online Checkout</a>
                                           </div>
+                                        </div>
                                     </div>
-                                </div>
                                 <br><br>
                                 <table class="shop_table" style="width:100%;" >
                                     <tfoot>

@@ -14,7 +14,7 @@
         <div class="profile-info-name"> Tên tài khoản </div>
 
         <div class="profile-info-value">
-            <span> User Name</span>
+            <span>{{ Auth::user()->username }}</span>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
         <div class="profile-info-name"> Giới tính </div>
 
         <div class="profile-info-value">
-            <span> Gender</span>
+            <span>{{ Auth::user()->sex }}</span>
         </div>
     </div>
 
@@ -31,7 +31,7 @@
 
         <div class="profile-info-value">
             <i class="fa fa-map-marker light-orange bigger-110"></i>
-            <span>Address</span>
+            <span>{{ Auth::user()->address }}</span>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
         <div class="profile-info-name">Email </div>
 
         <div class="profile-info-value">
-            <span>trinhbaominh@gmail.com</span>
+            <span>{{ Auth::user()->email }}</span>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
         <div class="profile-info-name"> Đã tham gia</div>
 
         <div class="profile-info-value">
-            <span>20/11/2020</span>
+            <span>20/11/2021</span>
         </div>
     </div>
 
@@ -67,7 +67,7 @@
         <div class="profile-info-name"> Trang web </div>
 
         <div class="profile-info-value">
-            <a href="{{url('/')}}" target="_blank">www.shoesshop.com.vn</a>
+            <a href="{{url('/')}}" style="color: blue;">www.shoesshop.com.vn</a>
         </div>
     </div>
 

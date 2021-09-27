@@ -2,19 +2,19 @@
 @section('content-profile-col-9')
 
 <div class="table-responsive-sm">
-    @forelse($show_orders as $data)
+    @forelse($show_orders as $key => $data)
         <div class="panel panel-default">
             <div class="panel-heading"><b>Đơn hàng {{ '000'.$data->id }}</b></div>
             <div class="panel-body" style="padding:1px 1px;">
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th scope="col">STT</th>
                         <th scope="col">Hình ảnh</th>
                         <th scope="col">Tên SP</th>
                         <th scope="col">Giá</th>
                         <th scope="col">Số lượng</th>
                         <th scope="col">Tổng tiền</th>
-                        <th scope="col">Tùy chọn</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,6 +25,7 @@
                     @foreach($get_details as $get_detail)
                         @php($get_product = DB::table('products')->where('id', $get_detail->product_id)->first())
                         <tr>
+                            <td data-label="STT">{{ ++$key }}</td>
                             <td data-label="Hình ảnh">
                                 @foreach((array)json_decode($get_product->product_image, true) as $image)
                                     <a href="#">
@@ -51,11 +52,6 @@
                                 ?>
                                 {{ number_format($total) }} VND
                             </td>
-                            <td>
-                                <a class="btn btn-success" href="#" role="button" onclick="return confirm('Bạn có muốn hủy đơn hàng không ?');">
-                                    <i class="fa fa-repeat" aria-hidden="true"></i> Mua Lại
-                                </a>
-                            </td>
                         </tr>
                     @endforeach
                     <tr>
@@ -68,6 +64,11 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-danger disabled" href="{{ url('cancel-order/'.$data->id) }}" role="button">
+                    <i class="fa fa-close"></i> Hủy đơn hàng
+                </a>
             </div>
         </div>
     @empty

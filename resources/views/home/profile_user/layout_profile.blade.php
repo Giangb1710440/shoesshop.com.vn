@@ -1,4 +1,4 @@
-@extends('layout.layout2')
+@extends('layout.layout')
 @section('title','Thông tin admin')
 @section('content')
 
@@ -24,16 +24,29 @@
                 <br>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="{{ url('page-infor-user') }}"><i class="fa fa-user" style="color: green;"></i>&nbsp;Profile </a>
+                        <a class="nav-link" aria-current="page" href="{{ url('page-infor-user/'.Auth::id()) }}">
+                            <i class="fa fa-user" style="color: green;"></i>&nbsp;Thông Tin 
+                        </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ url('wait-payment') }}"><i class="fa fa-credit-card" style="color: red;"></i>&nbsp;Wait Payment</a>
+                        <a class="nav-link" href="{{ url('page-wait-payment/'.Auth::id()) }}">
+                            <i class="fa fa-credit-card" style="color: red;"></i>&nbsp;Chờ Thanh Toán
+                        </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ url('page-delivery') }}"><i class="fa fa-truck" style="color: orange;"></i>&nbsp; Delivery</a>
+                        <a class="nav-link" href="{{ url('page-shipping/'.Auth::id()) }}">
+                            <i class="fa fa-truck" style="color: orange;"></i>&nbsp; Đang Vận Chuyển
+                        </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ url('page-cancel') }}"><i class="fa fa-times" style="color: red;"></i>&nbsp; Cancel</a>
+                        <a class="nav-link" href="{{ url('page-complete/'.Auth::id()) }}">
+                            <i class="fa fa-check" style="color: green;"></i>&nbsp; Đã Giao
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('page-cancel/'.Auth::id()) }}">
+                            <i class="fa fa-times" style="color: red;"></i>&nbsp; Đã Hủy
+                        </a>
                     </li>
                     
                 </ul>
@@ -48,15 +61,15 @@
                                     <div class="col-xs-12 col-sm-3 center">
                                         <span class="profile-picture">
                                             <img class="img-responsive" alt="Avatar" id="avatar2 "
-                                            src="{{url('public/home/img/demo.jpg')}}"
+                                            src="{{url('public/home/img/user.png')}}"
                                             style="width: 100%;">
                                         </span>
                                         <div class="space space-4"></div> <br>
-                                        <a href="#" class="btn btn-info btn-block">
+                                        <a href="{{ url('page-edit-user/'.Auth::id()) }}" class="btn btn-info btn-block">
                                             <i class="fa fa-info-circle"></i> <b>Update</b>
                                         </a>
 
-                                        <a href="#" class="btn btn-warning btn-block">
+                                        <a href="{{ url('change-pass/') }}" class="btn btn-warning btn-block">
                                             <i class="fa fa-key"></i><b>Change Pass</b>
                                         </a>
                                         <br>
