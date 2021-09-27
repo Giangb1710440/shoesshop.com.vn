@@ -30,29 +30,30 @@
                             <a class="nav-item nav-link" href="{{ url('page-contact') }}">LIÊN HỆ</a>
 
                             @if(Auth::check())
-                                @if(Session::has('cart'))   
+                                @if(Session::has('cart'))
                                     <a class="nav-item nav-link " href="{{ url('page-cart') }}">
-                                        Giỏ Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span class="product-count">{{ Session('cart')->totalQty }}</span>
+                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="Giỏ hàng"></i>
+                                        <span class="product-count">{{ count($product_cart) }}</span>
                                     </a>
                                 @else
                                     <a class="nav-item nav-link " href="{{ url('page-cart') }}">
-                                        Giỏ Hàng <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="Giỏ hàng"></i>
                                         <span class="product-count">0</span>
-                                    </a>  
-                                @endif    
+                                    </a>
+                                @endif
                             @else
-                                <a onclick="return nonlogin('Bạn cần đăng nhập trước !!')" href="{{ route('page_login') }}" class="nav-item nav-link ">
-                                    Giỏ Hàng &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <a onclick="return  nonlogin('Bạn cần đăng nhập trước !!')" href="{{ route('page_login') }}" class="nav-item nav-link ">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true" title="Giỏ hàng"></i>
                                     <span class="product-count">0</span>
                                 </a>
                             @endif
 
                             @if (Auth::check())
-                                <ul style="margin: 12px 0 0 20px;">
+                                <ul style="margin: 10px 0 0 10px">
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #fff; font-size: 18px;">
-                                            {{ucwords(Auth::user()->name)}}
+{{--                                            <i class="fas fa-user fa-lg"></i>--}}
+                                            nguyen ha giang
                                         </a>
                                         <ul class="dropdown-menu dropdown-user">
                                             <li>
@@ -66,9 +67,9 @@
                                             </li>
                                         </ul>
                                     </li>
-                                </ul>        
+                                </ul>
                             @else
-                                <ul style="margin-left: 20px;">       
+                                <ul style="margin-left: 20px;">
                                     <li style="font-size: 18px;">
                                         <i class="fa fa-sign-in" style="color: white;"></i>
                                         <a style="color:white;" href="{{ url('page-login') }}"> Log in</a>

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use MongoDB\Driver\Session;
 
 class Giohang extends Model
 {
     public  $customer_cart = 0; //ma khach hang
-
+    public $qty_cart = 0;
     public $items = null;
     public $totalQty = 0; // tong so luong san pham
     public $totalPrice = 0; // tong gia san pham
@@ -19,6 +20,7 @@ class Giohang extends Model
             $this->totalQty = $oldCart->totalQty;
             $this->totalPrice = $oldCart->totalPrice;
             $this->customer_cart = $oldCart->customer_cart;
+            $this->qty_cart = $oldCart->qty_cart;
         }
     }
 

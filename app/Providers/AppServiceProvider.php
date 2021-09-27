@@ -31,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
                     'cart'=>Session::get('cart'),
                     'product_cart'=>$cart->items,
                     'totalPrice'=>$cart->totalPrice,
-                    'totalQty'=>$cart->totalQty
+                    'totalQty'=>$cart->totalQty,
+                    'qty_cart'=>$cart->qty_cart
                 ]);
             }
         });
@@ -46,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
                     'totalPrice'=>$cart->totalPrice,
                     'totalQty'=>$cart->totalQty,
                     'customer_cart'=>$cart->customer_cart,
+                    'qty_cart'=>$cart->qty_cart
 
                 ]);
             }
@@ -61,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
                     'totalPrice'=>$cart->totalPrice,
                     'totalQty'=>$cart->totalQty,
                     'customer_cart'=>$cart->customer_cart,
-
+                    'qty_cart'=>$cart->qty_cart
                 ]);
             }
         });
