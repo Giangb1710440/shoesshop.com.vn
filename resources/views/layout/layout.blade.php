@@ -8,9 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- site metas -->
     <title> @yield('title')</title>
+    <link rel="icon" href="{{asset('public/home/img/logo.png')}}" type="image/gif">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+   
     <!-- bootstrap css -->
     {{-- swit aler --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

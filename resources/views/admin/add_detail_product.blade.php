@@ -37,7 +37,7 @@
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Màu giày</label>
                                     <select name="color_product" class="form-control">
                                         <option value="0">chọn màu...</option>
@@ -45,7 +45,7 @@
                                             <option value="{{$colors->id}}">{{$colors->name_color}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label>Số lượng</label>
                                     <input name="qty_product" class="form-control">
@@ -75,6 +75,7 @@
             swal({
                 title: "Đã thêm sản phẩm",
                 text: "",
+                icon: "success",
                 type: "success",
                 timer: 2000,
                 showConfirmButton: false,
@@ -83,4 +84,15 @@
         }
     </script>
 
+    {{-- @if(session()->has('message'))
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Đã thêm thành công!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    </script>
+    @endif --}}
 @endsection

@@ -10,14 +10,16 @@
 
 <div class="collection_section layout_padding">
     <div class="container">
-        <h1 class="new_text"><strong>New Arrivals Products</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        <h1 class="new_text"><strong>🔱 Thiết Kế Tinh Tế & Hoàn Hảo Đến Từng Chi Tiết</strong></h1>
+        <p class="consectetur_text">
+            👟👟 Chừng Nào Đôi Chân Tôi Còn Bước Trên Mặt Đất – Tôi Sẽ Chỉ Đi Các Đôi Giày Chất Nhất !!!
+            👞 👞 Bạn Đã Sắm Được Cho Mình Một Đôi Giày Đã Thực Sự Vừa Lòng Chưa ???
+            </p>
     </div>
 </div>
-    @if($id == 0)
-        @foreach($product as $products)
-                <div class="container">
-                    <div class="buy_now_bt">
+        {{-- @foreach($get_products as $products) --}}
+                <div class="container" style="width: 100%">
+                    {{-- <div class="buy_now_bt">
                         <button class="buy_text">
                             @foreach($cate as $cates)
                                 @if($cates->id == $products->category_id )
@@ -25,98 +27,49 @@
                                 @endif
                             @endforeach
                         </button>
-                    </div>
-        @endforeach
-    @endif            
+                    </div> --}}
+        {{-- @endforeach
+    @endif             --}}
                     <div class="row">
-                            <div class="card">
-                                <div class="imgBx">
-                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
-                                    <h2>Nike Shoes</h2>
-                                </div>
-                                <div class="content">
-                                    <div class="size">
-                                        <h3>Size: </h3>
-                                            <span>7</span>
-                                            <span>8</span>
-                                            <span>9</span>
-                                            <span>10</span>
+                            @foreach ($get_products as $product)
+                                <div class="card">
+                                    <div class="imgBx">
+                                        @foreach((array)json_decode($product->product_image, true) as $image)
+                                            <a href="{{route('product_detail',$product->id)}}">
+                                                <img src="{{asset('public/home/img/'.$image)}}" alt="">
+                                            </a>
+                                        @break
+                                        @endforeach
+                                        <h2>{{ $product->product_name }}</h2>
                                     </div>
-                                    <div class="color">
-                                        <h3>Color: </h3>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
+                                    <div class="content">
+                                        <div class="size">
+                                            <h3>Size: </h3>
+                                            @php($show_details = DB::table('detail_products')->where('product_id',$product->id)->get())
+                                            @foreach($show_details as $show_detail)
+                                                <span style="background-color:#DB5660; color: #fff;">{{ $show_detail->size }}</span>
+                                            @endforeach
+                                        </div>
+                                        {{-- <div class="color">
+                                            <h3>Color: </h3>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                        </div> --}}
+                                        <a href="{{ url('product-detail/'.$product->id) }}">Buy Now</a>
                                     </div>
-                                    <a href="#">Buy Now</a>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgBx">
-                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
-                                    <h2>Nike Shoes</h2>
-                                </div>
-                                <div class="content">
-                                    <div class="size">
-                                        <h3>Size: </h3>
-                                            <span>7</span>
-                                            <span>8</span>
-                                            <span>9</span>
-                                            <span>10</span>
+                                
+                            @endforeach
+                            {{-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-center">
+                                        <ul class="pagination justify-content-center pagination-sm mt-2 ">
+                                            {{ $get_products->links() }}
+                                        </ul>
                                     </div>
-                                    <div class="color">
-                                        <h3>Color: </h3>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                    </div>
-                                    <a href="#">Buy Now</a>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgBx">
-                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
-                                    <h2>Nike Shoes</h2>
-                                </div>
-                                <div class="content">
-                                    <div class="size">
-                                        <h3>Size: </h3>
-                                            <span>7</span>
-                                            <span>8</span>
-                                            <span>9</span>
-                                            <span>10</span>
-                                    </div>
-                                    <div class="color">
-                                        <h3>Color: </h3>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                    </div>
-                                    <a href="#">Buy Now</a>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgBx">
-                                    <img src="{{ asset('public/uploads/shoes-img9.png') }}">
-                                    <h2>Nike Shoes</h2>
-                                </div>
-                                <div class="content">
-                                    <div class="size">
-                                        <h3>Size: </h3>
-                                            <span>7</span>
-                                            <span>8</span>
-                                            <span>9</span>
-                                            <span>10</span>
-                                    </div>
-                                    <div class="color">
-                                        <h3>Color: </h3>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                    </div>
-                                    <a href="#">Buy Now</a>
-                                </div>
-                            </div>
+                            </div> --}}
                 </div>
             </div>
 

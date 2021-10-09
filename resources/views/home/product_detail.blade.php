@@ -106,7 +106,7 @@
 
 
 
-<div class="collection_text">Product Details</div>
+<div class="collection_text">Chi Tiết Sản Phẩm</div>
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
@@ -144,9 +144,6 @@
                                             <div class="product-inner-price">
                                                 <ins> {{number_format($products->product_price)}} VND</ins>
                                             </div>
-    {{--                                            <div class="quantity">--}}
-    {{--                                                <input type="number" size="10" class="input-text qty text" value="1" name="quality" min="1" step="1">--}}
-    {{--                                            </div>--}}
 
                                             <div class="product-inner-category">
                                                 <p> Loại:
@@ -160,52 +157,31 @@
                                                 </p>
                                             </div>
 
+                                            <div class="quantity">
+                                                <label>Số Lượng:</label>
+                                                <input type="number" size="10" class="input-text qty text" value="1" name="inputQty" min="1" step="1">
+                                             </div><br><br>
+
                                             <div class="product-inner-category">
-                                                <div class="dropdown">
                                                     <span>Size: </span>
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                      Dropdown button
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                    </div>
-                                                  </div> <br>
-                                                
+                                                    @php($details = DB::table('detail_products')->where('product_id',$products->id)->get())
+                                                    @foreach ($details as $detail)
+                                                        <input type="radio" id="html" name="inputColor" value="{{ $detail->size }}" style="width: 20px;">
+                                                        <label for="color">{{ $detail->size }}</label>
+                                                    @endforeach
                                             </div>
-                                            <div class="product-inner-category">
-                                                <div class="dropdown">
-                                                    <span>Màu sắc: </span>
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                      Dropdown button
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                    </div>
-                                                  </div>    
-                                            </div> <br>
 
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fa fa-shopping-cart"> Thêm vào giỏ hàng</i>
                                             </button>
                                             <br><br>
                                         </form>
+                                        
                                         <div role="tabpanel">
-                                            <ul class="product-tab" role="tablist">
-                                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
-                                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nhà cung cấp</a></li>
-                                            </ul>
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade in active" id="home">
                                                     <h2>Mô tả</h2>
                                                     <p>{{$products->product_discribe}}</p>
-                                                </div>
-
-                                                <div role="tabpanel" class="tab-pane fade" id="profile">
-                                                    <p><b style="font-size: 20px">Nhập nhà cung cấp</b>  </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -218,133 +194,6 @@
 
             </div>
         </div>
-
-        @foreach($product as $products)
-           <div class="container" style="padding-bottom: 40px">
-               <div class="row mt-4">
-                    <div class="col-md-6">
-                       <div id="fb-root"></div>
-                       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0"></script>
-                       <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#http://http://localhost/shoesshop.com.vn/product-detail/{{ $products->id }}"
-                            data-width="500" data-numposts="5"></div>
-                    </div>
-
-                   <div class="col-md-6">
-                       @if(Auth()->check())
-                           <style>
-                               .rating_circle{
-                                   width: 180px;
-                                   height: 180px;
-                                   border-radius: 50%;
-                                   border: 1px none;
-                                   font-size: 50px;
-                                   font-weight: bold;
-                               }
-                               .rating_text{
-                                   margin-top:1px;
-                                   font-size: 20px;
-                               }
-
-                               /* Stylingand links*/
-                               .starrating > input {display: none;}
-                               .starrating > label:before {
-                                   content: "\f005";
-                                   margin: 5px;
-                                   font-size:40px;
-                                   font-family: FontAwesome, serif;
-                                   display: inline-block;
-                               }
-                               .starrating > label{color: #4a5568;}
-                               .starrating > input:checked ~ label{ color: #ffca08 ; }
-                               .starrating > input:hover ~ label{ color: #ffca08 ;  }
-                           </style>
-                           <div class="card pb-0 mt-5">
-                               <div class="card-body pb-0">
-                                   <div class="row">
-                                       <div class="col-12 col-md-4">
-                                           <button class="rating_circle">
-                                               @php($avg_rating = DB::table('rating_stars')->where('product_id', $products->id)->avg('avg_number_star'))
-                                               {{ round($avg_rating, 1) }} / <span class="text-warning">5 <i class="fa fa-star" style="color:#ffca08;"></i></span>
-                                           </button>
-                                       </div>
-                                       <div class="col-10 col-md-6">
-                                           <div class="progress mt-2" style="height:15px;">
-                                               <div class="progress-bar bg-success" style="width:100%;height:15px;">5 Sao</div>
-                                           </div>
-                                           <div class="progress mt-3" style="height:15px;">
-                                               <div class="progress-bar bg-info" style="width:80%;height:15px;">4 Sao</div>
-                                           </div>
-                                           <div class="progress mt-3" style="height:15px;">
-                                               <div class="progress-bar bg-primary" style="width:60%;height:15px;">3 Sao</div>
-                                           </div>
-                                           <div class="progress mt-3" style="height:15px;">
-                                               <div class="progress-bar bg-warning" style="width:40%;height:15px;">2 Sao</div>
-                                           </div>
-                                           <div class="progress mt-3" style="height:15px;">
-                                               <div class="progress-bar bg-danger" style="width:20%;height:15px;">1 Sao</div>
-                                           </div>
-                                       </div>
-                                       <div class="col-2 col-md-2 mt-0">
-                                           <div class="row">
-                                               <b class="rating_text">
-                                                   @php($count_5 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star', '=',5]])->count())
-                                                   {{ $count_5 }}
-                                               </b>
-                                           </div>
-                                           <div class="row">
-                                               <b class="rating_text">
-                                                   @php($count_4 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star', '=',4]])->count())
-                                                   {{ $count_4 }}
-                                               </b>
-                                           </div>
-                                           <div class="row">
-                                               <b class="rating_text">
-                                                   @php($count_3 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star', '=',3]])->count())
-                                                   {{ $count_3 }}
-                                               </b>
-                                           </div>
-                                           <div class="row">
-                                               <b class="rating_text">
-                                                   @php($count_2 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star','=',2]])->count())
-                                                   {{ $count_2 }}
-                                               </b>
-                                           </div>
-                                           <div class="row">
-                                               <b class="rating_text">
-                                                   @php($count_1 = DB::table('rating_stars')->where([['product_id','=',$products->id],['avg_number_star','=',1]])->count())
-                                                   {{ $count_1 }}
-                                               </b>
-                                           </div>
-                                       </div>
-                                   </div>
-
-                                   @if (Auth::check())
-                                       <form action="{{ route('postRatingStar', [Auth::user()->id, $products->id]) }}" method="post" id="FormSubmit">
-                                           @csrf
-                                           <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-                                               <input type="radio" id="star5" name="rating" value="5" onclick="return SubmitFormFunction();"/><label for="star5" title="5 star"></label>
-                                               <input type="radio" id="star4" name="rating" value="4" onclick="return SubmitFormFunction();"/><label for="star4" title="4 star"></label>
-                                               <input type="radio" id="star3" name="rating" value="3" onclick="return SubmitFormFunction();"/><label for="star3" title="3 star"></label>
-                                               <input type="radio" id="star2" name="rating" value="2" onclick="return SubmitFormFunction();"/><label for="star2" title="2 star"></label>
-                                               <input type="radio" id="star1" name="rating" value="1" onclick="return SubmitFormFunction();"/><label for="star1" title="1 star"></label>
-                                           </div>
-                                       </form>
-                                   @else
-                                       <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-                                           <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star" onclick="MessageFunction()"></label>
-                                           <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star" onclick="MessageFunction()"></label>
-                                           <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star" onclick="MessageFunction()"></label>
-                                           <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star" onclick="MessageFunction()"></label>
-                                           <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star" onclick="MessageFunction()"></label>
-                                       </div>
-                                   @endif
-                               </div>
-                           </div>
-                       @endif
-                   </div>
-               </div>
-           </div>
-        @endforeach
 
 
 
@@ -401,7 +250,7 @@
         </script>
 
 
-        <script>
+        {{-- <script>
             $('[data-toggle="collapse"]').on('click', function() {
                 var $this = $(this),
                     $parent = typeof $this.data('parent')!== 'undefined' ? $($this.data('parent')) : undefined;
@@ -416,9 +265,9 @@
                 $parent.find('.glyphicon').not(currentIcon).removeClass('glyphicon-minus').addClass('glyphicon-plus');
 
             });
-        </script>
+        </script> --}}
 
-        <script>
+        {{-- <script>
             $(document).ready(function(){
                 $('[data-toggle="popover"]').popover();
             });
@@ -439,7 +288,7 @@
             function SubmitFormFunction() {
                 document.getElementById("FormSubmit").submit();
             }
-        </script>
+        </script> --}}
 
 
 @endsection

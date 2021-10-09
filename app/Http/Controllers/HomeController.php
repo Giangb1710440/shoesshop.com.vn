@@ -25,13 +25,12 @@ class HomeController extends Controller
     }
 
     //HÀM HIỂN THỊ TRANG SẢN PHẨM
-    public function page_product($id)
+    public function page_product()
     {
         $cate = DB::table('categorys')->get();
-        $product = DB::table('products')->get();
+        $get_products = DB::table('products')->get();
         return view('home.page_product')->with([
-            'id'=>$id,
-            'product'=>$product,
+            'get_products'=>$get_products,
             'cate'=>$cate
         ]);
     }
@@ -186,12 +185,10 @@ class HomeController extends Controller
     {
         $product = DB::table('products')->where('id',$id)->get();
         $product_detail=DB::table('detail_products')->get();
-        $color=DB::table('colors')->get();
         return view('home.product_detail')->with([
             'product'=>$product,
             'id'=>$id,
             'product_detail'=>$product_detail,
-            'color'=>$color
         ]);
     }
 
@@ -253,6 +250,7 @@ class HomeController extends Controller
             return redirect()->back()->with('error_login', 'Hãy đăng nhập');
         }
     }
+    
     public function updateCart(Request $request){
         if($request->id and $request->quantity){
             $oldCart = Session::has('cart')?Session::get('cart'):null;

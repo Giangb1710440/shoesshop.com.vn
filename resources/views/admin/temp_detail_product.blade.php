@@ -21,11 +21,14 @@
                             <form enctype="multipart/form-data" role="form" method="get" action="{{route('add_detail_product')}}">
                                 @csrf
                                 <div class="form-group">
-                                    <label>sản phẩm</label>
+                                    <label>Chọn Sản Phẩm</label>
                                     <select name="id_product" class="form-control">
-                                        <option value="0">chọn...</option>
+                                        <option value="0"> - - - - - Chọn - - - - -</option>
                                         @foreach($product as $products)
                                             <option value="{{$products->id}}">{{$products->product_name}}</option>
+                                            @foreach((array)json_decode($products->product_image, true) as $image)
+                                                <img src="{{asset('public/home/img/'.$image)}}" width="50" height="50">
+                                            @endforeach
                                         @endforeach
                                     </select>
                                 </div>

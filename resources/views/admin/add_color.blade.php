@@ -24,10 +24,6 @@
 
                                     <input type="text" name="color" class="form-control" placeholder="Màu sắc">
                                 </div>
-                                <div class="form-group">
-                                    <label>Color image</label>
-                                    <input required type="file" class="form-control" name="image[]" placeholder="images" multiple>
-                                </div>
 
                                 <button type="submit" class="btn btn-default"><i class="fas fa-check"></i> Thêm mới</button>
 

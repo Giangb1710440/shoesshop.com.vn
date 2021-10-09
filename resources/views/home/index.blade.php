@@ -11,19 +11,21 @@
                                 <div class="carousel-item active">
                                     <div class="row">
                                         <div class="col-sm-2 padding_0">
-                                            <p class="mens_taital">Men Shoes</p>
                                             <div class="page_no">0/2</div>
-                                            <p class="mens_taital_2">Men Shoes</p>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="banner_taital">
                                                 <h1 class="banner_text">New Running Shoes </h1>
                                                 <h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
-                                                <p class="lorem_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                <button class="buy_bt">Buy Now</button>
+                                                <p class="lorem_text"> 
+                                                    Không thể cân đo, đong đếm được với mỗi người bao nhiêu đôi giày là đủ, 
+                                                    nhưng sẽ có những kiểu giày mà Shoes Shop Việt Nam tin rằng mỗi người 
+                                                    nên có trong bộ sưu tập giày của mình. 
+                                                </p>
+                                                <button class="buy_bt">Mua Ngay</button>
                                                 <button class="more_bt">
-                                                    <a type="button" href="{{route('page_product',0)}}" >
-                                                        See More
+                                                    <a type="button" href="{{route('page_product')}}" >
+                                                        Chi Tiết
                                                     </a>
                                                 </button>
                                             </div>
@@ -42,15 +44,26 @@
     </div>
 <div class="layout_padding collection_section">
     <div class="container">
-        <h1 class="new_text"><strong>New  Collection</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        {{-- <h1 class="new_text"><strong>Shoes Shop</strong></h1>
+        <p class="consectetur_text">
+            Shoes Shop thương hiệu giày dép được rất nhiều người biết đến với chất lượng sản phẩm tuyệt vời,
+             giá cả phù hợp với mọi người. Sản phẩm đa dạng : giày nam, giày nữ, sneaker...
+        </p> --}}
+        <h1 class="new_text"><strong>Sneaker</strong></h1>
+        <p class="consectetur_text">
+            Sự năng động và thoải mái mà sneaker mang lại là không thể chối cãi. 
+            Cho dù làm việc hay tham gia các hoạt động thể thao đòi hỏi sự vận động nhiều thì 
+            một đôi giày thể thao là phải có. Với những người thường xuyên vận động sở hữu 
+            cho mình một đôi giày sneaker sẽ giúp bạn thoải mái di chuyển 
+            trên đôi chân của bạn trong thời gian dài và có thể tránh được rất nhiều chấn thương cho đôi chân.
+        </p>
         <div class="collection_section_2">
             <div class="row">
                 <div class="col-md-6">
                     <div class="about-img">
                         <button class="new_bt">New</button>
                         <div class="shoes-img"><img src="{{ asset('public/home/img/shoes-img1.png') }}"></div>
-                        <p class="sport_text">Men Sports</p>
+                        <p class="sport_text">Sports</p>
                         <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
                         <div class="star_icon">
                             <ul>
@@ -63,7 +76,7 @@
                         </div>
                     </div>
                     <button class="seemore_bt">
-                            <a type="button" href="{{route('page_product',0)}}" >
+                            <a type="button" href="{{route('page_product')}}" >
                                 See More
                             </a>
                     </button>
@@ -71,7 +84,7 @@
                 <div class="col-md-6">
                     <div class="about-img2">
                         <div class="shoes-img2"><img src="{{ asset('public/home/img/shoes-img2.png') }}"></div>
-                        <p class="sport_text">Men Sports</p>
+                        <p class="sport_text">Sneaker</p>
                         <div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
                         <div class="star_icon">
                             <ul>
@@ -91,8 +104,13 @@
 
 <div class="collection_section">
     <div class="container">
-        <h1 class="new_text"><strong>Racing Boots</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        <h1 class="new_text"><strong>Thời trang bất tận cùng Shoes Shop</strong></h1>
+        <p class="consectetur_text">
+            Ngành công nghiệp thời trang giày dép muôn hình vạn trạng sẽ không bao giờ ngừng thay đổi để đem lại 
+            vẻ đẹp hình thức ngày càng được trau chuốt. “Người nào giày đó” gần như là nguyên tắc bất di bất dịch của mọi người khi phối đồ.
+            Đến với Shoes Shop bạn sẽ được cập nhật các xu hướng giày dép trên thị trường với giá mềm hơn, 
+            đồng thời sử dụng các mã giảm giá tại iprice để hỗ trợ mua sắm trực tuyến cực thuận lợi. Khám phá ngay thôi!
+        </p>
     </div>
 </div>
 <div class="collectipn_section_3 layuot_padding">
@@ -112,49 +130,7 @@
         </div>
     </div>
 </div>
-<div class="collection_section layout_padding">
-    <div class="container">
-        <h1 class="new_text"><strong>New Arrivals Products</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-    </div>
-</div>
 <!-- new collection section end -->
-<!-- New Arrivals section start -->
-<div class="layout_padding gallery_section">
-    <div class="container">
-        <div class="row">
-            @foreach($product as $products)
-                <div class="col-sm-4">
-                    <div class="best_shoes">
-                        <p class="best_text"><a href="{{ url('product-detail') }}" style="color: red;">{{$products->product_name}}</a> </p>
-                        <div class="shoes_icon">
-                            @foreach((array)json_decode($products->product_image, true) as $image)
-                                <a href="{{route('product_detail',$products->id)}}">
-                                    <img src="{{asset('public/home/img/'.$image)}}" alt="">
-                                </a>
-                                @break
-                            @endforeach
-                        </div>
-                        <div class="star_text">
-                            <div class="left_part">
-                                <ul>
-                                    <li><a class="btn btn-outline-danger" href="{{route('addCard', $products->id) }}">Add to cart</a></li>
-                                </ul>
-                            </div>
-                            <div class="right_part">
-                                <div class="shoes_price"><span style="color: black; font-size:20px;">{{number_format($products->product_price)}} VND</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="buy_now_bt"><a class="btn btn-dark btn-lg" href="{{route('page_product',0)}}" role="button" style="margin-top: 10px;"> See More</a>
-        </div>
-    </div>
-</div>
-   <!-- New Arrivals section end -->
-   <!-- contact section start -->
     <script>
         var msg = '{{Session::get('order_success')}}';
         var exist = '{{Session::has('order_success')}}';

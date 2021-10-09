@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 //Trang sản phẩm
-Route::get('/page-product/{id}', [HomeController::class, 'page_product'])->name('page_product');
+Route::get('/page-product', [HomeController::class, 'page_product'])->name('page_product');
 
 //Trang chi tiết sản phẩm
 Route::get('/product-detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
@@ -104,9 +104,6 @@ Route::get('show-product',[AdminController::class,'show_product'])->name('show_p
 Route::get('add-product',[AdminController::class,'add_product'])->name('add_product');
 Route::post('post-product',[AdminController::class,'post_product'])->name('post_product');
 
-//add color
-Route::get('add-color',[AdminController::class,'add_color'])->name('add_color');
-Route::post('post-add-color',[AdminController::class,'post_add_color'])->name('post_add_color');
 
 //luu MSP de tien hanh them chi tiet sp
 Route::get('temp-details-product',[AdminController::class,'temp_detail_product'])->name('temp_detail_product');

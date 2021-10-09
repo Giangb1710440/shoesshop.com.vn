@@ -4,9 +4,16 @@
 
 <div class="collection_text">LIÊN HỆ</div>
 <div class="layout_padding contact_section">
-    <div class="container">
-        <h1 class="new_text"><strong>Vui lòng để lại thông tin, chúng tôi sẽ phản hồi trong thời gian sớm nhất!</strong></h1>
-    </div>
+    {{-- <div class="container"> --}}
+        {{-- <h1 class="new_text">
+            <strong></strong>
+        </h1> --}}
+        <marquee>
+            <h1>
+                <strong>🧡💛💚💙💜Vui lòng để lại thông tin, chúng tôi sẽ phản hồi trong thời gian sớm nhất!🧡💛💚💙💜</strong>
+            </h1>
+        </marquee>
+    {{-- </div> --}}
     <div class="container-fluid ram"><br>
         <div class="row">
             <div class="col-md-6">

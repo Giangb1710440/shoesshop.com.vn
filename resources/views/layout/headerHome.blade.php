@@ -52,18 +52,18 @@
                                 <ul style="margin: 10px 0 0 10px">
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #fff; font-size: 18px;">
-{{--                                            <i class="fas fa-user fa-lg"></i>--}}
-                                            nguyen ha giang
+                                           <i class="fas fa-user fa-lg"></i>
+                                            {{ Auth::user()->username }}
                                         </a>
                                         <ul class="dropdown-menu dropdown-user">
                                             <li>
-                                                <a href="{{ url('page-infor-user/'.Auth::id()) }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                                <a href="{{ url('page-infor-user/'.Auth::id()) }}"><i class="fa fa-user fa-fw"></i> Thông Tin</a>
                                             </li>
                                             <li>
-                                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                                <a href="{{ url('change-pass/'.Auth::id()) }}"><i class="fa fa-gear fa-fw"></i> Đổi Mật Khẩu</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                            <li><a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Đăng Xuất</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -72,11 +72,11 @@
                                 <ul style="margin-left: 20px;">
                                     <li style="font-size: 18px;">
                                         <i class="fa fa-sign-in" style="color: white;"></i>
-                                        <a style="color:white;" href="{{ url('page-login') }}"> Log in</a>
+                                        <a style="color:white;" href="{{ url('page-login') }}"> Đăng Nhập</a>
                                     </li>
                                     <li style="font-size: 18px;">
-                                        <i class="fa fa-check-square-o"  style="color: white;"></i>
-                                        <a style="color:white;" href="{{ url('page-signup') }}"> Sign up</a>
+                                        <i class="fa fa-check"  style="color: white;"></i>
+                                        <a style="color:white;" href="{{ url('page-signup') }}"> Đăng Ký</a>
                                     </li>
                                 </ul>
                                 @endif

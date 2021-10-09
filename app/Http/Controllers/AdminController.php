@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Color;
 use App\Models\Detail_product;
 use App\Models\Order;
 use App\Models\User;
@@ -117,34 +116,6 @@ class AdminController extends Controller
 
      }
 
-     //them mau sac
-    public function add_color(){
-        return view('admin.add_color');
-    }
-
-    public function post_add_color(Request $res){
-        $name_color=$res->input('color');
-        $color = new Color();
-        $color->name_color=$name_color;
-        $res->validate([
-            'image' => 'required',
-            'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
-        ]);
-        if($res->hasfile('image')) {
-            foreach ($res->file('image') as $file) {
-                $name = $file->getClientOriginalName();
-                $file->move(public_path() . '/uploads/', $name);
-                $imgData[] = $name;
-            }
-        }
-        $color->color_image=json_encode($imgData);
-
-        $color->save();
-        $register_success = Session::get('success_add_color');
-        Session::put('success_add_color');
-        return redirect()->back()->with('success_add_color','Thành công');
-    }
-
      //thêm mới sản phẩm
     public function add_product(){
         if (Auth::check()){
@@ -196,51 +167,32 @@ class AdminController extends Controller
     }
 
 
-    //them chi tiet san pham
+    //Thêm chi tiết sản phẩm
     public function temp_detail_product(){
         $product = DB::table('products')->get();
         return view('admin.temp_detail_product')->with([
             'product'=>$product
         ]);
     }
+    //Thêm chi tiết giày
     public function add_detail_product(Request $res){
         $product = DB::table('products')->where('id',$res->input('id_product'))->get();
-        $color = DB::table('colors')->get();
         $idP=$res->input('id_product');
         return view('admin.add_detail_product')->with([
             'idP'=>$idP,
-            'product'=>$product,
-            'color'=>$color
+            'product'=>$product
         ]);
     }
-
-    public function post_add_detail_product(Request $res){
-        $id_product = $res->input('id_product');
-        $size = $res->input('size_giay');
-        $color = $res->input('color_product');
-        $qty = $res->input('qty_product');
-
-        $detail_test = DB::table('detail_products')->get();
-        $i=0;
-        foreach ($detail_test as $detail_tests){
-            if(($detail_tests->product_id == $id_product) && $detail_tests->size == $size && $detail_tests->color_id == $color) {
-                $sl = $detail_tests->qty + $qty;
-                Detail_product::where('id',$detail_tests->id)->update(['qty' => $sl]);
-                $register_success = Session::get('success_add_detail_product');
-                Session::put('success_add_detail_product');
-                return redirect()->route('temp_detail_product')->with('success_add_detail_product','Thành công');
-
-            }
-        }
-        $detail_product = new Detail_product();
-        $detail_product->product_id =$id_product;
-        $detail_product->size=$size;
-        $detail_product->color_id=$color;
-        $detail_product->qty=$qty;
-        $detail_product->save();
-        $register_success = Session::get('success_add_detail_product');
-        Session::put('success_add_detail_product');
-        return redirect()->route('temp_detail_product')->with('success_add_detail_product','Thành công');
+    
+    public function post_add_detail_product(Request $request){
+        $add_detail = new Detail_product();
+        $add_detail->product_id = $request->input('id_product');
+        $add_detail->size = $request->input('size_giay');
+        $add_detail->qty = $request->input('qty_product');
+        $add_detail->save();
+        $register_success = Session::get('success_add_product');
+        Session::put('success_add_product');
+        return redirect()->back()->with('success_add_product','Thành công');
     }
 
 
