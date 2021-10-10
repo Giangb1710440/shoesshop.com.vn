@@ -36,7 +36,7 @@
                                     <div class="imgBx">
                                         @foreach((array)json_decode($product->product_image, true) as $image)
                                             <a href="{{route('product_detail',$product->id)}}">
-                                                <img src="{{asset('public/home/img/'.$image)}}" alt="">
+                                                <img src="{{asset('public/uploads/'.$image)}}" alt="">
                                             </a>
                                         @break
                                         @endforeach
@@ -59,7 +59,7 @@
                                         <a href="{{ url('product-detail/'.$product->id) }}">Buy Now</a>
                                     </div>
                                 </div>
-                                
+
                             @endforeach
                             {{-- <div class="row">
                                 <div class="col-md-12">
