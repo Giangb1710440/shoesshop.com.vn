@@ -61,7 +61,6 @@
                     <th>Tên Sản Phẩm</th>
                     <th>Hình Ảnh</th>
                     <th>Size</th>
-                    <th>Màu</th>
                     <th>Giá</th>
                     <th>Số Lượng</th>
                     <th >Thành tiền</th>
@@ -81,22 +80,13 @@
                         <td>
                             {{$product['size']}}
                         </td>
-                        <td>
-                            @foreach($color as $colors)
-                                @if($colors->id == $product['color'])
-                                    {{$colors->name_color}}
-                                @endif
-                            @endforeach
 
-                        </td>
                         <td>{{ number_format($product['item']['product_price'])}} VNĐ</td>
                         <td>
                             <div class="quantity">
-
                                 <input class="input-text qty text form-control quantity" type="number" id="txt_solg"
                                        value="{{$product['qty']}}"
                                        onchange="update_cart({{ $product['item']['id'] }} + ',' + this.value)">
-
                             </div>
                         </td>
                         <td>{{number_format($product['item']['product_price']*$product['qty'])}} VND</td>

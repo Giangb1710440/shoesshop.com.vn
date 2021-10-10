@@ -168,10 +168,7 @@ class HomeController extends Controller
     //Trang cửa hàng
     public function page_cart()
     {
-        $color = DB::table('colors')->get();
-        return view('home.page_cart')->with([
-            'color'=>$color
-        ]);
+        return view('home.page_cart');
     }
 
     //Trang thanh toán
@@ -232,10 +229,10 @@ class HomeController extends Controller
         if (Auth::check()){
             $product = Product::find($id);
             $oldCart = Session('cart')?Session::get('cart'):null; // neu co session cart thi lay cart, không thi null
-            $color=$request->input('color_shose');
+            $qty_p=$request->input('inputQty');
             $size=$request->input('size_shose');
             $cart = new Giohang($oldCart);
-            $cart->add($product, $id,$color,$size);
+            $cart->add($product, $id,$qty_p,$size);
 
             $request->session()->put('cart', $cart);
             //$add_cart_success = Session::get('add_cart_success');
@@ -250,7 +247,7 @@ class HomeController extends Controller
             return redirect()->back()->with('error_login', 'Hãy đăng nhập');
         }
     }
-    
+
     public function updateCart(Request $request){
         if($request->id and $request->quantity){
             $oldCart = Session::has('cart')?Session::get('cart'):null;
@@ -313,7 +310,7 @@ class HomeController extends Controller
         return view('home.profile_user.change_password');
     }
 
-    //Hàm đổi mật khẩu 
+    //Hàm đổi mật khẩu
     public function update_password(Request $request, $id_user){
         $users = DB::table('users')->where('id', $id_user)->get();
 

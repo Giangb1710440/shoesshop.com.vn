@@ -130,7 +130,7 @@
                                     <div class="product-images">
                                         <div class="product-main-img"><br><br>
                                             @foreach((array)json_decode($products->product_image, true) as $image)
-                                               <img src="{{asset('public/home/img/'.$image)}}" alt="">
+                                               <img src="{{asset('public/uploads/'.$image)}}" alt="">
                                                 @break
                                             @endforeach
                                         </div>
@@ -147,13 +147,13 @@
 
                                             <div class="product-inner-category">
                                                 <p> Loại:
-                                                        @php($cate = DB::table('categorys')->get())
-                                                        @foreach($cate as $cates)
-                                                            @if($cates->id == $products->category_id )
-                                                            <a href="{{route('page_product',$cates->id)}}">{{ucwords($cates -> category_name)}}</a>
-                                                                @break
-                                                            @endif
-                                                        @endforeach
+                                                    @php($cate = DB::table('categorys')->get())
+                                                    @foreach($cate as $cates)
+                                                        @if($cates->id == $products->category_id )
+                                                        <a href="{{route('page_product',$cates->id)}}">{{ucwords($cates -> category_name)}}</a>
+                                                            @break
+                                                        @endif
+                                                    @endforeach
                                                 </p>
                                             </div>
 
@@ -176,7 +176,7 @@
                                             </button>
                                             <br><br>
                                         </form>
-                                        
+
                                         <div role="tabpanel">
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade in active" id="home">

@@ -24,18 +24,17 @@ class Giohang extends Model
         }
     }
 
-    public function add($item, $id, $color, $size){
-        $giohang = ['qty'=>0, 'price' => $item->product_price, 'item' => $item,'size'=>0,'color'=>0];
+    public function add($item, $id, $qty_p, $size){
+        $giohang = ['qty'=>0, 'price' => $item->product_price, 'item' => $item,'size'=>0];
 
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $giohang = $this->items[$id];
             }
         }
-        $giohang['qty']++;
+        $giohang['qty']+=$qty_p;
         $giohang['price'] = $item->product_price * $giohang['qty'];
         $giohang['size']=$size;
-        $giohang['color']=$color;
         $this->items[$id] = $giohang;
         $this->totalQty++;
         $this->totalPrice += $item->product_price;
