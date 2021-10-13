@@ -27,11 +27,19 @@
                         <label class="text-muted">{{$user->phone}}</label>
                         <label class="text-muted">{{$user->address}}</label>
                     </div>
-                    <div class="options">
-                        <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button>
-                        <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
-                        <button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button>
-                    </div>
+                    @if($user->id == Auth::user()->id)
+                        <div class="options">
+                            <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></button>
+                            <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
+                            <button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button>
+                        </div>
+                    @else
+                        <div class="options">
+                            <button type="button" class="btn btn-primary btn-circle" disabled><i class="fa fa-list"></i></button>
+                            <button type="button" class="btn btn-info btn-circle" disabled><i class="fa fa-check"></i></button>
+                            <button type="button" class="btn btn-warning btn-circle" disabled><i class="fa fa-times"></i></button>
+                        </div>
+                    @endif
                 </div>
             </div>
         @endforeach

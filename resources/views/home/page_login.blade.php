@@ -8121,7 +8121,7 @@
 
 	</head>
 	<body style="font-family: Mulish, sans-serif">
-        <div class="collection_text">Login</div>
+        <div class="collection_text">Đăng Nhập</div>
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
@@ -8229,6 +8229,21 @@
             timer: 800,
             showConfirmButton: false,
             position: 'top-end',
+        });
+    }
+</script>
+
+<script>
+    var msg = '{{Session::get('register_success')}}';
+    var exist = '{{Session::has('register_success')}}';
+    if (exist) {
+        swal({
+            title: "Đăng ký thành công vui lòng đăng nhập lại",
+            text: "",
+            icon: "success",
+            type: "error",
+            timer: 800,
+            showConfirmButton: false,
         });
     }
 </script>

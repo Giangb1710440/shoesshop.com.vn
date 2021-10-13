@@ -8120,14 +8120,14 @@
 
 	</head>
 	<body>
-        <div class="collection_text">Sign Up</div>
+        <div class="collection_text">Đăng Ký</div>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-5 col-lg-5">
 			      	<div class="d-flex">
 			      		<div class="w-100">
-			      			<h3 class="mb-4">Sign Up</h3>
+			      			<h3 class="mb-4">Đăng Ký</h3>
 			      		</div>
 								<div class="w-100">
 									<p class="social-media d-flex justify-content-end">
@@ -8169,9 +8169,9 @@
 
                         <div class="form-group mb-3">
                             <label class="label" for="gender" style="margin-right: 20px;">Giới Tính</label>&emsp;
-                            <input type="radio" name="gender" value="Nam"> Nam &emsp;&emsp;&emsp;
-                            <input type="radio" name="gender" value="Nữ"> Nữ &emsp;&emsp;&emsp;
-                            <input type="radio" name="gender" value="Khác"> Khác
+                            <input type="radio" name="gender" value="0"> Nam &emsp;&emsp;&emsp;
+                            <input type="radio" name="gender" value="1"> Nữ &emsp;&emsp;&emsp;
+                            <input type="radio" name="gender" value="2"> Khác
                         </div>
                         <div class="form-group mb-3">
                             <label class="label" for="address">Địa Chỉ</label>

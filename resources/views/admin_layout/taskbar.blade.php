@@ -21,7 +21,6 @@
                     <li>
                         <a href="{{route('page-signup')}}">Thêm mới thành viên</a>
                         <a href="{{route('add_category')}}">Thêm loại sản phẩm</a>
-                        <a href="{{route('add_supplier')}}">Thêm nhà cung cấp sản phẩm</a>
                         <a href="{{route('add_product')}}">Thêm sản phẩm</a>
                         <a href="{{route('temp_detail_product')}}">Thêm chi tiết sản phẩm</a>
                     </li>

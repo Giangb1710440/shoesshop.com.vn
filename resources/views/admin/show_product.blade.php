@@ -120,6 +120,7 @@
             swal({
                 title: "Đã cập nhật.",
                 text: "",
+                icon: "success",
                 type: "success",
                 timer: 2000,
                 showConfirmButton: false,

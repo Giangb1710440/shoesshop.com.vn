@@ -147,7 +147,7 @@ class HomeController extends Controller
         if (strcasecmp($password, $confirm) != 0){
             return redirect()->back()->with('message', 'Xác nhận mật khẩu sai');
         }else{
-            $user = new User;
+            $user = new User();
             $user->role_id =2;
             $user->name=$fullname;
             $user->username=$username;

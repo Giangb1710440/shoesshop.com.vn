@@ -202,8 +202,8 @@ class AdminController extends Controller
             if(Auth::user()->role_id !== 1){
                 return redirect()->route('home');
             }else{
-                $category=DB::table('categorys')->get();
-                $product=DB::table('products')->where('id',$id)->get();
+                $category = DB::table('categorys')->get();
+                $product = DB::table('products')->where('id',$id)->first();
                 return view('admin.edit_product')->with([
                     'category'=>$category,
                     'product'=>$product,
@@ -220,31 +220,13 @@ class AdminController extends Controller
 
         $edit_product = Product::find($id);
 
-        $category=$res->input('category');
-        $name_product=$res->input('name_product');
-        $quality=$res->input('quality');
-        $price=$res->input('price');
-        $discription=$res->input('discription');
-        $discost=$res->input('discost');
+        $edit_product->category_id =$res->input('category');
+        $edit_product -> product_name = $res->input('name_product');
+        $edit_product->product_quality = $res->input('quality');
+        $edit_product->product_price = $res->input('price');
+        $edit_product -> product_discribe = $res->input('discription');
+        $edit_product -> product_discount = $res->input('discost');
 
-        if($category != null){
-            $edit_product->category_id = $category;
-        }
-        if($name_product != null){
-            $edit_product -> product_name = $name_product;
-        }
-        if($quality != null) {
-            $edit_product->product_quality = $quality;
-        }
-        if($price == null){
-            $edit_product->product_price = $price;
-        }
-        if($discription != null){
-            $edit_product -> product_discribe=$discription;
-        }
-        if($discost != null){
-            $edit_product -> product_discount=$discost;
-        }
         //image
         $res->validate([
             'image' => 'required',

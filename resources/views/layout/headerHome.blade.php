@@ -55,15 +55,21 @@
                                            <i class="fas fa-user fa-lg"></i>
                                             {{ Auth::user()->username }}
                                         </a>
-                                        <ul class="dropdown-menu dropdown-user">
+                                        <ul class="dropdown-menu dropdown-user" >
                                             <li>
-                                                <a href="{{ url('page-infor-user/'.Auth::id()) }}"><i class="fa fa-user fa-fw"></i> Thông Tin</a>
+                                                <a href="{{ url('page-infor-user/'.Auth::id()) }}" style="color: #333;">
+                                                    <i class="fa fa-user fa-fw"></i> Thông Tin
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="{{ url('change-pass/'.Auth::id()) }}"><i class="fa fa-gear fa-fw"></i> Đổi Mật Khẩu</a>
+                                                <a href="{{ url('change-pass/'.Auth::id()) }}" style="color: #333;">
+                                                    <i class="fa fa-gear fa-fw"></i> Đổi Mật Khẩu
+                                                </a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i> Đăng Xuất</a>
+                                            <li><a href="{{route('logout')}}" style="color: #333;">
+                                                <i class="fa fa-sign-out fa-fw"></i> Đăng Xuất
+                                            </a>
                                             </li>
                                         </ul>
                                     </li>
