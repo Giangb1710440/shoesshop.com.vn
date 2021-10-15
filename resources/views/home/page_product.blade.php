@@ -36,7 +36,7 @@
                                     <div class="imgBx">
                                         @foreach((array)json_decode($product->product_image, true) as $image)
                                             <a href="{{route('product_detail',$product->id)}}">
-                                                <img src="{{asset('public/uploads/'.$image)}}" alt="">
+                                                <img src="{{asset('public/home/img/'.$image)}}" alt="">
                                             </a>
                                         @break
                                         @endforeach
