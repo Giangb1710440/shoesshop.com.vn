@@ -33,7 +33,7 @@ class AdminController extends Controller
             Session::forget('cart');
             return redirect('page-login');
     }
-    
+
     public function list_product(){
         if (Auth::check()){
             if(Auth::user()->role_id !== 1){
@@ -183,7 +183,7 @@ class AdminController extends Controller
             'product'=>$product
         ]);
     }
-    
+
     public function post_add_detail_product(Request $request){
         $add_detail = new Detail_product();
         $add_detail->product_id = $request->input('id_product');
@@ -219,31 +219,27 @@ class AdminController extends Controller
     public function post_edit_product($id,Request $res){
 
         $edit_product = Product::find($id);
-
-        $edit_product->category_id =$res->input('category');
         $edit_product -> product_name = $res->input('name_product');
-        $edit_product->product_quality = $res->input('quality');
-        $edit_product->product_price = $res->input('price');
+//        $edit_product->product_quality = $res->input('quality');
+        $edit_product -> product_price = $res->input('price');
         $edit_product -> product_discribe = $res->input('discription');
         $edit_product -> product_discount = $res->input('discost');
 
         //image
-        $res->validate([
-            'image' => 'required',
-            'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
-        ]);
-        if($res->hasfile('image')) {
 
-            $img = $edit_product->product_image;
-            $arr_img=json_decode($img,true);
+        if($res->hasfile('image')) {
+            $res->validate([
+                'image' => 'required',
+                'image.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+            ]);
             foreach ($res->file('image') as $file) {
                 $name = $file->getClientOriginalName();
                 $file->move(public_path() . '/uploads/', $name);
-                $image[]=$name;
-                array_push($arr_img,$name);
+                $imgData[] = $name;
             }
-            $edit_product->product_image=json_encode($arr_img);
+            $edit_product->product_image=json_encode($imgData);
         }
+
         $edit_product -> save();
         $register_success = Session::get('success_edit_product');
         Session::put('success_edit_product');
@@ -330,8 +326,8 @@ class AdminController extends Controller
     }
 
     public function update_order_status($id_order){
-        $get_id = Order::find($id_order);   
-        if($get_id->order_status == 0){ 
+        $get_id = Order::find($id_order);
+        if($get_id->order_status == 0){
             DB::table('orders')->where('id',$id_order)->update(['order_status'=>1]);
             return redirect()->back()->with('message','Đã duyệt đơn hàng');
         }else{

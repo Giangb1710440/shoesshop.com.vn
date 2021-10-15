@@ -1,5 +1,5 @@
 @extends('admin_layout.master')
-@section('title','Edit-category')
+@section('title','Edit-product')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -22,24 +22,22 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>Loại sản phẩm</label>
-                                    <label>
-                                        <select name="category" class="form-control">
-                                        <option value="" >- - - Chọn - - -</option>
-                                        @foreach($category as $cate)
-                                                <option value="{{$cate->id}}" >{{$cate->category_name}}</option>
-                                        @endforeach
+                                        <select name="category_id" id="category_id" class="form-control" disabled>
+                                            @foreach($category as $cate)
+                                                @if($product->category_id == $cate->id)
+                                                    <option  value="{{$cate->id}}">{{$cate->category_name}}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
-                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <label>Tên sản phẩm</label>
                                     <input name="name_product" class="form-control" value="{{$product->product_name}}">
-
                                 </div>
 
                                 <div class="form-group">
                                     <label>Giá</label>
-                                    <input name="price" class="form-control" value="{{number_format($product->product_price)}}">
+                                    <input name="price" class="form-control" value="{{$product->product_price}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Hình ảnh</label>
@@ -85,7 +83,7 @@
                                         </tr>
                                     </table>
                                     <label>Thêm ảnh</label>
-                                    <input type="file" class="form-control" name="image" value="images" multiple>
+                                    <input style="height: 90px;" type="file" class="form-control" name="image[]" value="{{$product->product_image}}" multiple>
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả</label>
