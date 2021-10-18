@@ -65,7 +65,7 @@
                                             <th class="product-image">Hình ảnh</th>
                                             <th class="product-name">Tên sản phẩm</th>
                                             <th class="product-name">Size</th>
-                                            <th class="product-name">Màu sắc</th>
+{{--                                            <th class="product-name">Màu sắc</th>--}}
                                             <th class="product-price">Giá</th>
                                             <th class="product-quality">Số lượng</th>
                                             <th class="product-total">Tổng</th>
@@ -95,14 +95,14 @@
                                                         <td>
                                                             {{$product['size']}}
                                                         </td>
-                                                        <td>
-                                                            @php($color = DB::table('colors')->get())
-                                                            @foreach($color as $colors)
-                                                                @if($colors->id == $product['color'])
-                                                                    {{$colors->name_color}}
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
+{{--                                                        <td>--}}
+{{--                                                            @php($color = DB::table('colors')->get())--}}
+{{--                                                            @foreach($color as $colors)--}}
+{{--                                                                @if($colors->id == $product['color'])--}}
+{{--                                                                    {{$colors->name_color}}--}}
+{{--                                                                @endif--}}
+{{--                                                            @endforeach--}}
+{{--                                                        </td>--}}
                                                         <td data-label="Giá sản phẩm" >
                                                             <span class="amount" >{{ number_format($product['item']['product_price'])}} VND</span>
                                                         </td>
@@ -201,6 +201,8 @@
                                             <td></td>
                                             <td class="actions">
                                                     <input type="submit" value="Đặt hàng" class="btn btn-default" name="update_cart" style="background-color: #DB5660;color: white;">
+{{--                                                    <input type="submit" value="Xem giỏ hàng"  name="update_cart" style="background-color: #2672ec;color: white;">--}}
+                                                <a href="{{route('page_cart')}}" type="button" class="btn btn-default">Cập nhật giỏ hàng</a>
                                             </td>
                                         </tr>
                                     </tfoot>

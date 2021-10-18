@@ -166,7 +166,7 @@
                                                     <span>Size: </span>
                                                     @php($details = DB::table('detail_products')->where('product_id',$products->id)->get())
                                                     @foreach ($details as $detail)
-                                                        <input type="radio" id="html" name="inputColor" value="{{ $detail->size }}" style="width: 20px;">
+                                                        <input type="radio" id="html" name="size_shose" value="{{ $detail->size }}" style="width: 20px;" required>
                                                         <label for="color">{{ $detail->size }}</label>
                                                     @endforeach
                                             </div>
@@ -248,47 +248,19 @@
                 alert(msg);
             }
         </script>
-
-
-        {{-- <script>
-            $('[data-toggle="collapse"]').on('click', function() {
-                var $this = $(this),
-                    $parent = typeof $this.data('parent')!== 'undefined' ? $($this.data('parent')) : undefined;
-                if($parent === undefined) { /* Just toggle my  */
-                    $this.find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-                    return true;
-                }
-
-                /* Open element will be close if parent !== undefined */
-                var currentIcon = $this.find('.glyphicon');
-                currentIcon.toggleClass('glyphicon-plus glyphicon-minus');
-                $parent.find('.glyphicon').not(currentIcon).removeClass('glyphicon-minus').addClass('glyphicon-plus');
-
-            });
-        </script> --}}
-
-        {{-- <script>
-            $(document).ready(function(){
-                $('[data-toggle="popover"]').popover();
-            });
-
-            function MessageFunction() {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Đăng nhập để đánh giá sao',
+        <script>
+            var msg = '{{Session::get('non_size')}}';
+            var exist = '{{Session::has('non_size')}}';
+            if (exist) {
+                swal({
+                    title: "Hãy đăng nhập !",
+                    text: "",
+                    type: "success",
+                    timer: 1200,
                     showConfirmButton: false,
-                    timer: 1500
+                    position: 'top-end',
                 });
-                setTimeout(function() {
-                    location.href = "{{ url('/login') }}";
-                }, 2000);
             }
-
-            function SubmitFormFunction() {
-                document.getElementById("FormSubmit").submit();
-            }
-        </script> --}}
-
+        </script>
 
 @endsection

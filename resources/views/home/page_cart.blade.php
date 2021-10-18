@@ -74,7 +74,10 @@
                         <th>{{ $product['item']['product_name']}}</th>
                         <td>
                             <a href="#">
-                                <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
+                                @foreach((array)json_decode($product['item']['product_image'], true) as $images)
+                                <img class="image-product" src="{{asset('public/uploads/'.$images)}}" width="145" height="145" >
+                                @break
+                                @endforeach
                             </a>
                         </td>
                         <td>

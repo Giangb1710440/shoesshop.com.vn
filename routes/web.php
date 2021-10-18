@@ -37,7 +37,7 @@ Route::post('/check_signup',[HomeController::class,'check_signup'])->name('check
 Route::get('/page-signup', [HomeController::class, 'page_signup'])->name('page-signup');
 
 //Trang giỏ hàng
-Route::get('/page-cart', [HomeController::class, 'page_cart']);
+Route::get('/page-cart', [HomeController::class, 'page_cart'])->name('page_cart');
 
 //Trang thanh toán
 Route::get('/page-checkout', [HomeController::class, 'page_checkout']);
