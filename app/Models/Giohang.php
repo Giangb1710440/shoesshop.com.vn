@@ -38,7 +38,6 @@ class Giohang extends Model
         $this->items[$id] = $giohang;
         $this->totalQty++;
         $this->totalPrice += $item->product_price*$qty_p;
-
     }
 
     // update cart
@@ -80,10 +79,11 @@ class Giohang extends Model
             unset($this->items[$id]);
         }
     }
-    //xóa nhiều
+    //xóa item voi $id
     public function removeItem($id){
         $this->totalQty -= $this->items[$id]['qty'];
         $this->totalPrice -= $this->items[$id]['price'];
         unset($this->items[$id]);
     }
+
 }

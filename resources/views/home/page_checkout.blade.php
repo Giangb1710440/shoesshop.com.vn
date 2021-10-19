@@ -75,6 +75,9 @@
                                         @php($i=0)
                                         @if(Session::has('cart'))
                                             @if(Session('cart')->totalQty > 0)
+                                                <?php
+                                                    $total_cart = 0;
+                                                ?>
                                                 @foreach($product_cart as $product)
                                                     <tr class="cart_item">
                                                         <td>{{++$i}}</td>
@@ -114,6 +117,9 @@
                                                             <span class="amount">{{number_format($product['item']['product_price']*$product['qty'])}} VND</span>
                                                         </td>
                                                     </tr>
+                                                    <?php
+                                                        $total_cart += $product['item']['product_price']*$product['qty'];
+                                                    ?>
                                                 @endforeach
                                             @else
                                                 <tr>
@@ -183,14 +189,8 @@
 
                                             <td data-label="Tổng đơn hàng">
                                                 @if(Session::has('cart'))
-                                                    @if(Session('cart')->totalQty > 0)
-                                                        @foreach($product_cart as $product)
-                                                                    <strong><span class="amount">{{number_format($totalPrice)}} VND</span></strong>
-                                                            @break
-                                                        @endforeach
-                                                    @else
-                                                        <strong><span class="amount">0 VND</span></strong>
-                                                    @endif
+                                                        <strong><span class="amount">{{number_format($total_cart)}} VND</span></strong>
+                                                    <input type="hidden" name="total_cart" value="{{$total_cart}}">
                                                 @else
                                                     <strong><span class="amount">0 VND</span></strong>
                                                 @endif

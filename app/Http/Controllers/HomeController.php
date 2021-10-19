@@ -255,7 +255,6 @@ class HomeController extends Controller
             $cart->update_cart($request->id,$request->quantity);
             session()->put('cart', $cart);
         }
-
     }
 
     public function getDeleteCart($id){
@@ -266,14 +265,11 @@ class HomeController extends Controller
             Session::put('cart', $cart);
         }else{
             Session::forget('cart');
-
         }
         $delete_cart = Session::get('delete_cart');
         Session::put('delete_cart');
-
         return redirect()->back()->with('delete_cart', 'Đã xóa sản phẩm ra khỏi giỏ hàng');
     }
-
 
     //thanh toan
     public function check_out(Request $request){
@@ -287,7 +283,7 @@ class HomeController extends Controller
             $order->user_id = Auth::user()->id;
             $order->order_status = 0;
             $order->order_amount = $cart->totalQty;
-            $order->total_price = $cart->totalPrice;
+            $order->total_price = $request->input('total_cart');
             $order->save();
 
             foreach ($cart->items as $key => $value) {
@@ -295,7 +291,7 @@ class HomeController extends Controller
                 $orderDetail->order_id  = $order->id;
                 $orderDetail->product_id  = $key;
                 $orderDetail->quality = $value['qty'];
-                $orderDetail->unit_price = ($value['price'] / $value['qty']);
+                $orderDetail->unit_price = $value['item']['product_price']*$value['qty'];
                 $orderDetail->save();
             }
             Session::forget('cart');

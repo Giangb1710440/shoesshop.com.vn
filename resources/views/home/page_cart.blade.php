@@ -55,7 +55,6 @@
 <div class="collection_text">Shopping Cart</div>
 <table class="table table-bordered" style="max-width: 60%; margin: auto;">
         @if(Session::has('cart'))
-            @if(Session('cart')->totalQty > 0)
                 <thead>
                     <tr>
                     <th>Tên Sản Phẩm</th>
@@ -113,13 +112,7 @@
                         </a>
                     </td>
                 </tr>
-            @else
-                <tr>
-                    <td>
-                        <p style="font-size: 25px;">Giỏ hàng không có sản phẩm</p>
-                    </td>
-                </tr>
-            @endif
+
         @else
             <tr>
                 <td>
