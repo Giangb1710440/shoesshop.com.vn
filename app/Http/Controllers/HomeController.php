@@ -133,6 +133,9 @@ class HomeController extends Controller
             );
         } catch (ValidationException $e) {
         }
+        if (User::where('email', '=', $res->input('email'))->count() > 0) {
+            return redirect()->back()->with('error_email', 'trung email');
+        }
         $fullname = $res->input('fullname');
         $username = $res->input('username');
         $email = $res->input('email');

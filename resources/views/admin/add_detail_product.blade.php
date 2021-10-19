@@ -48,7 +48,7 @@
                                 </div> --}}
                                 <div class="form-group">
                                     <label>Số lượng</label>
-                                    <input name="qty_product" class="form-control">
+                                    <input name="qty_product" class="form-control" required>
                                 </div>
                                 <button type="submit" class="btn btn-default"><i class="fas fa-check"></i> Thêm mới</button>
 

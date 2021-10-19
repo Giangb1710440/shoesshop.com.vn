@@ -8219,6 +8219,20 @@
                 });
             }
         </script>
+        <script>
+            var msg = '{{Session::get('error_email')}}';
+            var exist = '{{Session::has('error_email')}}';
+            if(exist){
+                swal({
+                    title: "Email đã có người sử dụng",
+                    text: "",
+                    type: "error",
+                    timer: 1200,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                });
+            }
+        </script>
 	</body>
 </html>
 @endsection
