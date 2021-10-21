@@ -185,14 +185,20 @@ class AdminController extends Controller
     }
 
     public function post_add_detail_product(Request $request){
-        $add_detail = new Detail_product();
-        $add_detail->product_id = $request->input('id_product');
-        $add_detail->size = $request->input('size_giay');
-        $add_detail->qty = $request->input('qty_product');
-        $add_detail->save();
-        $register_success = Session::get('success_add_product');
-        Session::put('success_add_product');
-        return redirect()->back()->with('success_add_product','Thành công');
+        if (Detail_product::where('size','=',$request->input('size_giay'))->count() > 0) {
+            Session::put('error_add_product');
+            return redirect()->back()->with('error_add_product','khong thanh công');
+        }else{
+            $add_detail = new Detail_product();
+            $add_detail->product_id = $request->input('id_product');
+            $add_detail->size = $request->input('size_giay');
+            $add_detail->qty = $request->input('qty_product');
+            $add_detail->save();
+            $register_success = Session::get('success_add_product');
+            Session::put('success_add_product');
+            return redirect()->back()->with('success_add_product','Thành công');
+        }
+
     }
 
 

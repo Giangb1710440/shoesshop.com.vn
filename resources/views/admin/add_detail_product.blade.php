@@ -83,7 +83,21 @@
             });
         }
     </script>
-
+    <script>
+        var msg1 = '{{Session::get('error_add_product')}}';
+        var exist1 = '{{Session::has('error_add_product')}}';
+        if(exist1){
+            swal({
+                title: "Dữ liệu bạn thêm đã tồn tại",
+                text: "",
+                icon: "error",
+                type: "error",
+                timer: 2000,
+                showConfirmButton: false,
+                position: 'top-end',
+            });
+        }
+    </script>
     {{-- @if(session()->has('message'))
     <script>
         Swal.fire({
