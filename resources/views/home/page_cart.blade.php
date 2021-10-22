@@ -73,9 +73,14 @@
                     <tr>
                         <th>{{ $product['item']['product_name']}}</th>
                         <td>
-                            <a href="#">
-                                <img class="image-product" src="{{asset('public/home/img/shoes-img5.png')}}" width="145" height="145" >
-                            </a>
+                            {{-- @php($get_pro = DB::table('products')->where('id',$product->))
+                            @foreach((array)json_decode($product->product_image, true) as $image)
+                                            <a href="{{route('product_detail',$product->id)}}">
+                                                <img src="{{asset('public/home/img/'.$image)}}" width="145" height="145">
+                                            </a>
+                                        @break  
+                                        @endforeach --}}
+                            
                         </td>
                         <td>
                             {{$product['size']}}

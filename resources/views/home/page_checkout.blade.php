@@ -65,7 +65,6 @@
                                             <th class="product-image">Hình ảnh</th>
                                             <th class="product-name">Tên sản phẩm</th>
                                             <th class="product-name">Size</th>
-                                            <th class="product-name">Màu sắc</th>
                                             <th class="product-price">Giá</th>
                                             <th class="product-quality">Số lượng</th>
                                             <th class="product-total">Tổng</th>
@@ -94,14 +93,6 @@
                                                         </td>
                                                         <td>
                                                             {{$product['size']}}
-                                                        </td>
-                                                        <td>
-                                                            @php($color = DB::table('colors')->get())
-                                                            @foreach($color as $colors)
-                                                                @if($colors->id == $product['color'])
-                                                                    {{$colors->name_color}}
-                                                                @endif
-                                                            @endforeach
                                                         </td>
                                                         <td data-label="Giá sản phẩm" >
                                                             <span class="amount" >{{ number_format($product['item']['product_price'])}} VND</span>
@@ -139,21 +130,6 @@
                                     </tbody>
                                 </table>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <h3><b>Phương thức thanh toán</b> </h3>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div  class="dropdown show">
-                                            <a style="background-color: #db5660;" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              chose...
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                              <a class="dropdown-item" href="#">Cash</a>
-                                              <a class="dropdown-item" href="#">Online Checkout</a>
-                                          </div>
-                                        </div>
-                                    </div>
-                                <br><br>
                                 <table class="shop_table" style="width:100%;" >
                                     <tfoot>
                                         <tr class="cart-subtotal">

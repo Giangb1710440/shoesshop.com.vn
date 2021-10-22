@@ -62,7 +62,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ url('change-pass/'.Auth::id()) }}" style="color: #333;">
+                                                <a href="{{ url('change-pass') }}" style="color: #333;">
                                                     <i class="fa fa-gear fa-fw"></i> Đổi Mật Khẩu
                                                 </a>
                                             </li>
