@@ -33,11 +33,11 @@ class Giohang extends Model
             }
         }
         $giohang['qty']+=$qty_p;
-        $giohang['price'] = $item->product_price * $giohang['qty'];
+        $giohang['price'] += $item->product_price * $qty_p;
         $giohang['size']=$size;
         $this->items[$id] = $giohang;
         $this->totalQty++;
-        $this->totalPrice += $item->product_price;
+        $this->totalPrice += $item->product_price*$qty_p;
     }
 
     // update cart
@@ -49,7 +49,7 @@ class Giohang extends Model
             $this->items[$id]['price'] = $this->items[$id]['item']['product_price'] * $newQty;
             $cut = $present_qty - $newQty;
             $this->totalQty -= $cut;
-            $this->totalPrice -= $this->items[$id]['price'];
+            $this->totalPrice -= $this->items[$id]['item']['product_price']*$cut;
 
             if($this->items[$id]['qty']<=0){
                 unset($this->items[$id]);
@@ -79,10 +79,11 @@ class Giohang extends Model
             unset($this->items[$id]);
         }
     }
-    //xóa nhiều
+    //xóa item voi $id
     public function removeItem($id){
         $this->totalQty -= $this->items[$id]['qty'];
         $this->totalPrice -= $this->items[$id]['price'];
         unset($this->items[$id]);
     }
+
 }

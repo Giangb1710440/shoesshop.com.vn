@@ -62,7 +62,11 @@
                                                 </a>
                                             </li>
                                             <li>
+<<<<<<< HEAD
                                                 <a href="{{ url('change-pass') }}" style="color: #333;">
+=======
+                                                <a href="{{ url('change-pass/') }}" style="color: #333;">
+>>>>>>> f29c2896b078c7ca6d74b885ac6eff9175e6c6e8
                                                     <i class="fa fa-gear fa-fw"></i> Đổi Mật Khẩu
                                                 </a>
                                             </li>

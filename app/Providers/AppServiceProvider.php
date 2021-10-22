@@ -48,7 +48,6 @@ class AppServiceProvider extends ServiceProvider
                     'totalQty'=>$cart->totalQty,
                     'customer_cart'=>$cart->customer_cart,
                     'qty_cart'=>$cart->qty_cart
-
                 ]);
             }
         });

@@ -26,9 +26,9 @@
                                         <option value="0"> - - - - - Chọn - - - - -</option>
                                         @foreach($product as $products)
                                             <option value="{{$products->id}}">{{$products->product_name}}</option>
-                                            @foreach((array)json_decode($products->product_image, true) as $image)
-                                                <img src="{{asset('public/home/img/'.$image)}}" width="50" height="50">
-                                            @endforeach
+{{--                                            @foreach((array)json_decode($products->product_image, true) as $image)--}}
+{{--                                                <img src="{{asset('public/home/img/'.$image)}}" width="50" height="50">--}}
+{{--                                            @endforeach--}}
                                         @endforeach
                                     </select>
                                 </div>

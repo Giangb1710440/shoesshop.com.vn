@@ -65,6 +65,10 @@
                                             <th class="product-image">Hình ảnh</th>
                                             <th class="product-name">Tên sản phẩm</th>
                                             <th class="product-name">Size</th>
+<<<<<<< HEAD
+=======
+{{--                                            <th class="product-name">Màu sắc</th>--}}
+>>>>>>> f29c2896b078c7ca6d74b885ac6eff9175e6c6e8
                                             <th class="product-price">Giá</th>
                                             <th class="product-quality">Số lượng</th>
                                             <th class="product-total">Tổng</th>
@@ -74,6 +78,9 @@
                                         @php($i=0)
                                         @if(Session::has('cart'))
                                             @if(Session('cart')->totalQty > 0)
+                                                <?php
+                                                    $total_cart = 0;
+                                                ?>
                                                 @foreach($product_cart as $product)
                                                     <tr class="cart_item">
                                                         <td>{{++$i}}</td>
@@ -94,6 +101,17 @@
                                                         <td>
                                                             {{$product['size']}}
                                                         </td>
+<<<<<<< HEAD
+=======
+{{--                                                        <td>--}}
+{{--                                                            @php($color = DB::table('colors')->get())--}}
+{{--                                                            @foreach($color as $colors)--}}
+{{--                                                                @if($colors->id == $product['color'])--}}
+{{--                                                                    {{$colors->name_color}}--}}
+{{--                                                                @endif--}}
+{{--                                                            @endforeach--}}
+{{--                                                        </td>--}}
+>>>>>>> f29c2896b078c7ca6d74b885ac6eff9175e6c6e8
                                                         <td data-label="Giá sản phẩm" >
                                                             <span class="amount" >{{ number_format($product['item']['product_price'])}} VND</span>
                                                         </td>
@@ -105,6 +123,9 @@
                                                             <span class="amount">{{number_format($product['item']['product_price']*$product['qty'])}} VND</span>
                                                         </td>
                                                     </tr>
+                                                    <?php
+                                                        $total_cart += $product['item']['product_price']*$product['qty'];
+                                                    ?>
                                                 @endforeach
                                             @else
                                                 <tr>
@@ -159,14 +180,8 @@
 
                                             <td data-label="Tổng đơn hàng">
                                                 @if(Session::has('cart'))
-                                                    @if(Session('cart')->totalQty > 0)
-                                                        @foreach($product_cart as $product)
-                                                                    <strong><span class="amount">{{number_format($totalPrice)}} VND</span></strong>
-                                                            @break
-                                                        @endforeach
-                                                    @else
-                                                        <strong><span class="amount">0 VND</span></strong>
-                                                    @endif
+                                                        <strong><span class="amount">{{number_format($total_cart)}} VND</span></strong>
+                                                    <input type="hidden" name="total_cart" value="{{$total_cart}}">
                                                 @else
                                                     <strong><span class="amount">0 VND</span></strong>
                                                 @endif
@@ -177,6 +192,8 @@
                                             <td></td>
                                             <td class="actions">
                                                     <input type="submit" value="Đặt hàng" class="btn btn-default" name="update_cart" style="background-color: #DB5660;color: white;">
+{{--                                                    <input type="submit" value="Xem giỏ hàng"  name="update_cart" style="background-color: #2672ec;color: white;">--}}
+                                                <a href="{{route('page_cart')}}" type="button" class="btn btn-default">Cập nhật giỏ hàng</a>
                                             </td>
                                         </tr>
                                     </tfoot>
