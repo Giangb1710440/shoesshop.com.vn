@@ -2,7 +2,7 @@
 @section('content-profile-col-9')
 
 <h4 class="blue">
-    <span class="middle">Nguyễn Hà Giang</span> &emsp;&emsp;
+    <span class="middle"></span> &emsp;&emsp;
     <span class="label label-purple arrowed-in-right" style="color: green;">
         <i class="fa fa-circle"></i>
         online

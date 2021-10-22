@@ -192,8 +192,6 @@ class AdminController extends Controller
                 Session::put('error_add_product');
                 return redirect()->back()->with('error_add_product','khong thanh công');
             }
-
-
         }
             $add_detail = new Detail_product();
             $add_detail->product_id = $request->input('id_product');
@@ -203,7 +201,6 @@ class AdminController extends Controller
             $register_success = Session::get('success_add_product');
             Session::put('success_add_product');
             return redirect()->back()->with('success_add_product','Thành công');
-
     }
 
 
