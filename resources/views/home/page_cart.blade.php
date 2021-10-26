@@ -72,12 +72,14 @@
                     <tr>
                         <th>{{ $product['item']['product_name']}}</th>
                         <td>
-                            <a href="#">
-                                @foreach((array)json_decode($product['item']['product_image'], true) as $images)
-                                <img class="image-product" src="{{asset('public/uploads/'.$images)}}" width="145" height="145" >
-                                @break
-                                @endforeach
-                            </a>
+                            {{-- @php($get_pro = DB::table('products')->where('id',$product->))
+                            @foreach((array)json_decode($product->product_image, true) as $image)
+                                            <a href="{{route('product_detail',$product->id)}}">
+                                                <img src="{{asset('public/home/img/'.$image)}}" width="145" height="145">
+                                            </a>
+                                        @break  
+                                        @endforeach --}}
+                            
                         </td>
                         <td>
                             {{$product['size']}}

@@ -13,6 +13,9 @@
             display: inline-block;
             margin-bottom: 10px;
         }
+        .w-5{
+            display: inline;
+        }
 
        
     </style>
@@ -69,7 +72,7 @@
                                             <i class="fa fa-info-circle"></i> <b>Update</b>
                                         </a>
 
-                                        <a href="{{ url('change-pass/') }}" class="btn btn-warning btn-block">
+                                        <a href="{{ url('change-pass') }}" class="btn btn-warning btn-block">
                                             <i class="fa fa-key"></i><b>Change Pass</b>
                                         </a>
                                         <br>
