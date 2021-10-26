@@ -31,7 +31,7 @@
                                     <a href="#">
                                         <img class="shop_thumbnail" src="{{url('public/home/img/'.$image)}}" width="50" height="50" >
                                     </a>
-                                @endforeach    
+                                @endforeach
                             </td>
                             <td data-label="Tên SP">
                                 {{ $get_product->product_name }}
